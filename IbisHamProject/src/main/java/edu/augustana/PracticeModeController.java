@@ -3,7 +3,7 @@ package edu.augustana;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class SecondaryController {
+public class PracticeModeController {
 
     @FXML
     private void switchToTertiary() throws IOException {
