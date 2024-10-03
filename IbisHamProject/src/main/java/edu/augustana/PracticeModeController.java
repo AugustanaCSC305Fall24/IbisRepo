@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 public class PracticeModeController {
 
     @FXML
-    private void switchToTertiary() throws IOException {
-        App.setRoot("tertiary");
+    private void switchToTDictionary() throws IOException {
+        App.setRoot("dictionary");
     }
 }
