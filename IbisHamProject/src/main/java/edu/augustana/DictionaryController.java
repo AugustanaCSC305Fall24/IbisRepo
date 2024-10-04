@@ -7,8 +7,13 @@ import java.io.IOException;
 public class DictionaryController {
 
         @FXML
-        private void switchToPrimary() throws IOException {
+        private void switchToHomePage() throws IOException {
             App.setRoot("homePage");
+        }
+
+        @FXML
+        private void switchToPracPage() throws IOException {
+            App.setRoot("practiceMode");
         }
 
 }
