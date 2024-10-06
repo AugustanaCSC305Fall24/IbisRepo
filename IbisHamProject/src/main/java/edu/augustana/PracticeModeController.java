@@ -20,6 +20,16 @@ public class PracticeModeController {
         App.setRoot("homePage");
     }
 
+    @FXML
+    private void switchtoPracSettings() throws IOException, IOException {
+        App.setRoot("pracSetPage");
+    }
+
+    @FXML
+    private void switchToPracPage() throws IOException {
+        App.setRoot("practiceMode");
+    }
+
 
 
 
