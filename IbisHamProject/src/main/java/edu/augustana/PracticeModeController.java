@@ -30,6 +30,11 @@ public class PracticeModeController {
         App.setRoot("practiceMode");
     }
 
+    @FXML
+    private void switchToPracLaunch() throws IOException {
+        App.setRoot("pracLaunched");
+    }
+
 
 
 

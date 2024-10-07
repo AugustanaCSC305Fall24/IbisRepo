@@ -7,10 +7,10 @@
 
 <VBox alignment="CENTER" prefHeight="463.0" prefWidth="694.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
     <children>
-        <Label text="Practice Mode View" />
+        <Label text="Practice Mode Home" />
         <Button fx:id="secondaryButton" onAction="#switchToDictionary" text="Morse Code Dictionary" />
         <Button fx:id="pracSettings" mnemonicParsing="false" onAction="#switchtoPracSettings" text="Settings" />
-      <Button fx:id="HomeFromPracMode" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
+        <Button fx:id="HomeFromPracMode" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
 
     </children>
     <padding>
