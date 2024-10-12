@@ -26,7 +26,7 @@
             </Label>
             <Pane prefHeight="56.0" prefWidth="616.0">
                <children>
-                  <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="155.0" text="Visualizer">
+                  <CheckBox fx:id="visualizerCheckBox" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="155.0" text="Visualizer">
                      <font>
                         <Font name="Luminari" size="18.0" />
                      </font>
