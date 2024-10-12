@@ -15,6 +15,7 @@ public class App extends Application {
 
     private static Scene scene;
 
+    // sets app screne to the home page
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("homePage"), 640, 480);

@@ -1,37 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="425.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AccessibilityController">
+<AnchorPane prefHeight="425.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
    <children>
-      <CheckBox layoutX="22.0" layoutY="48.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="155.0" text="Visualizer">
-         <font>
-            <Font name="Luminari" size="18.0" />
-         </font>
-      </CheckBox>
-      <Slider fx:id="qualitySlider" layoutX="30.0" layoutY="121.0" majorTickUnit="1.0" max="5.0" minorTickCount="2" prefHeight="23.0" prefWidth="195.0" showTickLabels="true" />
-      <Slider fx:id="amountSlider" layoutX="30.0" layoutY="181.0" majorTickUnit="1.0" max="5.0" minorTickCount="2" prefHeight="23.0" prefWidth="195.0" showTickLabels="true" />
-      <Slider fx:id="speedSlider" layoutX="30.0" layoutY="247.0" prefHeight="23.0" prefWidth="195.0" showTickLabels="true" />
-      <Text layoutX="247.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint Quality">
-         <font>
-            <Font name="Luminari" size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="247.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint Amount">
-         <font>
-            <Font name="Luminari" size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="243.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed">
-         <font>
-            <Font name="Luminari" size="19.0" />
-         </font>
-      </Text>
-      <Button fx:id="backButton" layoutX="3.0" layoutY="8.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="68.0" />
+      <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="700.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="614.0" text="Practice Setup Settings">
+               <padding>
+                  <Insets bottom="25.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="56.0" prefWidth="616.0">
+               <children>
+                  <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="155.0" text="Visualizer">
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" />
+                     </padding>
+                  </CheckBox>
+               </children>
+            </Pane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hint Quality">
+               <font>
+                  <Font name="Luminari" size="19.0" />
+               </font>
+            </Text>
+
+            <Slider fx:id="qualitySlider" majorTickUnit="1.0" max="5.0" minorTickCount="2" prefHeight="32.0" prefWidth="497.0" showTickLabels="true">
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </Slider>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hint Amount">
+               <font>
+                  <Font name="Luminari" size="19.0" />
+               </font>
+            </Text>
+            <Slider fx:id="amountSlider" majorTickUnit="1.0" max="5.0" minorTickCount="2" prefHeight="23.0" prefWidth="195.0" showTickLabels="true">
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </Slider>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Speed">
+               <font>
+                  <Font name="Luminari" size="19.0" />
+               </font>
+            </Text>
+            <Slider fx:id="speedSlider" prefHeight="23.0" prefWidth="195.0" showTickLabels="true">
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </Slider>
+            <Button fx:id="pracLaunch" mnemonicParsing="false" onAction="#switchToPracLaunch" text="Launch practice">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="PracFromDict" onAction="#switchToPracPage" text="Practice Home">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="HomeFromPracMode" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="50.0" top="10.0" />
+         </padding>
+      </VBox>
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <cursor>
+      <Cursor fx:constant="OPEN_HAND" />
+   </cursor>
 </AnchorPane>
