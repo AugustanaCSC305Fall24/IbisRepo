@@ -42,13 +42,28 @@ public class PracticeModeController {
     //Button action method to switch screens to the accessibility menu/settings fxml file by the controller file
     @FXML
     private void switchtoPracSettings() throws IOException, IOException {
-        App.setRoot("accessibilityMenu");
+        App.setRoot("settings");
     }
 
     //Button action method to switch screens to the practice main screen fxml file by the controller file
     @FXML
     private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
+    }
+
+    @FXML
+    private void switchToInterference() throws IOException {
+        App.setRoot("");
+    }
+
+    @FXML
+    private void switchToAccessibility() throws IOException {
+        App.setRoot("accessibilityMenu");
+    }
+
+    @FXML
+    private  void switchToProbTypes() throws IOException {
+        App.setRoot("");
     }
 
     //Button action method to switch screens to the launched practice fxml file by the controller file
