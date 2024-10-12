@@ -68,7 +68,7 @@ public class PracticeModeController {
 
     //Button action method to switch screens to the launched practice fxml file by the controller file
     @FXML
-    private void switchToPracLaunch() throws IOException {
+    private void saveAndBack() throws IOException {
         //got the values from the sliders and checkbox
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
@@ -82,7 +82,7 @@ public class PracticeModeController {
         //System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
 
         //switch to the launched practice screen
-        App.setRoot("pracLaunched");
+        App.setRoot("settings");
     }
 
 }
