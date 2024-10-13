@@ -45,6 +45,11 @@ public class PracticeModeController {
         App.setRoot("settings");
     }
 
+    @FXML
+    private void pracLaunch() throws IOException, IOException {
+        App.setRoot("PracLaunched");
+    }
+
     //Button action method to switch screens to the practice main screen fxml file by the controller file
     @FXML
     private void switchToPracPage() throws IOException {
@@ -76,10 +81,10 @@ public class PracticeModeController {
         boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
 
         //print values to the command line for testing
-        //System.out.println("Quality Slider Value: " + quality);
-        //System.out.println("Amount Slider Value: " + amount);
-        //System.out.println("Speed Slider Value: " + speed);
-        //System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
+        System.out.println("Quality Slider Value: " + quality);
+        System.out.println("Amount Slider Value: " + amount);
+        System.out.println("Speed Slider Value: " + speed);
+        System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
 
         //switch to the launched practice screen
         App.setRoot("settings");

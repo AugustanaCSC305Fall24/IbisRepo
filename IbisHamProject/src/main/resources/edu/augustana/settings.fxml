@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
    <children>
       <Button fx:id="interferneceButton" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#switchToInterference" prefHeight="213.0" prefWidth="171.0" text="Interference" textAlignment="CENTER">
@@ -22,7 +21,9 @@
             <Font name="Luminari" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="PracFromDict" onAction="#switchToPracPage" text="Practice Home"/>
+      <Button fx:id="PracFromDict" layoutX="14.0" layoutY="14.0" onAction="#switchToPracPage" text="Practice Home" />
+      <Button fx:id="launchPract" layoutX="260.0" layoutY="327.0" onAction="#pracLaunch" text="Launch Practice" />
+
 
    </children>
 </AnchorPane>
