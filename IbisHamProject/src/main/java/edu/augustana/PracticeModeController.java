@@ -2,55 +2,97 @@ package edu.augustana;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+
+import java.util.Random;
 
 public class PracticeModeController {
 
-    //element for the quality slider
+    @FXML
+    private Slider FrequencySlider;  // Ensure the name matches fx:id in FXML
+
+    @FXML
+    private Label FrequencyLabel;
+
     @FXML
     private Slider qualitySlider;
 
-    //element for the amount  slider
     @FXML
     private Slider amountSlider;
 
-    //element for the speed slider
     @FXML
     private Slider speedSlider;
 
-    //element for the visualizer checkbox
     @FXML
     private CheckBox visualizerCheckBox;
 
-    //Button action method to switch screens to the morse code dictionary fxml file by the controller file
     @FXML
-    private void switchToDictionary() throws IOException, IOException {
+    private BarChart<String, Number> frequencyBarChart;
+
+    @FXML
+    private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
+
+    @FXML
+    public void initialize() {
+        // Initialize slider to a default value of 0.0 to avoid null pointer exception
+        if (FrequencySlider != null) {
+            FrequencySlider.setValue(0.0);  // Ensure the slider starts at 0.0
+
+            // Set an initial label value based on the slider’s current value
+            FrequencyLabel.setText(String.format("Current Frequency: %.1f MHz", FrequencySlider.getValue()));
+
+            // Add listener to update label when slider is moved
+            FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                FrequencyLabel.setText(String.format("Current Frequency: %.1f MHz", newValue.doubleValue()));
+
+
+
+            });
+            String[] frequencies = {"88", "90", "92", "94", "96", "98", "100", "102", "104", "106", "108"};
+            xAxis.setCategories(javafx.collections.FXCollections.observableArrayList(frequencies));
+
+            // Simulate random "busy" values for each frequency, with values from 1 to 10
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            Random random = new Random();
+            for (String frequency : frequencies) {
+                series.getData().add(new XYChart.Data<>(frequency, 1 + random.nextInt(10)));  // Values between 1 and 10
+            }
+
+            // Add data to the bar chart
+            frequencyBarChart.getData().add(series);
+        }
+    }
+
+    // Button action methods
+    @FXML
+    private void switchToDictionary() throws IOException {
         App.setRoot("dictionary");
     }
 
-    //Button action method to switch screens to the home screen fxml file by the controller file
     @FXML
-    private void switchtoHomePage() throws IOException, IOException {
+    private void switchtoHomePage() throws IOException {
         App.setRoot("homePage");
     }
 
-    //Button action method to switch screens to the accessibility menu/settings fxml file by the controller file
     @FXML
-    private void switchtoPracSettings() throws IOException, IOException {
+    private void switchtoPracSettings() throws IOException {
         App.setRoot("settings");
     }
 
     @FXML
-    private void pracLaunch() throws IOException, IOException {
+    private void pracLaunch() throws IOException {
         App.setRoot("PracLaunched");
     }
 
-    //Button action method to switch screens to the practice main screen fxml file by the controller file
     @FXML
     private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
@@ -67,28 +109,24 @@ public class PracticeModeController {
     }
 
     @FXML
-    private  void switchToProbTypes() throws IOException {
+    private void switchToProbTypes() throws IOException {
         App.setRoot("");
     }
 
-    //Button action method to switch screens to the launched practice fxml file by the controller file
+    // Save the settings and go back
     @FXML
     private void saveAndBack() throws IOException {
-        //got the values from the sliders and checkbox
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
         double speed = speedSlider.getValue();
         boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
 
-        //print values to the command line for testing
         System.out.println("Quality Slider Value: " + quality);
         System.out.println("Amount Slider Value: " + amount);
         System.out.println("Speed Slider Value: " + speed);
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
 
-        //switch to the launched practice screen
+        // Switch to the settings screen
         App.setRoot("settings");
     }
-
 }
-
