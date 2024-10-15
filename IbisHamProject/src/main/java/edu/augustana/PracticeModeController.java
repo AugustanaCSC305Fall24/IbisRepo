@@ -4,12 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+
+import java.io.File;
 import java.io.IOException;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +34,34 @@ public class PracticeModeController {
     @FXML private NumberAxis yAxis;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
+
+    @FXML
+    private MediaView mediaView;
+    @FXML
+    private MediaView mediaView2;
+
+
+    @FXML
+    protected void onPlayAudioDit() {
+
+        String musicFile = "C:\\git\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dit.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+
+
+    }
+
+    @FXML
+    protected void onPlayAudioDash() {
+
+        String musicFile = "C:\\git\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dash.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+
+
+    }
 
     @FXML public void initialize() { // adds barchart with random 'busy' frequencies to listen too
         // Initialize slider to a default value of 0.0 to avoid null pointer exception
