@@ -31,7 +31,7 @@ public class PracticeModeController {
 
     @FXML public void initialize() {
         dictControl = new DictionaryController();  //create instance of DictionaryController for Morse code
-        dictControl.initializeMorseCodeMap();      //initialize the Morse code map
+        dictControl.engToMorseMap();      //initialize the Morse code map
 
         //make 0.0 so error doesnt occur
             if (FrequencySlider != null) {
