@@ -11,12 +11,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextArea;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class PracticeModeController {
-    private final Map<Character, String> morseCodeMap = new HashMap<>();
 
     @FXML private Slider FrequencySlider;
     @FXML private Label FrequencyLabel;
@@ -30,9 +27,14 @@ public class PracticeModeController {
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
 
-    @FXML public void initialize() { // adds barchart with random 'busy' frequencies to listen too
-        // Initialize slider to a default value of 0.0 to avoid null pointer exception
-        if (FrequencySlider != null) {
+    private DictionaryController dictControl;
+
+    @FXML public void initialize() {
+        dictControl = new DictionaryController();  //create instance of DictionaryController for Morse code
+        dictControl.initializeMorseCodeMap();      //initialize the Morse code map
+
+        //make 0.0 so error doesnt occur
+            if (FrequencySlider != null) {
             String[] frequencies = {"88", "90", "92", "94", "96", "98", "100", "102", "104", "106", "108"};
             Random random = new Random();
 
@@ -43,82 +45,39 @@ public class PracticeModeController {
             });
 
             xAxis.setCategories(javafx.collections.FXCollections.observableArrayList(frequencies));
-            // random "busy" values for each frequency, with values from 1 to 10
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             for (String frequency : frequencies) {
                 series.getData().add(new XYChart.Data<>(frequency, 1 + random.nextInt(10)));
             }
             frequencyBarChart.getData().add(series);
 
-            initializeMorseCodeMap();
-
-            // Add listener to MessageBox for real-time Morse code translation
+            // code to add the translation to text box live
             MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
                 String morseCode = translateToMorseCode(newValue);
-                TranslateBox.setText(morseCode);  // Update TranslateBox with Morse code
+                TranslateBox.setText(morseCode);
             });
-
-            
         }
     }
 
-    private void initializeMorseCodeMap() {
-        morseCodeMap.put('A', ".-");
-        morseCodeMap.put('B', "-...");
-        morseCodeMap.put('C', "-.-.");
-        morseCodeMap.put('D', "-..");
-        morseCodeMap.put('E', ".");
-        morseCodeMap.put('F', "..-.");
-        morseCodeMap.put('G', "--.");
-        morseCodeMap.put('H', "....");
-        morseCodeMap.put('I', "..");
-        morseCodeMap.put('J', ".---");
-        morseCodeMap.put('K', "-.-");
-        morseCodeMap.put('L', ".-..");
-        morseCodeMap.put('M', "--");
-        morseCodeMap.put('N', "-.");
-        morseCodeMap.put('O', "---");
-        morseCodeMap.put('P', ".--.");
-        morseCodeMap.put('Q', "--.-");
-        morseCodeMap.put('R', ".-.");
-        morseCodeMap.put('S', "...");
-        morseCodeMap.put('T', "-");
-        morseCodeMap.put('U', "..-");
-        morseCodeMap.put('V', "...-");
-        morseCodeMap.put('W', ".--");
-        morseCodeMap.put('X', "-..-");
-        morseCodeMap.put('Y', "-.--");
-        morseCodeMap.put('Z', "--..");
-        morseCodeMap.put('1', ".----");
-        morseCodeMap.put('2', "..---");
-        morseCodeMap.put('3', "...--");
-        morseCodeMap.put('4', "....-");
-        morseCodeMap.put('5', ".....");
-        morseCodeMap.put('6', "-....");
-        morseCodeMap.put('7', "--...");
-        morseCodeMap.put('8', "---..");
-        morseCodeMap.put('9', "----.");
-        morseCodeMap.put('0', "-----");
-        morseCodeMap.put(' ', "/"); // Slash to represent space between words
-    }
-
-    // Method to translate plain text to Morse code
+    //translation code from english to morse
     private String translateToMorseCode(String text) {
         StringBuilder morseCodeBuilder = new StringBuilder();
 
-        // Convert text to upper case and iterate through each character
+        //convert to all caps for uniformality
         for (char c : text.toUpperCase().toCharArray()) {
-            if (morseCodeMap.containsKey(c)) {
-                morseCodeBuilder.append(morseCodeMap.get(c)).append(" "); // Separate each Morse symbol with space
+            String morseCode = dictControl.getMorseCode(c);
+            if (!morseCode.isEmpty()) {
+                morseCodeBuilder.append(morseCode).append(" ");
             } else {
-                morseCodeBuilder.append("? "); // Use '?' for unknown characters
+                // ? for unknown characters
+                morseCodeBuilder.append("? ");
             }
         }
 
         return morseCodeBuilder.toString().trim();
     }
 
-    //button action methods
+    // Button action methods
     @FXML private void switchToDictionary() throws IOException {
         App.setRoot("dictionary");
     }
@@ -139,12 +98,10 @@ public class PracticeModeController {
         App.setRoot("practiceMode");
     }
 
-    //three buttons for settings - 2 not done yet
+    //settings fxml buttons
     @FXML private void switchToAccessibility() throws IOException {
         App.setRoot("accessibilityMenu");
     }
-
-
 
     @FXML private void switchToInterference() throws IOException {
         App.setRoot("");
@@ -154,14 +111,14 @@ public class PracticeModeController {
         App.setRoot("");
     }
 
-    // Save the settings and go back
     @FXML private void saveAndBack() throws IOException {
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
         double speed = speedSlider.getValue();
         boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
         App.setRoot("settings");
-        //test code below
+
+        // Test code
         System.out.println("Quality Slider Value: " + quality);
         System.out.println("Amount Slider Value: " + amount);
         System.out.println("Speed Slider Value: " + speed);
