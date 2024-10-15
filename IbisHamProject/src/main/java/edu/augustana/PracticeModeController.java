@@ -1,10 +1,10 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.chart.BarChart;
@@ -14,7 +14,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextArea;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -33,6 +32,7 @@ public class PracticeModeController {
     @FXML private NumberAxis yAxis;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
+    @FXML private Button backButton;
 
     @FXML public void initialize() { // adds barchart with random 'busy' frequencies to listen too
         // Initialize slider to a default value of 0.0 to avoid null pointer exception
@@ -143,19 +143,16 @@ public class PracticeModeController {
         App.setRoot("practiceMode");
     }
 
-    //three buttons for settings - 2 not done yet
     @FXML private void switchToAccessibility() throws IOException {
         App.setRoot("accessibilityMenu");
     }
-
-
-
+    
     @FXML private void switchToInterference() throws IOException {
-        App.setRoot("");
+        App.setRoot("interferenceMenu");
     }
 
     @FXML private void switchToProbTypes() throws IOException {
-        App.setRoot("");
+        App.setRoot("problemTypesMenu");
     }
 
     // Save the settings and go back
@@ -171,7 +168,10 @@ public class PracticeModeController {
         System.out.println("Speed Slider Value: " + speed);
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
     }
-
+    
+    @FXML private void goBack() throws IOException {
+        App.setRoot("settings");
+    }
 
 
     @FXML private void onPlayAudioDit(){
