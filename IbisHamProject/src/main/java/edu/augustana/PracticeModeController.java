@@ -172,18 +172,24 @@ public class PracticeModeController {
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
     }
 
+
+
     @FXML private void onPlayAudioDit(){
-        String musicFile = "C:\\git\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dit.mp3";     // For example
+        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dash.mp3";     // For example
 
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
+        TranslateBox.appendText("."); // Append a dot
     }
+
     @FXML private void onPlayAudioDash(){
-        String musicFile = "C:\\git\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dash.mp3";     // For example
+        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dit.mp3";     // For example
 
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
+        TranslateBox.appendText("-"); // Append a dash
+
     }
 }
