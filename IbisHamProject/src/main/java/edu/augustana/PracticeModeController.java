@@ -6,9 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.io.File;
 import java.io.IOException;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.control.TextArea;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -23,8 +20,6 @@ public class PracticeModeController {
     @FXML private Slider amountSlider;
     @FXML private Slider speedSlider;
     @FXML private CheckBox visualizerCheckBox;
-    @FXML private BarChart<String, Number> frequencyBarChart;
-    @FXML private CategoryAxis xAxis;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
 
@@ -38,14 +33,6 @@ public class PracticeModeController {
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.1f MHz", newValue.doubleValue()));
             });
-
-            xAxis.setCategories(javafx.collections.FXCollections.observableArrayList(frequencies));
-            //random "busy" values for each frequency, with values from 1 to 10
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            for (String frequency : frequencies) {
-                series.getData().add(new XYChart.Data<>(frequency, 1 + random.nextInt(10)));
-            }
-            frequencyBarChart.getData().add(series);
 
             //add listener to MessageBox for real-time Morse code translation
             MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
