@@ -1,11 +1,10 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 public class DictionaryController {
 
     private final Map<Character, String> morseCodeMap = new HashMap<>();

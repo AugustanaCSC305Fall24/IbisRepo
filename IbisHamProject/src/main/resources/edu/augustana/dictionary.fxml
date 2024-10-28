@@ -6,150 +6,48 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" prefHeight="502.0" prefWidth="417.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.DictionaryController">
     <children>
-        <Label text="Dictionary" />
+        <Label text="Dictionary">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A &quot; *-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B &quot;-***&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C &quot;-*-*&quot;" wrappingWidth="103.34179306030273">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D &quot;-**&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E &quot;*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F &quot;**-*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G &quot;--*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H &quot;****&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I &quot;**&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="J &quot;*---&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K &quot;-*-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L &quot;*-**&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M &quot;--&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="buttonA" mnemonicParsing="false" text="A &quot; *-&quot;" />
+                  <Button fx:id="buttonB" mnemonicParsing="false" text="B &quot;-***&quot;" />
+                  <Button fx:id="buttonC" mnemonicParsing="false" text="C &quot;-*-*&quot;" />
+                  <Button fx:id="buttonD" mnemonicParsing="false" text="D &quot;-**&quot;" />
+                  <Button fx:id="buttonE" mnemonicParsing="false" text="E &quot;*&quot;" />
+                  <Button fx:id="buttonF" mnemonicParsing="false" text="F &quot;**-*&quot;" />
+                  <Button fx:id="buttonG" mnemonicParsing="false" text="G &quot;--*&quot;" />
+                  <Button fx:id="buttonH" mnemonicParsing="false" text="H &quot;****&quot;" />
+                  <Button fx:id="buttonI" mnemonicParsing="false" text="I &quot;**&quot;" />
+                  <Button fx:id="buttonJ" mnemonicParsing="false" text="J &quot;*---&quot;" />
+                  <Button fx:id="buttonK" mnemonicParsing="false" text="K &quot;-*-&quot;" />
+                  <Button fx:id="buttonL" mnemonicParsing="false" text="L &quot;*-**&quot;" />
+                  <Button fx:id="buttonM" mnemonicParsing="false" text="M &quot;--&quot;" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N &quot;-*&quot; ">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O &quot;---&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P &quot;*--*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q &quot;--*-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R &quot;*-*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S &quot;***&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T &quot;-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U &quot;**-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="V &quot;***-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W &quot;*--&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X &quot;-**-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y &quot;-*--&quot; ">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Z &quot;--**&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="buttonN" mnemonicParsing="false" text="N &quot;-*&quot; " />
+                  <Button fx:id="buttonO" mnemonicParsing="false" text="O &quot;---&quot;" />
+                  <Button fx:id="buttonP" mnemonicParsing="false" text="P &quot;*--*&quot;" />
+                  <Button fx:id="buttonQ" mnemonicParsing="false" text="Q &quot;--*-&quot;" />
+                  <Button fx:id="buttonR" mnemonicParsing="false" text="R &quot;*-*&quot;" />
+                  <Button fx:id="buttonS" mnemonicParsing="false" text="S &quot;***&quot;" />
+                  <Button fx:id="buttonT" mnemonicParsing="false" text="T &quot;-&quot;" />
+                  <Button fx:id="buttonU" mnemonicParsing="false" text="U &quot;**-&quot;" />
+                  <Button fx:id="buttonV" mnemonicParsing="false" text="V &quot;***-&quot;" />
+                  <Button fx:id="buttonW" mnemonicParsing="false" text="W &quot;*--&quot;" />
+                  <Button fx:id="buttonX" mnemonicParsing="false" text="X &quot;-**-&quot;" />
+                  <Button fx:id="buttonY" mnemonicParsing="false" text="Y &quot;-*--&quot; " />
+                  <Button fx:id="buttonZ" mnemonicParsing="false" text="Z &quot;--**&quot;" />
                </children>
             </VBox>
          </children>
@@ -158,60 +56,20 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1 &quot;*----&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2 &quot;**---&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 &quot;***--&quot;" wrappingWidth="103.34179306030273">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4 &quot;****-&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5 &quot;*****&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="buttonOne" mnemonicParsing="false" text="1 &quot;*----&quot;" />
+                  <Button fx:id="buttonTwo" mnemonicParsing="false" text="2 &quot;**---&quot;" />
+                  <Button fx:id="buttonThree" mnemonicParsing="false" text="3 &quot;***--&quot;" />
+                  <Button fx:id="buttonFour" mnemonicParsing="false" text="4 &quot;****-&quot;" />
+                  <Button fx:id="buttonFive" mnemonicParsing="false" text="5 &quot;*****&quot;" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6 &quot;-****&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7 &quot;--***&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8 &quot;---**&quot;" wrappingWidth="103.34179306030273">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9 &quot;----*&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 &quot;-----&quot;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="buttonSix" mnemonicParsing="false" text="6 &quot;-****&quot;" />
+                  <Button fx:id="buttonSeven" mnemonicParsing="false" text="7 &quot;--***&quot;" />
+                  <Button fx:id="buttonEight" mnemonicParsing="false" text="8 &quot;---**&quot;" />
+                  <Button fx:id="buttonNine" mnemonicParsing="false" text="9 &quot;----*&quot;" />
+                  <Button fx:id="buttonZero" mnemonicParsing="false" text="0 &quot;-----&quot;" />
                </children>
             </VBox>
          </children>
