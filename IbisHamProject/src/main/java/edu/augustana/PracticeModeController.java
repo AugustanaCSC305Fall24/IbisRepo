@@ -24,10 +24,8 @@ public class PracticeModeController {
     @FXML private TextArea TranslateBox;
 
     @FXML public void initialize() {
+        //frequency should be at 
         if (FrequencySlider != null) {
-            String[] frequencies = {"88", "90", "92", "94", "96", "98", "100", "102", "104", "106", "108"};
-            Random random = new Random();
-
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.1f MHz", FrequencySlider.getValue()));
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
