@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.io.IOException;
@@ -71,6 +72,9 @@ public class DictionaryController {
 
     @FXML private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
+    }
+    @FXML private void fetchButtonID(ActionEvent event) {
+        System.out.println(event.toString());
     }
 
 }
