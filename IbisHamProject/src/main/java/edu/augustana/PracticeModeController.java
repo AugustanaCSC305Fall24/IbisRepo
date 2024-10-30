@@ -1,14 +1,15 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
+
 import java.io.File;
 import java.io.IOException;
-import javafx.scene.control.TextArea;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
+import javax.sound.sampled.LineUnavailableException;
 import java.util.Random;
 
 public class PracticeModeController {
@@ -22,6 +23,8 @@ public class PracticeModeController {
     @FXML private CheckBox visualizerCheckBox;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
+    @FXML
+    private Button playButton;
 
     @FXML public void initialize() {
         //frequency should be at 
@@ -34,14 +37,21 @@ public class PracticeModeController {
 
             //add listener to MessageBox for real-time Morse code translation
             MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
-                String morseCode = translateToMorseCode(newValue);
+                String morseCode = null;
+                try {
+                    morseCode = translateToMorseCode(newValue);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 TranslateBox.setText(morseCode);
             });
         }
     }
 
     //method to translate plain text to Morse code using DictionaryController
-    private String translateToMorseCode(String text) {
+    private String translateToMorseCode(String text) throws LineUnavailableException, InterruptedException {
         StringBuilder morseCodeBuilder = new StringBuilder();
 
         //convert text to upper case and iterate through each character
@@ -57,6 +67,11 @@ public class PracticeModeController {
     }
 
     //button action methods
+
+    @FXML
+    private void play() throws LineUnavailableException, InterruptedException {
+        AudioController.playSound(TranslateBox.getText().trim());
+    }
     @FXML private void switchToDictionary() throws IOException {
         App.setRoot("dictionary");
     }
@@ -107,22 +122,4 @@ public class PracticeModeController {
         App.setRoot("settings");
     }
 
-    @FXML private void onPlayAudioDit(){
-        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dash.mp3";     // For example
-
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
-        TranslateBox.appendText("."); // Append a dot
-    }
-
-    @FXML private void onPlayAudioDash(){
-        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dit.mp3";     // For example
-
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
-        TranslateBox.appendText("-"); // Append a dash
-
-    }
 }

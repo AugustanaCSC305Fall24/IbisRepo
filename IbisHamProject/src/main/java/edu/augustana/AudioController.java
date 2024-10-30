@@ -4,12 +4,13 @@ import javax.sound.sampled.*;
 import javax.xml.transform.Source;
 
 public class AudioController {
-    public void playSound(String[] morseMessage) throws LineUnavailableException, InterruptedException {
+    public static void playSound(String preSplitMorseMessage) throws LineUnavailableException, InterruptedException {
+        String[] morseMessage = preSplitMorseMessage.split("");
         AudioFormat audioFormat = new AudioFormat(44100,16,1,true,false);
 
         DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
         SourceDataLine sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-        //SourceDataLine.open(audioFormat);
+        sourceDataLine.open(audioFormat);
         sourceDataLine.start();
 
         int dotDuration = 200;
@@ -36,7 +37,7 @@ public class AudioController {
         sourceDataLine.close();
     }
 
-    private void playBeep(SourceDataLine line, int duration){
+    private static void playBeep(SourceDataLine line, int duration){
         byte[] data = new byte[duration*44100/1000];
 
         for(int i=0;i< data.length;i++){
