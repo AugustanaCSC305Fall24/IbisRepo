@@ -175,7 +175,7 @@ public class PracticeModeController {
 
 
     @FXML private void onPlayAudioDit(){
-        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dash.mp3";     // For example
+        String musicFile = "/Users/azaria/Documents/git/IbisRepo/IbisHamProject/src/main/resources/dit.mp3";     // For example
 
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -184,7 +184,7 @@ public class PracticeModeController {
     }
 
     @FXML private void onPlayAudioDash(){
-        String musicFile = "C:\\Git\\IbisRepo\\IbisRepo\\IbisHamProject\\src\\main\\resources\\dit.mp3";     // For example
+        String musicFile = "/Users/azaria/Documents/git/IbisRepo/IbisHamProject/src/main/resources/dash.mp3";     // For example
 
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
