@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
@@ -39,20 +36,15 @@
                 </Pane>
 
                 <!-- Frequency Tuner Pane -->
-                <Pane prefHeight="300.0" prefWidth="400.0">
+                <Pane prefHeight="425.0" prefWidth="344.0">
                     <children>
-                        <Slider fx:id="FrequencySlider" blockIncrement="0.1" layoutX="22.0" layoutY="223.0" majorTickUnit="2.0" max="108.0" min="88.0" minorTickCount="4" prefWidth="300.0" showTickLabels="true" showTickMarks="true" value="99.5">
+                        <Slider fx:id="FrequencySlider" blockIncrement="0.001" layoutX="22.0" layoutY="306.0" majorTickUnit="0.004" max="7.067" min="7.000" minorTickCount="4" prefWidth="300.0" showTickLabels="true" showTickMarks="true" value="7.000">
                      </Slider>
 
-                        <Label fx:id="FrequencyLabel" layoutX="70.0" layoutY="260.0" style="-fx-font-size: 16px;" text="Current Frequency: 99.5 MHz" />
-                        <BarChart fx:id="frequencyBarChart" layoutX="11.0" layoutY="28.0" prefHeight="174.0" prefWidth="322.0">
-                            <xAxis>
-                                <CategoryAxis label="MHz" side="BOTTOM" fx:id="xAxis" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis fx:id="yAxis" label="Strength" lowerBound="1" side="LEFT" tickUnit="1" upperBound="10" />
-                            </yAxis>
-                        </BarChart>
+                        <Label fx:id="FrequencyLabel" layoutX="66.0" layoutY="344.0" style="-fx-font-size: 16px;" text="Current Frequency: 7.000 MHz" />
+                  <TextArea layoutX="13.0" layoutY="14.0" prefHeight="226.0" prefWidth="319.0" />
+                  <Slider layoutX="104.0" layoutY="260.0" prefHeight="14.0" prefWidth="138.0" />
+                  <Label layoutX="157.0" layoutY="274.0" prefHeight="17.0" prefWidth="33.0" text="Filter" />
                     </children>
                 </Pane>
 
