@@ -3,14 +3,9 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.io.File;
 import java.io.IOException;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 import javax.sound.sampled.LineUnavailableException;
-import java.util.Random;
 
 public class PracticeModeController {
     private final DictionaryController dictionaryController = new DictionaryController();
@@ -21,8 +16,8 @@ public class PracticeModeController {
     @FXML private Slider amountSlider;
     @FXML private Slider speedSlider;
     @FXML private CheckBox visualizerCheckBox;
-    @FXML private TextArea englishBox;
-    @FXML private TextArea MorseBox;
+    @FXML private TextArea englishTextBox;
+    @FXML private TextArea morseTextBox;
     @FXML private TextArea MainMessageBox;
     @FXML private Button playButton;
 
@@ -36,7 +31,7 @@ public class PracticeModeController {
             });
 
             //add listener to MessageBox for real-time Morse code translation
-            MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            englishTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
                 String morseCode = null;
                 try {
                     morseCode = translateToMorseCode(newValue);
@@ -45,15 +40,15 @@ public class PracticeModeController {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                TranslateBox.setText(morseCode);
+                morseTextBox.setText(morseCode);
             });
 
-            TranslateBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            morseTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
                 if(newValue.isEmpty()){
-                    MessageBox.setText("");
+                    englishTextBox.setText("");
                 } else {
                     String engText = translateToText(newValue);
-                    MessageBox.setText(engText);
+                    englishTextBox.setText(engText);
                 }
             });
         }
@@ -94,21 +89,21 @@ public class PracticeModeController {
     //button action methods
     @FXML
     private void sendAction() {
-        String msgText = MessageBox.getText();
+        String msgText = englishTextBox.getText();
         if (!msgText.isBlank()) {
             String existingText = MainMessageBox.getText();
-            String morseText = TranslateBox.getText();
+            String morseText = morseTextBox.getText();
             String fullMessage = morseText + " (" + msgText + ")";
 
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
-            MessageBox.clear();
+            englishTextBox.clear();
         }
     }
 
 
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
-        AudioController.playSound(TranslateBox.getText().trim());
+        AudioController.playSound(morseTextBox.getText().trim());
     }
     @FXML private void switchToDictionary() throws IOException {
         App.setRoot("dictionary");
