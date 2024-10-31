@@ -1,7 +1,9 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,5 +83,10 @@ public class DictionaryController {
     @FXML private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
     }
-
+    @FXML private void fetchButtonID(ActionEvent event) throws LineUnavailableException, InterruptedException {
+        String buttonString= event.toString().trim();
+        String morseString = buttonString.substring(buttonString.indexOf(" \"")+1);
+        morseString= morseString.substring(0,morseString.indexOf("\"']"));
+        AudioController.playSound(morseString);
+    }
 }

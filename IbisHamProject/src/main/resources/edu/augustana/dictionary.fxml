@@ -21,37 +21,37 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonA" mnemonicParsing="false" text="A &quot; *-&quot;" />
-                        <Button fx:id="buttonB" mnemonicParsing="false" text="B &quot;-***&quot;" />
-                        <Button fx:id="buttonC" mnemonicParsing="false" text="C &quot;-*-*&quot;" />
-                        <Button fx:id="buttonD" mnemonicParsing="false" text="D &quot;-**&quot;" />
-                        <Button fx:id="buttonE" mnemonicParsing="false" text="E &quot;*&quot;" />
-                        <Button fx:id="buttonF" mnemonicParsing="false" text="F &quot;**-*&quot;" />
-                        <Button fx:id="buttonG" mnemonicParsing="false" text="G &quot;--*&quot;" />
-                        <Button fx:id="buttonH" mnemonicParsing="false" text="H &quot;****&quot;" />
-                        <Button fx:id="buttonI" mnemonicParsing="false" text="I &quot;**&quot;" />
-                        <Button fx:id="buttonJ" mnemonicParsing="false" text="J &quot;*---&quot;" />
-                        <Button fx:id="buttonK" mnemonicParsing="false" text="K &quot;-*-&quot;" />
-                        <Button fx:id="buttonL" mnemonicParsing="false" text="L &quot;*-**&quot;" />
-                        <Button fx:id="buttonM" mnemonicParsing="false" text="M &quot;--&quot;" />
+                        <Button fx:id="buttonA" mnemonicParsing="false" onAction="#fetchButtonID" text="A &quot; .-&quot;" />
+                        <Button fx:id="buttonB" mnemonicParsing="false" onAction="#fetchButtonID" text="B &quot;-...&quot;" />
+                        <Button fx:id="buttonC" mnemonicParsing="false" onAction="#fetchButtonID" text="C &quot;-.-.&quot;" />
+                        <Button fx:id="buttonD" mnemonicParsing="false" onAction="#fetchButtonID" text="D &quot;-..&quot;" />
+                        <Button fx:id="buttonE" mnemonicParsing="false" onAction="#fetchButtonID" text="E &quot;.&quot;" />
+                        <Button fx:id="buttonF" mnemonicParsing="false" onAction="#fetchButtonID" text="F &quot;..-.&quot;" />
+                        <Button fx:id="buttonG" mnemonicParsing="false" onAction="#fetchButtonID" text="G &quot;--.&quot;" />
+                        <Button fx:id="buttonH" mnemonicParsing="false" onAction="#fetchButtonID" text="H &quot;....&quot;" />
+                        <Button fx:id="buttonI" mnemonicParsing="false" onAction="#fetchButtonID" text="I &quot;..&quot;" />
+                        <Button fx:id="buttonJ" mnemonicParsing="false" onAction="#fetchButtonID" text="J &quot;.---&quot;" />
+                        <Button fx:id="buttonK" mnemonicParsing="false" onAction="#fetchButtonID" text="K &quot;-.-&quot;" />
+                        <Button fx:id="buttonL" mnemonicParsing="false" onAction="#fetchButtonID" text="L &quot;.-..&quot;" />
+                        <Button fx:id="buttonM" mnemonicParsing="false" onAction="#fetchButtonID" text="M &quot;--&quot;" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonN" mnemonicParsing="false" text="N &quot;-*&quot; " />
-                        <Button fx:id="buttonO" mnemonicParsing="false" text="O &quot;---&quot;" />
-                        <Button fx:id="buttonP" mnemonicParsing="false" text="P &quot;*--*&quot;" />
-                        <Button fx:id="buttonQ" mnemonicParsing="false" text="Q &quot;--*-&quot;" />
-                        <Button fx:id="buttonR" mnemonicParsing="false" text="R &quot;*-*&quot;" />
-                        <Button fx:id="buttonS" mnemonicParsing="false" text="S &quot;***&quot;" />
-                        <Button fx:id="buttonT" mnemonicParsing="false" text="T &quot;-&quot;" />
-                        <Button fx:id="buttonU" mnemonicParsing="false" text="U &quot;**-&quot;" />
-                        <Button fx:id="buttonV" mnemonicParsing="false" text="V &quot;***-&quot;" />
-                        <Button fx:id="buttonW" mnemonicParsing="false" text="W &quot;*--&quot;" />
-                        <Button fx:id="buttonX" mnemonicParsing="false" text="X &quot;-**-&quot;" />
-                        <Button fx:id="buttonY" mnemonicParsing="false" text="Y &quot;-*--&quot; " />
-                        <Button fx:id="buttonZ" mnemonicParsing="false" text="Z &quot;--**&quot;" />
+                        <Button fx:id="buttonN" mnemonicParsing="false" onAction="#fetchButtonID" text="N &quot;-.&quot; " />
+                        <Button fx:id="buttonO" mnemonicParsing="false" onAction="#fetchButtonID" text="O &quot;---&quot;" />
+                        <Button fx:id="buttonP" mnemonicParsing="false" onAction="#fetchButtonID" text="P &quot;.--.&quot;" />
+                        <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#fetchButtonID" text="Q &quot;--.-&quot;" />
+                        <Button fx:id="buttonR" mnemonicParsing="false" onAction="#fetchButtonID" text="R &quot;.-.&quot;" />
+                        <Button fx:id="buttonS" mnemonicParsing="false" onAction="#fetchButtonID" text="S &quot;...&quot;" />
+                        <Button fx:id="buttonT" mnemonicParsing="false" onAction="#fetchButtonID" text="T &quot;-&quot;" />
+                        <Button fx:id="buttonU" mnemonicParsing="false" onAction="#fetchButtonID" text="U &quot;..-&quot;" />
+                        <Button fx:id="buttonV" mnemonicParsing="false" onAction="#fetchButtonID" text="V &quot;...-&quot;" />
+                        <Button fx:id="buttonW" mnemonicParsing="false" onAction="#fetchButtonID" text="W &quot;.--&quot;" />
+                        <Button fx:id="buttonX" mnemonicParsing="false" onAction="#fetchButtonID" text="X &quot;-..-&quot;" />
+                        <Button fx:id="buttonY" mnemonicParsing="false" onAction="#fetchButtonID" text="Y &quot;-.--&quot; " />
+                        <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#fetchButtonID" text="Z &quot;--..&quot;" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </VBox>
                </children>
@@ -64,20 +64,20 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonOne" mnemonicParsing="false" text="1 &quot;*----&quot;" />
-                        <Button fx:id="buttonTwo" mnemonicParsing="false" text="2 &quot;**---&quot;" />
-                        <Button fx:id="buttonThree" mnemonicParsing="false" text="3 &quot;***--&quot;" />
-                        <Button fx:id="buttonFour" mnemonicParsing="false" text="4 &quot;****-&quot;" />
-                        <Button fx:id="buttonFive" mnemonicParsing="false" text="5 &quot;*****&quot;" />
+                        <Button fx:id="buttonOne" mnemonicParsing="false" onAction="#fetchButtonID" text="1 &quot;.----&quot;" />
+                        <Button fx:id="buttonTwo" mnemonicParsing="false" onAction="#fetchButtonID" text="2 &quot;..---&quot;" />
+                        <Button fx:id="buttonThree" mnemonicParsing="false" onAction="#fetchButtonID" text="3 &quot;...--&quot;" />
+                        <Button fx:id="buttonFour" mnemonicParsing="false" onAction="#fetchButtonID" text="4 &quot;....-&quot;" />
+                        <Button fx:id="buttonFive" mnemonicParsing="false" onAction="#fetchButtonID" text="5 &quot;.....&quot;" />
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonSix" mnemonicParsing="false" text="6 &quot;-****&quot;" />
-                        <Button fx:id="buttonSeven" mnemonicParsing="false" text="7 &quot;--***&quot;" />
-                        <Button fx:id="buttonEight" mnemonicParsing="false" text="8 &quot;---**&quot;" />
-                        <Button fx:id="buttonNine" mnemonicParsing="false" text="9 &quot;----*&quot;" />
-                        <Button fx:id="buttonZero" mnemonicParsing="false" text="0 &quot;-----&quot;" />
+                        <Button fx:id="buttonSix" mnemonicParsing="false" onAction="#fetchButtonID" text="6 &quot;-....&quot;" />
+                        <Button fx:id="buttonSeven" mnemonicParsing="false" onAction="#fetchButtonID" text="7 &quot;--...&quot;" />
+                        <Button fx:id="buttonEight" mnemonicParsing="false" onAction="#fetchButtonID" text="8 &quot;---..&quot;" />
+                        <Button fx:id="buttonNine" mnemonicParsing="false" onAction="#fetchButtonID" text="9 &quot;----.&quot;" />
+                        <Button fx:id="buttonZero" mnemonicParsing="false" onAction="#fetchButtonID" text="0 &quot;-----&quot;" />
                      </children>
                   </VBox>
                </children>
