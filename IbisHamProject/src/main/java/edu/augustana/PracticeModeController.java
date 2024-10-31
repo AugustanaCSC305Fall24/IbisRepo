@@ -23,8 +23,8 @@ public class PracticeModeController {
     @FXML private CheckBox visualizerCheckBox;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
-    @FXML
-    private Button playButton;
+    @FXML private TextArea MainMessageBox;
+    @FXML private Button playButton;
 
     @FXML public void initialize() {
         //frequency should be at 
@@ -67,6 +67,19 @@ public class PracticeModeController {
     }
 
     //button action methods
+    @FXML
+    private void sendAction() {
+        String msgText = MessageBox.getText();
+        if (!msgText.isBlank()) {
+            String existingText = MainMessageBox.getText();
+            String morseText = TranslateBox.getText();
+            String fullMessage = morseText + " (" + msgText + ")";
+
+            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
+            MessageBox.clear();
+        }
+    }
+
 
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
