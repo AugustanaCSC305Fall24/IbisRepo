@@ -1,7 +1,7 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +62,15 @@ public class DictionaryController {
     //dict access method for eng to morse
     public String getMorseCode(char c) {
         return morseCodeMap.getOrDefault(c, ""); // Return Morse code or empty string if not found
+    }
+
+    //dict access method for morse to eng
+    public Character getEnglishLetter(String morse){
+        return morseToEng.get(morse);
+    }
+
+    public boolean contains(String morseLetter){
+        return morseCodeMap.containsValue(morseLetter);
     }
 
     //fxml

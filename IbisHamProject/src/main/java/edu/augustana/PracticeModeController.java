@@ -37,6 +37,15 @@ public class PracticeModeController {
                 String morseCode = translateToMorseCode(newValue);
                 TranslateBox.setText(morseCode);
             });
+
+            TranslateBox.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(newValue.isEmpty()){
+                    MessageBox.setText("");
+                } else {
+                    String engText = translateToText(newValue);
+                    MessageBox.setText(engText);
+                }
+            });
         }
     }
 
@@ -54,6 +63,22 @@ public class PracticeModeController {
             }
         }
         return morseCodeBuilder.toString().trim();
+    }
+
+    private String translateToText(String text){
+        StringBuilder textBuilder = new StringBuilder();
+
+        String[] morseText = text.split(" ");
+
+        for(String morseLetter: morseText){
+            if(dictionaryController.contains(morseLetter)){
+                char engLetter = dictionaryController.getEnglishLetter(morseLetter);
+                textBuilder.append(engLetter);
+            } else {
+                textBuilder.append("? ");
+            }
+        }
+        return textBuilder.toString().trim();
     }
 
     //button action methods
@@ -102,7 +127,7 @@ public class PracticeModeController {
         System.out.println("Speed Slider Value: " + speed);
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
     }
-    
+
     @FXML private void goBack() throws IOException {
         App.setRoot("settings");
     }
