@@ -28,7 +28,11 @@ public class PracticeModeController {
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
+
+                double currentFrequency = FrequencySlider.getValue();
+                //System.out.println(currentFrequency);
             });
+
 
             //add listener to MessageBox for real-time Morse code translation
             englishTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
