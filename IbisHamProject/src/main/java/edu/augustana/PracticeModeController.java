@@ -21,8 +21,8 @@ public class PracticeModeController {
     @FXML private Slider amountSlider;
     @FXML private Slider speedSlider;
     @FXML private CheckBox visualizerCheckBox;
-    @FXML private TextArea englishBox;
-    @FXML private TextArea MorseBox;
+    @FXML private TextArea MessageBox;
+    @FXML private TextArea TranslateBox;
     @FXML private TextArea MainMessageBox;
     @FXML private Button playButton;
 
