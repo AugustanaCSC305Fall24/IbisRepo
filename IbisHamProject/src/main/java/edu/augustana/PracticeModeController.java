@@ -3,14 +3,8 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.io.File;
 import java.io.IOException;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 import javax.sound.sampled.LineUnavailableException;
-import java.util.Random;
 
 public class PracticeModeController {
     private final DictionaryController dictionaryController = new DictionaryController();
@@ -27,73 +21,70 @@ public class PracticeModeController {
     @FXML private Button playButton;
 
     @FXML public void initialize() {
-        //frequency should be at 
+        // Frequency initialization
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
             });
-
-            //add listener to MessageBox for real-time Morse code translation
-            MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    String morseCode = translateToMorseCode(newValue);
-                    TranslateBox.setText(morseCode);
-                } catch (IndexOutOfBoundsException | LineUnavailableException | InterruptedException e) {
-                    TranslateBox.setText("Error in Morse translation: " + e.getMessage());
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    TranslateBox.setText("An unknown error occurred.");
-                    e.printStackTrace();
-                }
-            });
-
-            //dd listener to TranslateBox for Morse English translation - with exceptions
-            TranslateBox.textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    String englishTranslation = dictionaryController.morseToEnglish(newValue);
-                    MessageBox.setText(englishTranslation);
-                } catch (IndexOutOfBoundsException e) {
-                    MessageBox.setText("Error: Morse input out of bounds.");
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    MessageBox.setText("An unknown error occurred.");
-                    e.printStackTrace();
-                }
-            });
         }
     }
 
-
-    //method to translate plain text to Morse code using DictionaryController
-    private String translateToMorseCode(String text) throws LineUnavailableException, InterruptedException {
+    // Method to translate plain text to Morse code using DictionaryController
+    private String translateToMorseCode(String text) {
         StringBuilder morseCodeBuilder = new StringBuilder();
 
-        //convert text to upper case and iterate through each character
+        // Convert text to upper case and iterate through each character
         for (char c : text.toUpperCase().toCharArray()) {
             String morseSymbol = dictionaryController.getMorseCode(c);
             if (!morseSymbol.isEmpty()) {
                 morseCodeBuilder.append(morseSymbol).append(" ");
             } else {
-                morseCodeBuilder.append("? "); 
+                morseCodeBuilder.append("? ");
             }
         }
         return morseCodeBuilder.toString().trim();
     }
 
-
-    //button action methods
+    // Button action methods
     @FXML
     private void sendAction() {
         String msgText = MessageBox.getText();
-        if (!msgText.isBlank()) {
-            String existingText = MainMessageBox.getText();
-            String morseText = TranslateBox.getText();
-            String fullMessage = morseText + " (" + msgText + ")";
 
+        // Check if MessageBox is not empty
+        if (!msgText.isBlank()) {
+            // Translate MessageBox content to Morse code
+            String morseText = translateToMorseCode(msgText);
+            TranslateBox.setText(morseText);
+
+            // Translate Morse code back to English for confirmation
+            String englishTranslation = dictionaryController.morseToEnglish(morseText);
+            MessageBox.setText(englishTranslation);
+
+            // Append the translated message to MainMessageBox
+            String existingText = MainMessageBox.getText();
+            String fullMessage = "User: " + morseText + " (" + msgText + ")";
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
+
+            // Clear MessageBox after sending
             MessageBox.clear();
+        } else {
+            // If MessageBox is empty, check if TranslateBox contains Morse code
+            String morseCode = TranslateBox.getText().trim();
+            if (!morseCode.isEmpty()) {
+                // Translate Morse code to English and update MessageBox
+                String englishTranslation = dictionaryController.morseToEnglish(morseCode);
+                MessageBox.setText(englishTranslation);
+
+                // Append the Morse code message to MainMessageBox
+                String existingText = MainMessageBox.getText();
+                String fullMessage = "User: " + morseCode + " (" + englishTranslation + ")";
+                MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
+
+                // Clear TranslateBox after sending
+                TranslateBox.clear();
+            }
         }
     }
 
@@ -102,6 +93,7 @@ public class PracticeModeController {
     private void play() throws LineUnavailableException, InterruptedException {
         AudioController.playSound(TranslateBox.getText().trim());
     }
+
     @FXML private void switchToDictionary() throws IOException {
         App.setRoot("dictionary");
     }
@@ -141,7 +133,7 @@ public class PracticeModeController {
         double speed = speedSlider.getValue();
         boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
         App.setRoot("settings");
-        //test code below
+        // Test code
         System.out.println("Quality Slider Value: " + quality);
         System.out.println("Amount Slider Value: " + amount);
         System.out.println("Speed Slider Value: " + speed);
@@ -151,6 +143,4 @@ public class PracticeModeController {
     @FXML private void goBack() throws IOException {
         App.setRoot("settings");
     }
-
-
 }
