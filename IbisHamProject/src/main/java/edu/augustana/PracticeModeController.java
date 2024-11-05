@@ -37,18 +37,34 @@ public class PracticeModeController {
 
             //add listener to MessageBox for real-time Morse code translation
             MessageBox.textProperty().addListener((observable, oldValue, newValue) -> {
-                String morseCode = null;
                 try {
-                    morseCode = translateToMorseCode(newValue);
-                } catch (LineUnavailableException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    String morseCode = translateToMorseCode(newValue);
+                    TranslateBox.setText(morseCode);
+                } catch (IndexOutOfBoundsException | LineUnavailableException | InterruptedException e) {
+                    TranslateBox.setText("Error in Morse translation: " + e.getMessage());
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    TranslateBox.setText("An unknown error occurred.");
+                    e.printStackTrace();
                 }
-                TranslateBox.setText(morseCode);
+            });
+
+            //dd listener to TranslateBox for Morse English translation - with exceptions
+            TranslateBox.textProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    String englishTranslation = dictionaryController.morseToEnglish(newValue);
+                    MessageBox.setText(englishTranslation);
+                } catch (IndexOutOfBoundsException e) {
+                    MessageBox.setText("Error: Morse input out of bounds.");
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    MessageBox.setText("An unknown error occurred.");
+                    e.printStackTrace();
+                }
             });
         }
     }
+
 
     //method to translate plain text to Morse code using DictionaryController
     private String translateToMorseCode(String text) throws LineUnavailableException, InterruptedException {
@@ -60,11 +76,12 @@ public class PracticeModeController {
             if (!morseSymbol.isEmpty()) {
                 morseCodeBuilder.append(morseSymbol).append(" ");
             } else {
-                morseCodeBuilder.append("? "); // Use '?' for unknown characters
+                morseCodeBuilder.append("? "); 
             }
         }
         return morseCodeBuilder.toString().trim();
     }
+
 
     //button action methods
     @FXML
@@ -108,7 +125,7 @@ public class PracticeModeController {
     @FXML private void switchToAccessibility() throws IOException {
         App.setRoot("accessibilityMenu");
     }
-    
+
     @FXML private void switchToInterference() throws IOException {
         App.setRoot("interferenceMenu");
     }
@@ -130,7 +147,7 @@ public class PracticeModeController {
         System.out.println("Speed Slider Value: " + speed);
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
     }
-    
+
     @FXML private void goBack() throws IOException {
         App.setRoot("settings");
     }

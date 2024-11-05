@@ -1,7 +1,10 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,16 +64,25 @@ public class DictionaryController {
 
     //dict access method for eng to morse
     public String getMorseCode(char c) {
-        return morseCodeMap.getOrDefault(c, ""); // Return Morse code or empty string if not found
+        return morseCodeMap.getOrDefault(c, "");
     }
 
-    //dict access method for morse to eng
-    public Character getEnglishLetter(String morse){
-        return morseToEng.get(morse);
-    }
+    public String morseToEnglish(String morseCode) {
+        if (morseCode == null || morseCode.isBlank()) {
+            return "";
+        }
 
-    public boolean contains(String morseLetter){
-        return morseCodeMap.containsValue(morseLetter);
+        StringBuilder englishText = new StringBuilder();
+        String[] words = morseCode.split(" / ");
+
+        for (String word : words) {
+            String[] characters = word.split(" ");
+            for (String morseChar : characters) {
+                englishText.append(morseToEng.getOrDefault(morseChar, '?'));
+            }
+            englishText.append(' ');
+        }
+        return englishText.toString().trim();
     }
 
     //fxml
@@ -81,5 +93,12 @@ public class DictionaryController {
     @FXML private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
     }
+    @FXML private void fetchButtonID(ActionEvent event) throws LineUnavailableException, InterruptedException {
+        String buttonString= event.toString().trim();
+        String morseString = buttonString.substring(buttonString.indexOf(" \"")+1);
+        morseString= morseString.substring(0,morseString.indexOf("\"']"));
+        AudioController.playSound(morseString);
+    }
+
 
 }
