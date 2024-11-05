@@ -16,7 +16,7 @@ public class DictionaryController {
         initDicts();
     }
 
-    // Initialize the dictionaries for English to Morse code
+    //initialize the dictionaries for English to Morse code
     private void initDicts() {
         morseCodeMap.put('A', ".-");
         morseCodeMap.put('B', "-...");
@@ -61,31 +61,31 @@ public class DictionaryController {
         }
     }
 
-    // Access method for converting English to Morse
+    //access method for converting English to Morse
     public String getMorseCode(char c) {
         return morseCodeMap.getOrDefault(c, "");
     }
 
-    // Method to convert Morse code to English
+    //method to convert Morse code to English
     public String morseToEnglish(String morseCode) {
         if (morseCode == null || morseCode.isBlank()) {
             return "";
         }
 
         StringBuilder englishText = new StringBuilder();
-        String[] words = morseCode.split(" / "); // Split words by " / "
+        String[] words = morseCode.split(" / "); //split words by " / "
 
         for (String word : words) {
-            String[] characters = word.split(" "); // Split characters by space
+            String[] characters = word.split(" "); //split characters by space
             for (String morseChar : characters) {
-                englishText.append(morseToEng.getOrDefault(morseChar, '?')); // Append translated character or '?'
+                englishText.append(morseToEng.getOrDefault(morseChar, '?')); //sppend translated character or '?'
             }
-            englishText.append(' '); // Add space between words
+            englishText.append(' '); //sdd space between words
         }
-        return englishText.toString().trim(); // Trim trailing spaces
+        return englishText.toString().trim(); //trim trailing spaces
     }
 
-    // FXML methods for scene switching
+
     @FXML
     private void switchToHomePage() throws IOException {
         App.setRoot("homePage");
@@ -96,7 +96,6 @@ public class DictionaryController {
         App.setRoot("practiceMode");
     }
 
-    // Method to play sound for a button (or any Morse string)
     @FXML
     private void fetchButtonID(ActionEvent event) throws LineUnavailableException, InterruptedException {
         String buttonString = event.toString().trim();

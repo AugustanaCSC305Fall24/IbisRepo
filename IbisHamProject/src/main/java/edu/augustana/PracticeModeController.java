@@ -21,7 +21,7 @@ public class PracticeModeController {
     @FXML private Button playButton;
 
     @FXML public void initialize() {
-        // Frequency initialization
+        //frequency init
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
@@ -31,11 +31,11 @@ public class PracticeModeController {
         }
     }
 
-    // Method to translate plain text to Morse code using DictionaryController
+    //method to translate plain text to Morse code using DictionaryController
     private String translateToMorseCode(String text) {
         StringBuilder morseCodeBuilder = new StringBuilder();
 
-        // Convert text to upper case and iterate through each character
+        //convert text to upper case and iterate through each character
         for (char c : text.toUpperCase().toCharArray()) {
             String morseSymbol = dictionaryController.getMorseCode(c);
             if (!morseSymbol.isEmpty()) {
@@ -47,42 +47,34 @@ public class PracticeModeController {
         return morseCodeBuilder.toString().trim();
     }
 
-    // Button action methods
+    //button action methods
     @FXML
     private void sendAction() {
         String msgText = MessageBox.getText();
 
-        // Check if MessageBox is not empty
+
         if (!msgText.isBlank()) {
-            // Translate MessageBox content to Morse code
             String morseText = translateToMorseCode(msgText);
             TranslateBox.setText(morseText);
 
-            // Translate Morse code back to English for confirmation
             String englishTranslation = dictionaryController.morseToEnglish(morseText);
             MessageBox.setText(englishTranslation);
 
-            // Append the translated message to MainMessageBox
             String existingText = MainMessageBox.getText();
             String fullMessage = "User: " + morseText + " (" + msgText + ")";
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
-            // Clear MessageBox after sending
             MessageBox.clear();
         } else {
-            // If MessageBox is empty, check if TranslateBox contains Morse code
             String morseCode = TranslateBox.getText().trim();
             if (!morseCode.isEmpty()) {
-                // Translate Morse code to English and update MessageBox
                 String englishTranslation = dictionaryController.morseToEnglish(morseCode);
                 MessageBox.setText(englishTranslation);
 
-                // Append the Morse code message to MainMessageBox
                 String existingText = MainMessageBox.getText();
                 String fullMessage = "User: " + morseCode + " (" + englishTranslation + ")";
                 MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
-                // Clear TranslateBox after sending
                 TranslateBox.clear();
             }
         }
@@ -126,7 +118,7 @@ public class PracticeModeController {
         App.setRoot("problemTypesMenu");
     }
 
-    // Save the settings and go back
+    //save the settings and go back
     @FXML private void saveAndBack() throws IOException {
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
