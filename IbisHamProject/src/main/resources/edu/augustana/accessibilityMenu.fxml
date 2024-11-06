@@ -62,7 +62,7 @@
                   <Font name="Luminari" size="19.0" />
                </font>
             </Text>
-            <Slider fx:id="speedSlider" prefHeight="23.0" prefWidth="195.0" showTickLabels="true">
+            <Slider fx:id="speedSlider" blockIncrement="1.0" majorTickUnit="20.0" max="40.0" minorTickCount="5" prefHeight="23.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" value="20.0">
                <padding>
                   <Insets left="50.0" right="50.0" />
                </padding>

@@ -1,10 +1,12 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 public class DictionaryController {
 
     private final Map<Character, String> morseCodeMap = new HashMap<>();
@@ -14,7 +16,7 @@ public class DictionaryController {
         initDicts();
     }
 
-    //dict from english to morse
+    //initialize the dictionaries for English to Morse code
     private void initDicts() {
         morseCodeMap.put('A', ".-");
         morseCodeMap.put('B', "-...");
@@ -52,34 +54,53 @@ public class DictionaryController {
         morseCodeMap.put('8', "---..");
         morseCodeMap.put('9', "----.");
         morseCodeMap.put('0', "-----");
-        morseCodeMap.put(' ', "/"); // space
+        morseCodeMap.put(' ', "/"); // Use "/" to represent a space
 
         for (Map.Entry<Character, String> entry : morseCodeMap.entrySet()) {
             morseToEng.put(entry.getValue(), entry.getKey());
         }
     }
 
-    //dict access method for eng to morse
+    //access method for converting English to Morse
     public String getMorseCode(char c) {
-        return morseCodeMap.getOrDefault(c, ""); // Return Morse code or empty string if not found
+        return morseCodeMap.getOrDefault(c, "");
     }
 
-    //dict access method for morse to eng
-    public Character getEnglishLetter(String morse){
-        return morseToEng.get(morse);
+    //method to convert Morse code to English
+    public String morseToEnglish(String morseCode) {
+        if (morseCode == null || morseCode.isBlank()) {
+            return "";
+        }
+
+        StringBuilder englishText = new StringBuilder();
+        String[] words = morseCode.split(" / "); //split words by " / "
+
+        for (String word : words) {
+            String[] characters = word.split(" "); //split characters by space
+            for (String morseChar : characters) {
+                englishText.append(morseToEng.getOrDefault(morseChar, '?')); //sppend translated character or '?'
+            }
+            englishText.append(' '); //sdd space between words
+        }
+        return englishText.toString().trim(); //trim trailing spaces
     }
 
-    public boolean contains(String morseLetter){
-        return morseCodeMap.containsValue(morseLetter);
-    }
 
-    //fxml
-    @FXML private void switchToHomePage() throws IOException {
+    @FXML
+    private void switchToHomePage() throws IOException {
         App.setRoot("homePage");
     }
 
-    @FXML private void switchToPracPage() throws IOException {
+    @FXML
+    private void switchToPracPage() throws IOException {
         App.setRoot("practiceMode");
     }
 
+    @FXML
+    private void fetchButtonID(ActionEvent event) throws LineUnavailableException, InterruptedException {
+        String buttonString = event.toString().trim();
+        String morseString = buttonString.substring(buttonString.indexOf(" \"") + 1);
+        morseString = morseString.substring(0, morseString.indexOf("\"']"));
+        AudioController.playSound(morseString);
+    }
 }
