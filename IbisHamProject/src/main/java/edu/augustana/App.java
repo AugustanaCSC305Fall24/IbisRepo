@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    static Scene scene;
 
     // sets app screne to the home page
     @Override
@@ -21,6 +21,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("homePage"), 640, 680);
         stage.setScene(scene);
         stage.show();
+
     }
 
     static void setRoot(String fxml) throws IOException {

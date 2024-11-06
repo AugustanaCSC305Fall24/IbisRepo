@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import java.io.File;
 import java.io.IOException;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -27,6 +29,8 @@ public class PracticeModeController {
     @FXML private Button playButton;
 
     @FXML public void initialize() {
+
+
         //frequency should be at 
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
@@ -133,6 +137,15 @@ public class PracticeModeController {
     
     @FXML private void goBack() throws IOException {
         App.setRoot("settings");
+    }
+    @FXML
+    private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
+        if(event.getCode()==KeyCode.LEFT){
+            AudioController.playSound(".");
+        }
+        if(event.getCode()==KeyCode.RIGHT){
+            AudioController.playSound("-");
+        }
     }
 
 
