@@ -43,7 +43,7 @@
 
                         <Label fx:id="FrequencyLabel" layoutX="66.0" layoutY="344.0" style="-fx-font-size: 16px;" text="Current Frequency: 7.000 MHz" />
                   <TextArea fx:id="MainMessageBox" layoutX="13.0" layoutY="14.0" prefHeight="226.0" prefWidth="319.0" />
-                  <Slider layoutX="104.0" layoutY="260.0" prefHeight="14.0" prefWidth="138.0" />
+                  <Slider fx:id="FilterSlider" layoutX="104.0" layoutY="260.0" prefHeight="14.0" prefWidth="138.0" />
                   <Label layoutX="157.0" layoutY="274.0" prefHeight="17.0" prefWidth="33.0" text="Filter" />
                     </children>
                 </Pane>
