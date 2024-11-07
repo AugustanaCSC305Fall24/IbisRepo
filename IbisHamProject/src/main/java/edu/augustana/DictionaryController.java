@@ -66,7 +66,7 @@ public class DictionaryController {
         return morseCodeMap.getOrDefault(c, "");
     }
 
-    //method to convert Morse code to English
+    //method to convert Morse code to English - used in practiceModeController
     public String morseToEnglish(String morseCode) {
         if (morseCode == null || morseCode.isBlank()) {
             return "";
@@ -78,11 +78,24 @@ public class DictionaryController {
         for (String word : words) {
             String[] characters = word.split(" "); //split characters by space
             for (String morseChar : characters) {
-                englishText.append(morseToEng.getOrDefault(morseChar, '?')); //sppend translated character or '?'
+                englishText.append(morseToEng.getOrDefault(morseChar, '?'));
             }
-            englishText.append(' '); //sdd space between words
+            englishText.append(' '); //add space between words
         }
         return englishText.toString().trim(); //trim trailing spaces
+    }
+    //translate from english to morse code - used in practiceModeController
+    public String translateToMorseCode(String text) {
+        StringBuilder morseCodeBuilder = new StringBuilder();
+        for (char c : text.toUpperCase().toCharArray()) {
+            String morseSymbol = getMorseCode(c);
+            if (!morseSymbol.isEmpty()) {
+                morseCodeBuilder.append(morseSymbol).append(" ");
+            } else {
+                morseCodeBuilder.append("? ");
+            }
+        }
+        return morseCodeBuilder.toString().trim();
     }
 
 

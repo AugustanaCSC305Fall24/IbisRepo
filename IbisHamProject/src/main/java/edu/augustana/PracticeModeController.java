@@ -29,13 +29,7 @@ public class PracticeModeController {
     @FXML private Button playButton;
 
     @FXML public void initialize() {
-
-
-
-        //frequency should be at 
-
         // frequency slider
-
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
@@ -67,26 +61,12 @@ public class PracticeModeController {
         }
     }
 
-    // text to Morse code using DictionaryController
-    private String translateToMorseCode(String text) {
-        StringBuilder morseCodeBuilder = new StringBuilder();
-        for (char c : text.toUpperCase().toCharArray()) {
-            String morseSymbol = dictionaryController.getMorseCode(c);
-            if (!morseSymbol.isEmpty()) {
-                morseCodeBuilder.append(morseSymbol).append(" ");
-            } else {
-                morseCodeBuilder.append("? ");
-            }
-        }
-        return morseCodeBuilder.toString().trim();
-    }
-
     //button action methods
     @FXML
     private void sendAction() {
         String msgText = MessageBox.getText();
         if (!msgText.isBlank()) {
-            String morseText = translateToMorseCode(msgText);
+            String morseText = dictionaryController.translateToMorseCode(msgText);
             TranslateBox.setText(morseText);
 
             String englishTranslation = dictionaryController.morseToEnglish(morseText);
