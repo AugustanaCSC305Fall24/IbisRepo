@@ -38,7 +38,7 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonN" mnemonicParsing="false" onAction="#fetchButtonID" text="N &quot;-.&quot; " />
+                        <Button fx:id="buttonN" mnemonicParsing="false" onAction="#fetchButtonID" text="N &quot;-.&quot;" />
                         <Button fx:id="buttonO" mnemonicParsing="false" onAction="#fetchButtonID" text="O &quot;---&quot;" />
                         <Button fx:id="buttonP" mnemonicParsing="false" onAction="#fetchButtonID" text="P &quot;.--.&quot;" />
                         <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#fetchButtonID" text="Q &quot;--.-&quot;" />
@@ -49,7 +49,7 @@
                         <Button fx:id="buttonV" mnemonicParsing="false" onAction="#fetchButtonID" text="V &quot;...-&quot;" />
                         <Button fx:id="buttonW" mnemonicParsing="false" onAction="#fetchButtonID" text="W &quot;.--&quot;" />
                         <Button fx:id="buttonX" mnemonicParsing="false" onAction="#fetchButtonID" text="X &quot;-..-&quot;" />
-                        <Button fx:id="buttonY" mnemonicParsing="false" onAction="#fetchButtonID" text="Y &quot;-.--&quot; " />
+                        <Button fx:id="buttonY" mnemonicParsing="false" onAction="#fetchButtonID" text="Y &quot;-.--&quot;" />
                         <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#fetchButtonID" text="Z &quot;--..&quot;" />
                         <VBox prefHeight="200.0" prefWidth="100.0" />
                      </children>
