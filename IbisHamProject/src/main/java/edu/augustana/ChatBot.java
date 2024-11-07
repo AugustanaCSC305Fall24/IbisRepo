@@ -5,6 +5,7 @@ import java.util.Random;
 public class ChatBot {
     private String name;
     private String botType;
+    //private String[] greetings = new ["hi"];
     private static final Random randomGen = new Random();
 
     public ChatBot(String name, String botType){

@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -21,6 +22,8 @@ public class PracticeModeController {
     private final DictionaryController dictionaryController = new DictionaryController();
     private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
     private int currentSpeed = 20;
+    private String morseText;
+    private String chatResponseMorse;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -87,7 +90,7 @@ public class PracticeModeController {
     private void sendAction() {
         String msgText = MessageBox.getText();
         if (!msgText.isBlank()) {
-            String morseText = dictionaryController.translateToMorseCode(msgText);
+            morseText = dictionaryController.translateToMorseCode(msgText);
             TranslateBox.setText(morseText);
 
             String englishTranslation = dictionaryController.morseToEnglish(morseText);
@@ -98,7 +101,7 @@ public class PracticeModeController {
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
             MessageBox.clear();
-            int BOT_SPEED_DELAY = randomGen.nextInt(5) + 2;
+            int BOT_SPEED_DELAY = randomGen.nextInt(5) + 4;
             PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
             pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
             pause.play();
@@ -126,11 +129,12 @@ public class PracticeModeController {
         }
 
         String chatResponse = chatBot.generateResponseMessage(englishTranslation);
-        String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
-        String botMessage = chatBot.getName() + chatResponseMorse + " (" + chatResponse + ")";
+        chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+        String botMessage = chatBot.getName() +": "+ chatResponseMorse + " (" + chatResponse + ")";
 
         existingText = MainMessageBox.getText();
         MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
+        TranslateBox.setText(chatResponseMorse);
         //botNewMessage(existingText, chatResponse);
     }
 
