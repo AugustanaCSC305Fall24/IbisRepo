@@ -13,7 +13,7 @@ public class AudioController {
         sourceDataLine.open(audioFormat);
         sourceDataLine.start();
 
-        int dotDuration = 10 * currentSpeed;
+        int dotDuration = (currentSpeed/10)*200;
         int dashDuration = (int)(1.5*dotDuration);
         int slashDuration = 2*dashDuration;
 
