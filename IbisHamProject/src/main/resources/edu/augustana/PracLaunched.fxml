@@ -12,12 +12,18 @@
 
 <HBox prefHeight="463.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="125.0">
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="134.0">
             <children>
             <Pane prefHeight="92.0" prefWidth="166.0">
                <children>
                       <Button fx:id="PracFromDict" layoutX="22.0" layoutY="14.0" onAction="#switchToPracPage" text="Practice Home" />
                       <Button fx:id="HomeFromPracMode" layoutX="30.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Slider fx:id="PlaybackSpeed" layoutX="9.0" layoutY="7.0" prefHeight="14.0" prefWidth="114.0" />
+                  <Label layoutX="26.0" layoutY="21.0" text="Playback speed" />
                </children>
             </Pane>
             </children>
