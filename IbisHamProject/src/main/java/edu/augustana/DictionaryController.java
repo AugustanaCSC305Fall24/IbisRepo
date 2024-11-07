@@ -115,6 +115,6 @@ public class DictionaryController {
         String buttonString = event.toString().trim();
         String morseString = buttonString.substring(buttonString.indexOf(" \"") + 1);
         morseString = morseString.substring(0, morseString.indexOf("\"']"));
-        AudioController.playSound(morseString);
+        AudioController.playSound(morseString, 20);
     }
 }

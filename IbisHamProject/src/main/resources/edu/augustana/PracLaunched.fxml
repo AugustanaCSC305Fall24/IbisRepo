@@ -22,7 +22,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Slider fx:id="PlaybackSpeed" layoutX="9.0" layoutY="7.0" prefHeight="14.0" prefWidth="114.0" />
+                  <Slider fx:id="speedSlider" layoutX="9.0" layoutY="7.0" prefHeight="14.0" prefWidth="114.0" />
                   <Label layoutX="26.0" layoutY="21.0" text="Playback speed" />
                </children>
             </Pane>

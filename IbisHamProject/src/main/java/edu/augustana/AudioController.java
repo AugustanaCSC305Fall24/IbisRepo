@@ -4,7 +4,7 @@ import javax.sound.sampled.*;
 import javax.xml.transform.Source;
 
 public class AudioController {
-    public static void playSound(String preSplitMorseMessage) throws LineUnavailableException, InterruptedException {
+    public static void playSound(String preSplitMorseMessage, int currentSpeed) throws LineUnavailableException, InterruptedException {
         String[] morseMessage = preSplitMorseMessage.split("");
         AudioFormat audioFormat = new AudioFormat(44100,16,1,true,false);
 
@@ -13,7 +13,7 @@ public class AudioController {
         sourceDataLine.open(audioFormat);
         sourceDataLine.start();
 
-        int dotDuration = 200;
+        int dotDuration = 10 * currentSpeed;
         int dashDuration = (int)(1.5*dotDuration);
         int slashDuration = 2*dashDuration;
 

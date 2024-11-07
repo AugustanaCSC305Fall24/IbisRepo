@@ -20,6 +20,7 @@ public class PracticeModeController {
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
     private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
+    private int currentSpeed = 20;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -55,6 +56,18 @@ public class PracticeModeController {
                 updateFilterRange(currentFrequency);
             });
         }
+
+        // speed slider
+        if (speedSlider != null){
+            speedSlider.setValue(20.0);
+            speedSlider.setMin(5);
+            speedSlider.setMax(40);
+            speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                currentSpeed = (int) speedSlider.getValue();
+                System.out.println("The current speed is " + currentSpeed);
+            });
+        }
+
     }
 
     //change the displayed range based on current frequency and filter width
@@ -135,7 +148,8 @@ public class PracticeModeController {
 
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
-        AudioController.playSound(TranslateBox.getText().trim());
+        //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
+        AudioController.playSound(TranslateBox.getText().trim(), 20);
     }
 
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
@@ -180,10 +194,10 @@ public class PracticeModeController {
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
-            AudioController.playSound(".");
+            AudioController.playSound(".", 20);
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
-            AudioController.playSound("-");
+            AudioController.playSound("-", 20);
         }
     }
 
