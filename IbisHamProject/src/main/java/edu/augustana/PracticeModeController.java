@@ -143,11 +143,13 @@ public class PracticeModeController {
     @FXML private void switchtoPracSettings() throws IOException { App.setRoot("settings"); }
     @FXML private void pracLaunch() throws IOException { App.setRoot("PracLaunched"); }
     @FXML private void switchToPracPage() throws IOException { App.setRoot("practiceMode"); }
+    //accessibility currently hidden behind the interference menu
     @FXML private void switchToAccessibility() throws IOException { App.setRoot("accessibilityMenu"); }
     @FXML private void switchToInterference() throws IOException { App.setRoot("interferenceMenu"); }
     @FXML private void switchToProbTypes() throws IOException { App.setRoot("problemTypesMenu"); }
 
     //save accessibility settings
+    //accessibility currently hidden behind the interference menu
     @FXML private void saveAndBackAccess() throws IOException {
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
@@ -177,10 +179,10 @@ public class PracticeModeController {
 
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
-        if(event.getCode()==KeyCode.LEFT){
+        if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
             AudioController.playSound(".");
         }
-        if(event.getCode()==KeyCode.RIGHT){
+        if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
             AudioController.playSound("-");
         }
     }
