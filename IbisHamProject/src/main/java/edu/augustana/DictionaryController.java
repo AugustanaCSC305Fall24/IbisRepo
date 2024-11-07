@@ -91,7 +91,7 @@ public class DictionaryController {
         for (char c : text.toUpperCase().toCharArray()) {
             String morseSymbol = getMorseCode(c);
             if (!morseSymbol.isEmpty()) {
-                morseCodeBuilder.append(morseSymbol).append(" ");
+                morseCodeBuilder.append(morseSymbol).append(",");
             } else {
                 morseCodeBuilder.append("~ ");
             }

@@ -5,7 +5,7 @@ import javax.xml.transform.Source;
 
 public class AudioController {
     public static void playSound(String preSplitMorseMessage, int currentSpeed) throws LineUnavailableException, InterruptedException {
-        String[] morseMessage = preSplitMorseMessage.split("");
+        String[] morseMessage = preSplitMorseMessage.replaceAll("\\s+","").trim().split("");
         AudioFormat audioFormat = new AudioFormat(44100,16,1,true,false);
 
         DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
@@ -14,22 +14,24 @@ public class AudioController {
         sourceDataLine.start();
 
         int dotDuration = 200;
-        int dashDuration = (int)(1.5*dotDuration);
-        int slashDuration = currentSpeed*dashDuration/10;
+        int dashDuration = (int)(2.5*dotDuration);
+        int slashDuration = currentSpeed*dotDuration/10;
 
         for(String pattern : morseMessage){
             for(char c: pattern.toCharArray()) {
                 if (c == '.') {
                     playBeep(sourceDataLine,dotDuration);
-                    Thread.sleep(dotDuration);
+                    Thread.sleep(dotDuration/2);
                 } else if (c == '-'){
                     playBeep(sourceDataLine,dashDuration);
-                    Thread.sleep(dotDuration);
+                    Thread.sleep(dotDuration/2);
                 }else if (c == '/'){
                     Thread.sleep(slashDuration);
                 }
+                else if (c==','){
+                    Thread.sleep(slashDuration);
+                }
             }
-
             Thread.sleep(dotDuration);
         }
         sourceDataLine.drain();
