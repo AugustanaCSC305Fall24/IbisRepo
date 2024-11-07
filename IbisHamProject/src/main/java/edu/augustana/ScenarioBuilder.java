@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
@@ -14,16 +16,15 @@ public class ScenarioBuilder extends Application {
 
     private static Scene scene;
 
+    @FXML private TextField NameBox;
+    @FXML private TextField ProfessionBox;
+
     // sets builder screen
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("homePage"), 640, 680);
+        scene = new Scene(loadFXML("scenarioBuilder"), 640, 680);
         stage.setScene(scene);
         stage.show();
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
