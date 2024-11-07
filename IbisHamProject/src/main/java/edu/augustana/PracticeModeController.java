@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 
 import javax.sound.sampled.LineUnavailableException;
@@ -83,19 +85,10 @@ public class PracticeModeController {
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
             MessageBox.clear();
-
-            try {
-                int sleep = randomGen.nextInt(7) * 1000;
-                Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            String chatResponse = chatBot.generateResponseMessage(englishTranslation);
-            String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
-            String botMessage = chatBot.getName() + chatResponseMorse + " (" + chatResponse + ")";
-
-            existingText = MainMessageBox.getText();
-            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
+            int BOT_SPEED_DELAY = randomGen.nextInt(5) + 2;
+            PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
+            pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
+            pause.play();
 
         } else {
             String morseCode = TranslateBox.getText().trim();
@@ -111,6 +104,32 @@ public class PracticeModeController {
             }
         }
     }
+
+    public void botResponse(String englishTranslation, String existingText){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        String chatResponse = chatBot.generateResponseMessage(englishTranslation);
+        String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+        String botMessage = chatBot.getName() + chatResponseMorse + " (" + chatResponse + ")";
+
+        existingText = MainMessageBox.getText();
+        MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
+        //botNewMessage(existingText, chatResponse);
+    }
+
+//    public void botNewMessage(String existingText, String botMessage){
+//        if(botMessage.contains(chatBot.getName()) || botMessage.contains(chatBot.getBotType())){
+//            String newBotMessage = chatBot.generateNewMessage();
+//            String newMessageMorse = dictionaryController.translateToMorseCode(newBotMessage);
+//            String message = chatBot.getName() + newMessageMorse + " (" + newBotMessage + ")";
+//
+//            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
+//        }
+//    }
 
 
 
