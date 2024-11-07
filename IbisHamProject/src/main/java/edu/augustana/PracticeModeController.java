@@ -3,6 +3,7 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
+import java.util.Random;
 
 
 import javafx.scene.input.KeyCode;
@@ -14,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import javax.sound.sampled.LineUnavailableException;
 
 public class PracticeModeController {
+    private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
     private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
 
@@ -78,6 +80,20 @@ public class PracticeModeController {
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
             MessageBox.clear();
+
+            try {
+                int sleep = randomGen.nextInt(7) * 1000;
+                Thread.sleep(sleep);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            String chatResponse = chatBot.generateResponseMessage(englishTranslation);
+            String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+            String botMessage = chatBot.getName() + chatResponseMorse + " (" + chatResponse + ")";
+
+            existingText = MainMessageBox.getText();
+            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
+
         } else {
             String morseCode = TranslateBox.getText().trim();
             if (!morseCode.isEmpty()) {

@@ -21,14 +21,17 @@ public class ChatBot {
     }
 
     public String generateResponseMessage(String userMessage){
-        if(userMessage.equals("Hello")){
+        userMessage = userMessage.toLowerCase();
+        if(userMessage.contains("hello")){
             return "Hello ur name?";
         } else if(userMessage.contains("Where")){
             return "u tell me first";
         } else if(randomGen.nextInt(10) < 3){
             return "AGN";
         } else if(userMessage.contains("name")){
-            return "K9ABC";
+            return getName();
+        }else if(userMessage.contains("job")){
+            return "i am "+ getBotType();
         }else {
             return "?";
         }
@@ -37,7 +40,9 @@ public class ChatBot {
     public String generateNewMessage(){
         if(randomGen.nextInt(10) < 3){
             return "QTH";
-        } else {
+        } else if(randomGen.nextInt(10) > 7){
+            return "WX UR JOB?";
+        }else {
             return "SK";
         }
     }

@@ -54,6 +54,7 @@ public class DictionaryController {
         morseCodeMap.put('8', "---..");
         morseCodeMap.put('9', "----.");
         morseCodeMap.put('0', "-----");
+        morseCodeMap.put('?', "..--..");
         morseCodeMap.put(' ', "/"); // Use "/" to represent a space
 
         for (Map.Entry<Character, String> entry : morseCodeMap.entrySet()) {
@@ -92,7 +93,7 @@ public class DictionaryController {
             if (!morseSymbol.isEmpty()) {
                 morseCodeBuilder.append(morseSymbol).append(" ");
             } else {
-                morseCodeBuilder.append("? ");
+                morseCodeBuilder.append("~ ");
             }
         }
         return morseCodeBuilder.toString().trim();
