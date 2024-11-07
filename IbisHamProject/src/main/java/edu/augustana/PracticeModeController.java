@@ -23,8 +23,6 @@ public class PracticeModeController {
     private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
     private final QuizBot quizBot = new QuizBot("Q1ZBT");
     private int currentSpeed = 20;
-    private String morseText;
-    private String chatResponseMorse;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -91,7 +89,7 @@ public class PracticeModeController {
     private void sendAction() {
         String msgText = MessageBox.getText();
         if (!msgText.isBlank()) {
-            morseText = dictionaryController.translateToMorseCode(msgText);
+            String morseText = dictionaryController.translateToMorseCode(msgText);
             TranslateBox.setText(morseText);
 
             String englishTranslation = dictionaryController.morseToEnglish(morseText);
@@ -130,7 +128,7 @@ public class PracticeModeController {
         }
 
         String chatResponse = chatBot.generateResponseMessage(englishTranslation);
-        chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+        String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
         String botMessage = chatBot.getName() +": "+ chatResponseMorse + " (" + chatResponse + ")";
 
         existingText = MainMessageBox.getText();
