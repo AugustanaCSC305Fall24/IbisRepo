@@ -15,6 +15,7 @@ import javax.sound.sampled.LineUnavailableException;
 
 public class PracticeModeController {
     private final DictionaryController dictionaryController = new DictionaryController();
+    private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -94,6 +95,8 @@ public class PracticeModeController {
             }
         }
     }
+
+
 
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
