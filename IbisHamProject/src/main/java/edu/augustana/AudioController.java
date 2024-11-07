@@ -13,9 +13,9 @@ public class AudioController {
         sourceDataLine.open(audioFormat);
         sourceDataLine.start();
 
-        int dotDuration = (currentSpeed/10)*200;
+        int dotDuration = 200;
         int dashDuration = (int)(1.5*dotDuration);
-        int slashDuration = 2*dashDuration;
+        int slashDuration = currentSpeed*dashDuration/10;
 
         for(String pattern : morseMessage){
             for(char c: pattern.toCharArray()) {
