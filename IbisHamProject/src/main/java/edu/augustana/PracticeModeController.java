@@ -19,17 +19,20 @@ public class PracticeModeController {
     private final DictionaryController dictionaryController = new DictionaryController();
     private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
 
-    @FXML private Slider FrequencySlider;
     @FXML private Label FrequencyLabel;
+    @FXML private Slider FrequencySlider;
     @FXML private Slider FilterSlider;
     @FXML private Slider qualitySlider;
     @FXML private Slider amountSlider;
     @FXML private Slider speedSlider;
-    @FXML private CheckBox visualizerCheckBox;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
     @FXML private TextArea MainMessageBox;
-    @FXML private Button playButton;
+    @FXML private CheckBox visualizerCheckBox;
+    @FXML private CheckBox PoorEquipButton;
+    @FXML private CheckBox SolarFlaresButton;
+    @FXML private CheckBox StormyWeatherButton;
+    @FXML private CheckBox MachineInterferButton;
 
     @FXML public void initialize() {
         // frequency slider
@@ -125,18 +128,33 @@ public class PracticeModeController {
     @FXML private void switchToInterference() throws IOException { App.setRoot("interferenceMenu"); }
     @FXML private void switchToProbTypes() throws IOException { App.setRoot("problemTypesMenu"); }
 
-    //save the settings and go back
-    @FXML private void saveAndBack() throws IOException {
+    //save accessibility settings
+    @FXML private void saveAndBackAccess() throws IOException {
         double quality = qualitySlider.getValue();
         double amount = amountSlider.getValue();
         double speed = speedSlider.getValue();
         boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
         App.setRoot("settings");
+        //test code
         System.out.println("Quality Slider Value: " + quality);
         System.out.println("Amount Slider Value: " + amount);
         System.out.println("Speed Slider Value: " + speed);
         System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
     }
+
+    @FXML private void saveAndBackInterference() throws IOException {
+        boolean SolarFlares = SolarFlaresButton.isSelected();
+        boolean StormyWeather = StormyWeatherButton.isSelected();
+        boolean MachineInterference = MachineInterferButton.isSelected();
+        boolean PoorEquip = PoorEquipButton.isSelected();
+        App.setRoot("settings");
+        //test code
+        System.out.println("Solar Flares: " + SolarFlares);
+        System.out.println("Stormy Weather: " + StormyWeather);
+        System.out.println("Speed Slider Value: " + MachineInterference);
+        System.out.println("Visualizer Enabled: " + PoorEquip);
+    }
+
 
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
