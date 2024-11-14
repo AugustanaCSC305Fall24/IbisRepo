@@ -35,6 +35,12 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+        ThreadClass R1 = new ThreadClass( "Thread-1");
+        R1.start();
+
+        ThreadClass R2 = new ThreadClass( "Thread-2");
+        R2.start();
+
     }
 
 }
