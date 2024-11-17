@@ -1,10 +1,13 @@
 package edu.augustana;
 
 import javax.sound.sampled.*;
-import javax.xml.transform.Source;
 
-public class AudioController {
-    public static void playSound(String preSplitMorseMessage, int currentSpeed) throws LineUnavailableException, InterruptedException {
+
+public class AudioController{
+
+    private static int currentSpeed;
+
+    public static void playSound(String preSplitMorseMessage) throws LineUnavailableException, InterruptedException {
         String[] morseMessage = preSplitMorseMessage.replaceAll("\\s+","").trim().split("");
         AudioFormat audioFormat = new AudioFormat(44100,16,1,true,false);
 
@@ -29,7 +32,7 @@ public class AudioController {
                     Thread.sleep(slashDuration);
                 }
                 else if (c==','){
-                    Thread.sleep(slashDuration);
+                    Thread.sleep(slashDuration/2);
                 }
             }
             Thread.sleep(dotDuration);
@@ -48,5 +51,12 @@ public class AudioController {
             data[i] = (byte) (Math.sin(angle)*127);
         }
         line.write(data,0, data.length);
+    }
+
+    public static void setSpeed(int speed){
+        currentSpeed=speed;
+    }
+    public static int getSpeed(){
+        return currentSpeed;
     }
 }

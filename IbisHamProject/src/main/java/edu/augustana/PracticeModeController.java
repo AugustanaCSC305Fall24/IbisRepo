@@ -66,6 +66,7 @@ public class PracticeModeController {
             speedSlider.setMax(40);
             speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 currentSpeed = (int) speedSlider.getValue();
+                AudioController.setSpeed(currentSpeed);
                 System.out.println("The current speed is " + currentSpeed);
             });
         }
@@ -152,7 +153,7 @@ public class PracticeModeController {
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
         //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
-        AudioController.playSound(TranslateBox.getText().trim(), 20);
+        AudioController.playSound(TranslateBox.getText().trim());
     }
 
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
@@ -197,10 +198,10 @@ public class PracticeModeController {
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
-            AudioController.playSound(".", 20);
+            AudioController.playSound(".");
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
-            AudioController.playSound("-", 20);
+            AudioController.playSound("-");
         }
     }
 
