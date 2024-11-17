@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class QuizBot {
@@ -31,7 +32,11 @@ public class QuizBot {
 
     public String generateResponse(String userMessage, String randQuestion){
         userMessage = userMessage.toLowerCase();
-        return "";
+        if (userMessage.contains(answers[Arrays.asList(questions).indexOf(randQuestion)])){
+            return "Great";
+        } else {
+            return "Wrong";
+        }
     }
 }
 

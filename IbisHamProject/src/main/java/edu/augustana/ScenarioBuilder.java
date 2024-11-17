@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class ScenarioBuilder extends Application {
 
@@ -18,6 +19,8 @@ public class ScenarioBuilder extends Application {
 
     @FXML private TextField NameBox;
     @FXML private TextField ProfessionBox;
+    @FXML private TextField GreetingBox;
+    @FXML private TextField ResponseBox;
 
     // sets builder screen
     @Override
@@ -31,10 +34,22 @@ public class ScenarioBuilder extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+    //this block of code will throw a NullPointerException when it tries to get the text from the boxes
+    @FXML
+    public void getData(){
+        if (NameBox.getText() != null && ProfessionBox.getText() != null && GreetingBox.getText() != null && ResponseBox.getText() != null){
+            String name = NameBox.getText();
+            String profession = ProfessionBox.getText();
+            String greeting = GreetingBox.getText();
+            String response = ResponseBox.getText();
+            System.out.println(name + " " + profession + " " + greeting + " " + response);
+        } else {
+            System.out.println("Please fill out ALL fields.");
+        }
 
-    public static void main(String[] args) {
-        launch();
     }
+
+    public static void main(String[] args) {launch();}
 
 }
 
