@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
    <children>
-      <Button fx:id="accessibilityButton" layoutX="107.0" layoutY="87.0" mnemonicParsing="false" onAction="#switchToAccessibility" prefHeight="213.0" prefWidth="171.0" text="Accessibility" textAlignment="CENTER">
-         <font>
-            <Font name="Luminari" size="23.0" />
-         </font>
-      </Button>
-      <Button fx:id="probTypesButton" layoutX="319.0" layoutY="87.0" mnemonicParsing="false" onAction="#switchToProbTypes" prefHeight="213.0" prefWidth="171.0" text="Problem Types" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font name="Luminari" size="23.0" />
-         </font>
-      </Button>
+      
+
       <Button fx:id="PracFromDict" layoutX="14.0" layoutY="14.0" onAction="#switchToPracPage" text="Practice Home" />
-      <Button fx:id="launchPract" layoutX="260.0" layoutY="327.0" onAction="#pracLaunch" text="Launch Practice" />
-      <Button fx:id="interferneceButton" layoutX="107.0" layoutY="87.0" mnemonicParsing="false" onAction="#switchToInterference" prefHeight="213.0" prefWidth="171.0" text="Interference" textAlignment="CENTER">
+      <Label fx:id="pracSettings" layoutX="205.0" layoutY="39.0" text="Practice settings">
          <font>
-            <Font name="Luminari" size="23.0" />
+            <Font name="Century Gothic" size="24.0" />
          </font>
-      </Button>
+      </Label>
+      <Pane layoutX="79.0" layoutY="70.0" prefHeight="295.0" prefWidth="460.0">
+         <children>
+
+            <CheckBox fx:id="SolarFlaresButton" layoutX="141.0" layoutY="60.0" mnemonicParsing="false" text="Solar Flares" />
+            <CheckBox fx:id="StormyWeatherButton" layoutX="141.0" layoutY="96.0" mnemonicParsing="false" text="Stormy weather" />
+            <CheckBox fx:id="MachineInterferButton" layoutX="141.0" layoutY="131.0" mnemonicParsing="false" text="Machine Interferance" />
+         </children>
+      </Pane>
+      <Button fx:id="launchPract" layoutX="260.0" layoutY="365.0" onAction="#pracLaunch" text="Save and Run" />
 
 
    </children>

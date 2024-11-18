@@ -4,17 +4,10 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Random;
-
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
-
 import javax.sound.sampled.LineUnavailableException;
 
 public class PracticeModeController {
@@ -27,14 +20,10 @@ public class PracticeModeController {
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
     @FXML private Slider FilterSlider;
-    @FXML private Slider qualitySlider;
-    @FXML private Slider amountSlider;
     @FXML private Slider speedSlider;
     @FXML private TextArea MessageBox;
     @FXML private TextArea TranslateBox;
     @FXML private TextArea MainMessageBox;
-    @FXML private CheckBox visualizerCheckBox;
-    @FXML private CheckBox PoorEquipButton;
     @FXML private CheckBox SolarFlaresButton;
     @FXML private CheckBox StormyWeatherButton;
     @FXML private CheckBox MachineInterferButton;
@@ -148,8 +137,6 @@ public class PracticeModeController {
 //        }
 //    }
 
-
-
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
         //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
@@ -159,41 +146,19 @@ public class PracticeModeController {
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
     @FXML private void switchtoHomePage() throws IOException { App.setRoot("homePage"); }
     @FXML private void switchtoPracSettings() throws IOException { App.setRoot("settings"); }
-    @FXML private void pracLaunch() throws IOException { App.setRoot("PracLaunched"); }
     @FXML private void switchToPracPage() throws IOException { App.setRoot("practiceMode"); }
-    //accessibility currently hidden behind the interference menu
-    @FXML private void switchToAccessibility() throws IOException { App.setRoot("accessibilityMenu"); }
-    @FXML private void switchToInterference() throws IOException { App.setRoot("interferenceMenu"); }
-    @FXML private void switchToProbTypes() throws IOException { App.setRoot("problemTypesMenu"); }
 
-    //save accessibility settings
-    //accessibility currently hidden behind the interference menu
-    @FXML private void saveAndBackAccess() throws IOException {
-        double quality = qualitySlider.getValue();
-        double amount = amountSlider.getValue();
-        double speed = speedSlider.getValue();
-        boolean isVisualizerEnabled = visualizerCheckBox.isSelected();
-        App.setRoot("settings");
-        //test code
-        System.out.println("Quality Slider Value: " + quality);
-        System.out.println("Amount Slider Value: " + amount);
-        System.out.println("Speed Slider Value: " + speed);
-        System.out.println("Visualizer Enabled: " + isVisualizerEnabled);
-    }
-
-    @FXML private void saveAndBackInterference() throws IOException {
+    //save settings and launch practice mode
+    @FXML private void pracLaunch() throws IOException {
         boolean SolarFlares = SolarFlaresButton.isSelected();
         boolean StormyWeather = StormyWeatherButton.isSelected();
         boolean MachineInterference = MachineInterferButton.isSelected();
-        boolean PoorEquip = PoorEquipButton.isSelected();
-        App.setRoot("settings");
         //test code
         System.out.println("Solar Flares: " + SolarFlares);
         System.out.println("Stormy Weather: " + StormyWeather);
-        System.out.println("Speed Slider Value: " + MachineInterference);
-        System.out.println("Visualizer Enabled: " + PoorEquip);
+        System.out.println("Machine Interference: " + MachineInterference);
+        App.setRoot("PracLaunched");
     }
-
 
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
@@ -204,8 +169,6 @@ public class PracticeModeController {
             AudioController.playSound("-");
         }
     }
-
-
 
     @FXML private void goBack() throws IOException { App.setRoot("settings"); }
 }
