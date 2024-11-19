@@ -20,6 +20,10 @@ public class QuizBot {
         return name;
     }
 
+    public String[] getAnswers() {return answers;}
+
+    public String[] getQuestions() {return questions;}
+
     public String startMessage(){
         return "Hello define abbr";
     }
