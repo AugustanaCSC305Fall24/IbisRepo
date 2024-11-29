@@ -36,6 +36,7 @@ public class PracticeModeController {
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
                 updateFilterRange(newValue.doubleValue());
+                AudioController.setFreq(newValue.doubleValue());
             });
         }
 

@@ -5,11 +5,12 @@ import javax.sound.sampled.*;
 
 public class AudioController{
 
+    private static int currentFreq = 4500;
     private static int currentSpeed;
 
     public static void playSound(String preSplitMorseMessage) throws LineUnavailableException, InterruptedException {
         String[] morseMessage = preSplitMorseMessage.replaceAll("\\s+","").trim().split("");
-        AudioFormat audioFormat = new AudioFormat(44100,16,1,true,false);
+        AudioFormat audioFormat = new AudioFormat(currentFreq,16,1,true,false);
 
         DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
         SourceDataLine sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
@@ -43,10 +44,10 @@ public class AudioController{
     }
 
     private static void playBeep(SourceDataLine line, int duration){
-        byte[] data = new byte[duration*44100/1000];
+        byte[] data = new byte[(duration*10)*currentFreq/10000];
 
         for(int i=0;i< data.length;i++){
-            double angle = (double) i /((double) 44100 /440)*2*Math.PI;
+            double angle = (double) i /((double) currentFreq /440)*2*Math.PI;
 
             data[i] = (byte) (Math.sin(angle)*127);
         }
@@ -58,5 +59,9 @@ public class AudioController{
     }
     public static int getSpeed(){
         return currentSpeed;
+    }
+    public static void setFreq(double freq){
+        currentFreq = (int)(freq * 100)*100;
+        System.out.println(currentFreq);
     }
 }
