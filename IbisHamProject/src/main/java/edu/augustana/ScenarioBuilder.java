@@ -4,23 +4,22 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-import java.io.IOException;
-import java.sql.SQLOutput;
-
 public class ScenarioBuilder extends Application {
 
     private static Scene scene;
 
     @FXML private TextField NameBox;
-    @FXML private TextField ProfessionBox;
-    @FXML private TextField GreetingBox;
-    @FXML private TextField ResponseBox;
+    @FXML private TextField CharacterBox;
+    @FXML private TextField GoalBox;
+    @FXML private TextField ObstacleBox;
+    @FXML private Button SaveButton;
 
     // sets builder screen
     @Override
@@ -37,11 +36,11 @@ public class ScenarioBuilder extends Application {
     //this block of code will throw a NullPointerException when it tries to get the text from the boxes
     @FXML
     public void getData(){
-        if (NameBox.getText() != null && ProfessionBox.getText() != null && GreetingBox.getText() != null && ResponseBox.getText() != null){
+        if (NameBox.getText() != null && CharacterBox.getText() != null && GoalBox.getText() != null && ObstacleBox.getText() != null){
             String name = NameBox.getText();
-            String profession = ProfessionBox.getText();
-            String greeting = GreetingBox.getText();
-            String response = ResponseBox.getText();
+            String profession = CharacterBox.getText();
+            String greeting = GoalBox.getText();
+            String response = ObstacleBox.getText();
             System.out.println(name + " " + profession + " " + greeting + " " + response);
         } else {
             System.out.println("Please fill out ALL fields.");
