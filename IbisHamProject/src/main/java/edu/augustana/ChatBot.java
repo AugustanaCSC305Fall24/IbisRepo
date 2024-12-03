@@ -2,10 +2,10 @@ package edu.augustana;
 
 import java.util.Random;
 
-public class ChatBot {
-    private String name;
-    private String botType;
-    //private String[] greetings = new ["hi"];
+public abstract class ChatBot {
+    private final String name;
+    private final String botType;
+
     private static final Random randomGen = new Random();
 
     public ChatBot(String name, String botType){
@@ -20,6 +20,7 @@ public class ChatBot {
     public String getBotType(){
         return botType;
     }
+
 
     public String generateResponseMessage(String userMessage){
         userMessage = userMessage.toLowerCase();
