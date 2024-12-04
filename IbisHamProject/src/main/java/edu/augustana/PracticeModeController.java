@@ -13,8 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 public class PracticeModeController {
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
-    private final ChatBot chatBot = new ChatBot("K9ABC", "Professor");
-    private final QuizBot quizBot = new QuizBot("Q1ZBT");
+    ChatBot chatBot = new QuizBot("K9ABC", "Professor");
     private int currentSpeed = 20;
 
     @FXML private Label FrequencyLabel;

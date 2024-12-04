@@ -3,7 +3,7 @@ package edu.augustana;
 import java.util.Arrays;
 import java.util.Random;
 
-public class QuizBot {
+public class QuizBot extends ChatBot {
     private String name;
     private final String[] answers = new String[]{"QRG", "QRI", "QRK", "QRL","QRM", "QRN", "QRO",
     "QRP","QRQ","QRR", "QRRR", "QRS", "QRT", "QRU", "QRV", "QRX", "QRZ"};
@@ -12,12 +12,9 @@ public class QuizBot {
     "Decrease power","Send more quickly","Temporarily unavailable/away", "Land distress", "Send more slowly",
     "Stop sending", "Have you anything for me?", "I am ready", "Will call you again", "You are being called by..."};
 
-    public QuizBot(String name){
-        this.name = name;
-    }
 
-    public String getName(){
-        return name;
+    public QuizBot(String name, String botType){
+        super(name, botType);
     }
 
     public String[] getAnswers() {return answers;}

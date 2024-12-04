@@ -85,13 +85,14 @@ public class DictionaryController {
         }
         return englishText.toString().trim(); //trim trailing spaces
     }
+
     //translate from english to morse code - used in practiceModeController
     public String translateToMorseCode(String text) {
         StringBuilder morseCodeBuilder = new StringBuilder();
         for (char c : text.toUpperCase().toCharArray()) {
             String morseSymbol = getMorseCode(c);
             if (!morseSymbol.isEmpty()) {
-                morseCodeBuilder.append(morseSymbol).append(",");
+                morseCodeBuilder.append(morseSymbol).append(" ");
             } else {
                 morseCodeBuilder.append("~ ");
             }

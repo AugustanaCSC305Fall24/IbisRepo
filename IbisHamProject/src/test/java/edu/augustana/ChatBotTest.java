@@ -6,7 +6,7 @@ import static junit.framework.TestCase.*;
 
 public class ChatBotTest {
 
-    ChatBot bot = new ChatBot("Alice","Nurse");
+    ChatBot bot = new QuizBot("Alice","Nurse");
 
     @Test
     public void testInitBot(){
