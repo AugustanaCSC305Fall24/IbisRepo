@@ -36,7 +36,7 @@ public class PracticeModeController {
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
                 updateFilterRange(newValue.doubleValue());
-                AudioController.setFreq(newValue.doubleValue());
+                AudioController.setRadioFreq(newValue.doubleValue());
             });
         }
 
@@ -141,7 +141,7 @@ public class PracticeModeController {
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {
         //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
-        AudioController.playSound(TranslateBox.getText().trim());
+        AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
     }
 
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
@@ -164,10 +164,10 @@ public class PracticeModeController {
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
-            AudioController.playSound(".");
+            AudioController.playMorseMessage(".", FrequencySlider.getValue());
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
-            AudioController.playSound("-");
+            AudioController.playMorseMessage("-", FrequencySlider.getValue());
         }
     }
 
