@@ -14,7 +14,8 @@ import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ScenarioBuilder extends Application {
 
@@ -71,16 +72,18 @@ public class ScenarioBuilder extends Application {
 
     private void writeDataToFile(String name, String character, String goal, String obstacles) throws IOException {
 
-            File scenario = new File("H:\\git\\IbisRepo\\scenarioData.txt");
+            Map<String, Object> data = new HashMap<>();
+            data.put("name", name);
+            data.put("character", character);
+            data.put("goal", goal);
+            data.put("obstacles", obstacles);
+
+            //Gson data_gson = new Gson();
+            //String data_json = data_gson.toJson(data);
+
+            File scenario = new File("H:\\git\\IbisRepo\\scenarioData.json");
             FileWriter author = new FileWriter(scenario);
-            author.write(name);
-            author.write('\n');
-            author.write(character);
-            author.write('\n');
-            author.write(goal);
-            author.write('\n');
-            author.write(obstacles);
-            author.write('\n');
+            author.write(data.toString());
             author.close();
 
     }
