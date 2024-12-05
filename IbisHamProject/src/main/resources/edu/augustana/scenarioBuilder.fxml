@@ -64,7 +64,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#getData" text="Save" translateY="-25.0" />
+      <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#saveData" text="Save" translateY="-25.0" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

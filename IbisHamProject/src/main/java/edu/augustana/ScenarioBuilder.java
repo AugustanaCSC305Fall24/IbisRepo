@@ -11,7 +11,10 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class ScenarioBuilder extends Application {
 
@@ -32,15 +35,22 @@ public class ScenarioBuilder extends Application {
     }
 
     @FXML
-    public void getData(){
+    public void saveData(){
         if (NameBox.getText().equals("") || CharacterBox.getText().equals("") || GoalBox.getText().equals("") || ObstacleBox.getText().equals("")){
-            showAlert("Please fill out ALL fields!");
+            showAlert("Please fill out ALL fields!", AlertType.ERROR);
         } else {
             String name = NameBox.getText();
-            String profession = CharacterBox.getText();
-            String greeting = GoalBox.getText();
-            String response = ObstacleBox.getText();
-            System.out.println(name + " " + profession + " " + greeting + " " + response);
+            String character = CharacterBox.getText();
+            String goal = GoalBox.getText();
+            String obstacles = ObstacleBox.getText();
+
+            try {
+                writeDataToFile(name, character, goal, obstacles);
+            } catch (IOException e) {
+                System.out.println("The following error has occurred: " + e.toString());
+            }
+
+            showAlert("Your data has been saved.", AlertType.INFORMATION);
         }
 
     }
@@ -50,15 +60,29 @@ public class ScenarioBuilder extends Application {
         return fxmlLoader.load();
     }
 
-    private void showAlert(String message) {
-        // Create an Alert of type ERROR
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("WARNING!");
-        alert.setHeaderText("Incomplete Information");
+    private void showAlert(String message, AlertType Alert) {
+
+        Alert alert = new Alert(Alert);
+        alert.setTitle("ATTENTION!");
         alert.setContentText(message);
 
-        // Show the alert and wait for a response
         alert.showAndWait();
+    }
+
+    private void writeDataToFile(String name, String character, String goal, String obstacles) throws IOException {
+
+            File scenario = new File("H:\\git\\IbisRepo\\scenarioData.txt");
+            FileWriter author = new FileWriter(scenario);
+            author.write(name);
+            author.write('\n');
+            author.write(character);
+            author.write('\n');
+            author.write(goal);
+            author.write('\n');
+            author.write(obstacles);
+            author.write('\n');
+            author.close();
+
     }
 
     public static void main(String[] args) {launch();}
