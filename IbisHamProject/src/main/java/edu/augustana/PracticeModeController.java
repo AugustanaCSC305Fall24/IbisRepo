@@ -13,7 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 public class PracticeModeController {
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
-    ChatBot chatBot = new QuizBot("K9ABC", "Professor");
+    QuizBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
     private int currentSpeed = 20;
 
     @FXML private Label FrequencyLabel;
@@ -67,11 +67,8 @@ public class PracticeModeController {
                 System.out.println("The current speed is " + currentSpeed);
             });
         }
-
+    chatBot.startMessage();
     }
-
-    //change the displayed range based on current frequency and filter width
-
 
     //button action methods
     @FXML
@@ -91,7 +88,7 @@ public class PracticeModeController {
             MessageBox.clear();
             int BOT_SPEED_DELAY = randomGen.nextInt(5) + 4;
             PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
-            pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
+            //pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
             pause.play();
 
         } else {
@@ -108,33 +105,6 @@ public class PracticeModeController {
             }
         }
     }
-
-    public void botResponse(String englishTranslation, String existingText){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        String chatResponse = chatBot.generateResponseMessage(englishTranslation);
-        String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
-        String botMessage = chatBot.getName() +": "+ chatResponseMorse + " (" + chatResponse + ")";
-
-        existingText = MainMessageBox.getText();
-        MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
-        TranslateBox.setText(chatResponseMorse);
-        //botNewMessage(existingText, chatResponse);
-    }
-
-//    public void botNewMessage(String existingText, String botMessage){
-//        if(botMessage.contains(chatBot.getName()) || botMessage.contains(chatBot.getBotType())){
-//            String newBotMessage = chatBot.generateNewMessage();
-//            String newMessageMorse = dictionaryController.translateToMorseCode(newBotMessage);
-//            String message = chatBot.getName() + newMessageMorse + " (" + newBotMessage + ")";
-//
-//            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
-//        }
-//    }
 
     @FXML
     private void play() throws LineUnavailableException, InterruptedException {

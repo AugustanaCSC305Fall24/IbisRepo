@@ -11,7 +11,7 @@ public class QuizBot extends ChatBot {
     "This frequency is busy.", "Man-made interference", "Natural interference", "Increase power",
     "Decrease power","Send more quickly","Temporarily unavailable/away", "Land distress", "Send more slowly",
     "Stop sending", "Have you anything for me?", "I am ready", "Will call you again", "You are being called by..."};
-
+    Random rand = new Random();
 
     public QuizBot(String name, String botType){
         super(name, botType);
@@ -22,11 +22,14 @@ public class QuizBot extends ChatBot {
     public String[] getQuestions() {return questions;}
 
     public String startMessage(){
-        return "Hello define abbr";
+        return "Hello. I will be giving you a quiz on CW today, you better be ready!";
     }
 
-    public String generateQuestion(){
-        Random rand = new Random();
+    public String generateSingleLetters(){
+        return String.valueOf((char) ('A' + rand.nextInt(26)));
+    }
+
+    public String generateCWabbrev(){
         int randIndex = rand.nextInt(questions.length);
         return questions[randIndex];
     }
