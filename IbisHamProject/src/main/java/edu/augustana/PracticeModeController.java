@@ -137,6 +137,11 @@ public class PracticeModeController {
 //    }
 
     @FXML
+    private void clear(){
+        TranslateBox.setText("");
+    }
+
+    @FXML
     private void play() throws LineUnavailableException, InterruptedException {
         //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
         AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
@@ -162,13 +167,17 @@ public class PracticeModeController {
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         StringBuilder old = new StringBuilder();
+        old.append(TranslateBox.getText());
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
             AudioController.playMorseMessage(".", FrequencySlider.getValue());
+            old.append(".");
 
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
             AudioController.playMorseMessage("-", FrequencySlider.getValue());
+            old.append("-");
         }
+        TranslateBox.setText(old.toString());
     }
 
     @FXML private void goBack() throws IOException { App.setRoot("settings"); }
