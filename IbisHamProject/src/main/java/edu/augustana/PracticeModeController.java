@@ -117,10 +117,49 @@ public class PracticeModeController {
         TranslateBox.setText("");
     }
 
+    public void botResponse(String englishTranslation, String existingText) {
+        // make a thread for bot/s
+        Thread botThread = new Thread(() -> {
+            try {
+                //delay for bot response
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            //make response
+            String chatResponse = chatBot.generateResponseMessage(englishTranslation);
+            String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+            String botMessage = chatBot.getName() + ": " + chatResponseMorse + " (" + chatResponse + ")";
+
+
+            // updates the ui to handle the thread
+            javafx.application.Platform.runLater(() -> {
+                String updatedText = MainMessageBox.getText();
+                MainMessageBox.setText(updatedText + (updatedText.isEmpty() ? "" : "\n") + botMessage);
+                TranslateBox.setText(chatResponseMorse);
+            });
+        });
+        botThread.setDaemon(true); // stop the threads when app
+        botThread.start();
+    }
+
+
     @FXML
-    private void play() throws LineUnavailableException, InterruptedException {
-        //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
-        AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
+    private void play() {
+        //thread creation for audio
+        Thread audioThread = new Thread(() -> {
+            try {
+                // code from Zane that gets audio from the audio controller
+                AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
+            } catch (LineUnavailableException | InterruptedException e) {
+                // exception for audio issues
+                e.printStackTrace();
+            }
+        });
+        //set thread as daemon so closing app/app functionality isnt frozen during audio playing
+        audioThread.setDaemon(true);
+        audioThread.start();
     }
 
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }

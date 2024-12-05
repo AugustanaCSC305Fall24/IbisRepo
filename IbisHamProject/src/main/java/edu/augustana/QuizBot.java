@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class QuizBot extends ChatBot {
+    private static final Random randomGen = new Random();
+
+
     private String name;
     private final String[] answers = new String[]{"QRG", "QRI", "QRK", "QRL","QRM", "QRN", "QRO",
     "QRP","QRQ","QRR", "QRRR", "QRS", "QRT", "QRU", "QRV", "QRX", "QRZ"};
@@ -32,6 +35,23 @@ public class QuizBot extends ChatBot {
     public String generateCWabbrev(){
         int randIndex = rand.nextInt(questions.length);
         return questions[randIndex];
+    }
+
+    public String generateResponseMessage(String userMessage){
+        userMessage = userMessage.toLowerCase();
+        if(userMessage.contains("hello")){
+            return "Hello ur name?";
+        } else if(userMessage.contains("qth")){
+            return "u tell me first";
+        } else if(userMessage.contains("name")){
+            return "OP is " + getName();
+        } else if(userMessage.contains("job")){
+            return "i am a " + getBotType();
+        } else if(randomGen.nextInt(10) < 3){
+            return "AGN";
+        } else {
+            return "?";
+        }
     }
 
     public String generateResponse(String userMessage, String randQuestion){
