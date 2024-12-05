@@ -1,6 +1,8 @@
 package edu.augustana;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,7 +11,10 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class ScenarioBuilder extends Application {
 
@@ -29,22 +34,54 @@ public class ScenarioBuilder extends Application {
         stage.show();
     }
 
+    @FXML
+    public void saveData(){
+        if (NameBox.getText().equals("") || CharacterBox.getText().equals("") || GoalBox.getText().equals("") || ObstacleBox.getText().equals("")){
+            showAlert("Please fill out ALL fields!", AlertType.ERROR);
+        } else {
+            String name = NameBox.getText();
+            String character = CharacterBox.getText();
+            String goal = GoalBox.getText();
+            String obstacles = ObstacleBox.getText();
+
+            try {
+                writeDataToFile(name, character, goal, obstacles);
+            } catch (IOException e) {
+                System.out.println("The following error has occurred: " + e.toString());
+            }
+
+            showAlert("Your data has been saved.", AlertType.INFORMATION);
+        }
+
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    //this block of code will throw a NullPointerException when it tries to get the text from the boxes
-    @FXML
-    public void getData(){
-        if (NameBox.getText() != null && CharacterBox.getText() != null && GoalBox.getText() != null && ObstacleBox.getText() != null){
-            String name = NameBox.getText();
-            String profession = CharacterBox.getText();
-            String greeting = GoalBox.getText();
-            String response = ObstacleBox.getText();
-            System.out.println(name + " " + profession + " " + greeting + " " + response);
-        } else {
-            System.out.println("Please fill out ALL fields.");
-        }
+
+    private void showAlert(String message, AlertType Alert) {
+
+        Alert alert = new Alert(Alert);
+        alert.setTitle("ATTENTION!");
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    private void writeDataToFile(String name, String character, String goal, String obstacles) throws IOException {
+
+            File scenario = new File("H:\\git\\IbisRepo\\scenarioData.txt");
+            FileWriter author = new FileWriter(scenario);
+            author.write(name);
+            author.write('\n');
+            author.write(character);
+            author.write('\n');
+            author.write(goal);
+            author.write('\n');
+            author.write(obstacles);
+            author.write('\n');
+            author.close();
 
     }
 
