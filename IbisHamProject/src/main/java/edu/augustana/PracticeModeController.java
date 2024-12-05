@@ -71,7 +71,16 @@ public class PracticeModeController {
     }
 
     //change the displayed range based on current frequency and filter width
-
+    private void updateFilterRange(double currentFrequency) {
+        double filterValue = FilterSlider.getValue();
+        double minFrequency = Math.max(7.000, currentFrequency - filterValue / 2);
+        double maxFrequency = Math.min(7.067, currentFrequency + filterValue / 2);
+        if (minFrequency == maxFrequency){ //this gets rid of "range: 0.055 - 0.055" when filter is 0
+            FrequencyLabel.setText(String.format("Current Frequency Range: %.3f MHz", minFrequency));
+        } else {
+            FrequencyLabel.setText(String.format("Current Frequency Range: %.3f - %.3f MHz", minFrequency, maxFrequency));
+        }
+    }
 
     //button action methods
     @FXML
