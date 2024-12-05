@@ -37,7 +37,7 @@ public class PracticeModeController {
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
-                user.updateFilterRange(newValue.doubleValue(),FilterSlider.getValue());
+                updateFilterRange(newValue.doubleValue());
                 user.setTuningFrequency(newValue.doubleValue());
             });
         }
@@ -47,13 +47,8 @@ public class PracticeModeController {
             FilterSlider.setMax(0.026); // maximum filter range is 0.026 MHz (just a random choice)
             FilterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 double currentFrequency = FrequencySlider.getValue();
-                user.updateFilterRange(currentFrequency,newValue.doubleValue());
+                updateFilterRange(currentFrequency);
             });
-            if (user.minFrequency == user.maxFrequency){ //this gets rid of "range: 0.055 - 0.055" when filter is 0
-                FrequencyLabel.setText(String.format("Current Frequency Range: %.3f MHz", user.minFrequency));
-            } else {
-                FrequencyLabel.setText(String.format("Current Frequency Range: %.3f - %.3f MHz", user.minFrequency, user.maxFrequency));
-            }
         }
 
         // speed slider
