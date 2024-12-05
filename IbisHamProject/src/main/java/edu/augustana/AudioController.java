@@ -50,7 +50,7 @@ public class AudioController{
 //                    Thread.sleep(slashDuration);
                 }
                 else if (c==','){
-                    playSilence(sourceDataLine, slashDuration/2);
+                    playSilence(sourceDataLine, slashDuration);
 //                    Thread.sleep(slashDuration/2);
                 }
             }

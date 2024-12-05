@@ -28,14 +28,17 @@ public class PracticeModeController {
     @FXML private CheckBox MachineInterferButton;
 
     @FXML public void initialize() {
+
+        HamRadio user = new HamRadio();
+
         // frequency slider
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
-                updateFilterRange(newValue.doubleValue());
-                AudioController.setRadioFreq(newValue.doubleValue());
+                user.updateFilterRange(newValue.doubleValue(),FilterSlider.getValue());
+                user.setTuningFrequency(newValue.doubleValue());
             });
         }
 
@@ -44,8 +47,13 @@ public class PracticeModeController {
             FilterSlider.setMax(0.026); // maximum filter range is 0.026 MHz (just a random choice)
             FilterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 double currentFrequency = FrequencySlider.getValue();
-                updateFilterRange(currentFrequency);
+                user.updateFilterRange(currentFrequency,newValue.doubleValue());
             });
+            if (user.minFrequency == user.maxFrequency){ //this gets rid of "range: 0.055 - 0.055" when filter is 0
+                FrequencyLabel.setText(String.format("Current Frequency Range: %.3f MHz", user.minFrequency));
+            } else {
+                FrequencyLabel.setText(String.format("Current Frequency Range: %.3f - %.3f MHz", user.minFrequency, user.maxFrequency));
+            }
         }
 
         // speed slider
@@ -63,16 +71,7 @@ public class PracticeModeController {
     }
 
     //change the displayed range based on current frequency and filter width
-    private void updateFilterRange(double currentFrequency) {
-        double filterValue = FilterSlider.getValue();
-        double minFrequency = Math.max(7.000, currentFrequency - filterValue / 2);
-        double maxFrequency = Math.min(7.067, currentFrequency + filterValue / 2);
-        if (minFrequency == maxFrequency){ //this gets rid of "range: 0.055 - 0.055" when filter is 0
-            FrequencyLabel.setText(String.format("Current Frequency Range: %.3f MHz", minFrequency));
-        } else {
-            FrequencyLabel.setText(String.format("Current Frequency Range: %.3f - %.3f MHz", minFrequency, maxFrequency));
-        }
-    }
+
 
     //button action methods
     @FXML
@@ -162,8 +161,10 @@ public class PracticeModeController {
 
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
+        StringBuilder old = new StringBuilder();
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
             AudioController.playMorseMessage(".", FrequencySlider.getValue());
+
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
             AudioController.playMorseMessage("-", FrequencySlider.getValue());
