@@ -1,14 +1,15 @@
 package edu.augustana;
 
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.Random;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
 import javax.sound.sampled.LineUnavailableException;
+
+//threading for bot responses and audio is being run in this file in the play and bot response methods
+//threads are pulling from the thread class
 
 public class PracticeModeController {
     private static final Random randomGen = new Random();
@@ -70,9 +71,6 @@ public class PracticeModeController {
 
     }
 
-    //change the displayed range based on current frequency and filter width
-
-
     //button action methods
     @FXML
     private void sendAction() {
@@ -89,11 +87,9 @@ public class PracticeModeController {
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
             MessageBox.clear();
-            int BOT_SPEED_DELAY = randomGen.nextInt(5) + 4;
-            PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
-            pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
-            pause.play();
 
+            // will call botResponse with threading to get rid of pauses
+            botResponse(englishTranslation, existingText);
         } else {
             String morseCode = TranslateBox.getText().trim();
             if (!morseCode.isEmpty()) {
@@ -109,32 +105,33 @@ public class PracticeModeController {
         }
     }
 
-    public void botResponse(String englishTranslation, String existingText){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
-        String chatResponse = chatBot.generateResponseMessage(englishTranslation);
-        String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
-        String botMessage = chatBot.getName() +": "+ chatResponseMorse + " (" + chatResponse + ")";
+    public void botResponse(String englishTranslation, String existingText) {
+        // make a thread for bot/s
+        Thread botThread = new Thread(() -> {
+            try {
+                //delay for bot response
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-        existingText = MainMessageBox.getText();
-        MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + botMessage);
-        TranslateBox.setText(chatResponseMorse);
-        //botNewMessage(existingText, chatResponse);
+            //make response
+            String chatResponse = chatBot.generateResponseMessage(englishTranslation);
+            String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
+            String botMessage = chatBot.getName() + ": " + chatResponseMorse + " (" + chatResponse + ")";
+
+            // updates the ui to handle the thread
+            javafx.application.Platform.runLater(() -> {
+                String updatedText = MainMessageBox.getText();
+                MainMessageBox.setText(updatedText + (updatedText.isEmpty() ? "" : "\n") + botMessage);
+                TranslateBox.setText(chatResponseMorse);
+            });
+        });
+
+        botThread.setDaemon(true); // stop the threads when app
+        botThread.start();
     }
-
-//    public void botNewMessage(String existingText, String botMessage){
-//        if(botMessage.contains(chatBot.getName()) || botMessage.contains(chatBot.getBotType())){
-//            String newBotMessage = chatBot.generateNewMessage();
-//            String newMessageMorse = dictionaryController.translateToMorseCode(newBotMessage);
-//            String message = chatBot.getName() + newMessageMorse + " (" + newBotMessage + ")";
-//
-//            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
-//        }
-//    }
 
     @FXML
     private void clear(){
@@ -142,10 +139,23 @@ public class PracticeModeController {
     }
 
     @FXML
-    private void play() throws LineUnavailableException, InterruptedException {
-        //For this portion, currentSpeed as of right now causes any other values than 20 to make a IllegalArgumentException
-        AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
+    private void play() {
+        //thread creation for audio
+        Thread audioThread = new Thread(() -> {
+            try {
+                // code from Zane that gets audio from the audio controller
+                AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
+            } catch (LineUnavailableException | InterruptedException e) {
+                // exception for audio issues
+                e.printStackTrace();
+            }
+        });
+
+        //set thread as daemon so closing app/app functionality isnt frozen during audio playing
+        audioThread.setDaemon(true);
+        audioThread.start();
     }
+
 
     @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
     @FXML private void switchtoHomePage() throws IOException { App.setRoot("homePage"); }
