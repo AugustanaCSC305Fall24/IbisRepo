@@ -24,7 +24,6 @@ public class DictionaryController {
 
     public DictionaryController() {
         initDicts();
-
     }
 
     //initialize the dictionaries for English to Morse code
@@ -112,6 +111,8 @@ public class DictionaryController {
         return morseCodeBuilder.toString().trim();
     }
 
+    //checks the user input when check is clicked agianst the random button played
+    //tells the user the correct letter/number in the text box then clears the next time play is clicked
     @FXML
     private void checkButtonLetterTest() {
         String userInput = AbvTestBox.getText().trim();
@@ -124,35 +125,32 @@ public class DictionaryController {
 
     }
 
+    //exits to the practice mode launched radio page
     @FXML private void pracLaunch() throws IOException {
-
         App.setRoot("PracLaunched");
     }
 
+    //play button that plays and remembers a random letter/number
     @FXML
     private void playRandomLetter() throws LineUnavailableException, InterruptedException {
-        // Get a random character from the Morse code map
         Object[] letters = morseCodeMap.keySet().toArray();
         currentRandomLetter = (char) letters[random.nextInt(letters.length)];
 
-        // Play the Morse code for the random letter
         String morseCode = morseCodeMap.get(currentRandomLetter);
         if (morseCode != null) {
             AudioController.playMorseMessage(morseCode, 7000);
         }
 
-        AbvTestBox.setText("");    }
+        AbvTestBox.setText("");
+    }
 
+    //switches back to the home page
     @FXML
     private void switchToHomePage() throws IOException {
         App.setRoot("homePage");
     }
 
-    @FXML
-    private void switchToPracPage() throws IOException {
-        App.setRoot("practiceMode");
-    }
-
+    //gets the button id
     @FXML
     private void fetchButtonID(ActionEvent event) throws LineUnavailableException, InterruptedException {
         String buttonString = event.toString().trim();

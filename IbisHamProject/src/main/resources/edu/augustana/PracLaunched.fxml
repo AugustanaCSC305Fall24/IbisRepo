@@ -3,12 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <HBox prefHeight="463.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
@@ -17,14 +19,16 @@
             <children>
             <Pane prefHeight="92.0" prefWidth="166.0">
                <children>
-                      <Button fx:id="HomeFromPracMode" layoutX="30.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
+                      <Button fx:id="HomeFromPracMode" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
+                  <Line endX="67.00003051757812" endY="-3.814697265625E-6" layoutX="67.0" layoutY="58.0" startX="-67.00000762939453" startY="-3.814697265625E-6" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Slider fx:id="speedSlider" layoutX="9.0" layoutY="7.0" prefHeight="14.0" prefWidth="114.0" />
+                  <Slider fx:id="speedSlider" layoutX="10.0" layoutY="7.0" prefHeight="14.0" prefWidth="114.0" />
                   <Label layoutX="26.0" layoutY="21.0" text="Playback speed" />
-                  <CheckBox fx:id="disButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#disButton" prefHeight="17.0" prefWidth="90.0" text="Distortion" />
+                  <CheckBox fx:id="disButton" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" onAction="#disButton" prefHeight="17.0" prefWidth="90.0" text="Distortion" />
+                  <ComboBox layoutX="13.0" layoutY="161.0" prefHeight="25.0" prefWidth="108.0" promptText="Senario" />
                </children>
             </Pane>
             </children>
@@ -34,7 +38,7 @@
             <children>
                 <Pane prefHeight="62.0" prefWidth="361.0">
                     <children>
-                        <Label layoutX="81.0" layoutY="-5.0" text="Practice Radio">
+                        <Label layoutX="76.0" layoutY="-9.0" text="CW Ham Radio">
                             <font>
                                 <Font name="System Bold" size="27.0" />
                             </font>

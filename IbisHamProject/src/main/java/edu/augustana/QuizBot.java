@@ -34,6 +34,8 @@ class QuizBot extends ChatBot {
         int randIndex = rand.nextInt(questions.length);
         return questions[randIndex];
     }
+
+    //generates random response or specific response based on user input
     public String generateResponseMessage(String userMessage) {
         userMessage = userMessage.toLowerCase();
 

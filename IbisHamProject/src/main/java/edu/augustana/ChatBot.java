@@ -13,6 +13,7 @@ public abstract class ChatBot {
         this.botType = botType;
     }
 
+    //method that creates a response to user input in the pracmode controller
     public String generateResponseMessage(String userMessage) {
         userMessage = userMessage.toLowerCase();
         if (userMessage.contains("hello")) {
@@ -31,10 +32,12 @@ public abstract class ChatBot {
     }
 
 
+    //getter method for the bot name
     public String getName() {
         return name;
     }
 
+    //getter method for bot type
     public String getBotType() {
         return botType;
     }

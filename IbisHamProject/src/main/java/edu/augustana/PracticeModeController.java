@@ -1,46 +1,29 @@
 package edu.augustana;
-
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.Random;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
 import javax.sound.sampled.LineUnavailableException;
 
 public class PracticeModeController {
-    private static final Random randomGen = new Random();
+
     private final DictionaryController dictionaryController = new DictionaryController();
     ChatBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
     private int currentSpeed = 20;
 
-    @FXML
-    private Label FrequencyLabel;
-    @FXML
-    private Slider FrequencySlider;
-    @FXML
-    private Slider FilterSlider;
-    @FXML
-    private Slider speedSlider;
-    @FXML
-    private TextArea MessageBox;
-    @FXML
-    private TextArea TranslateBox;
-    @FXML
-    private TextArea MainMessageBox;
-    @FXML
-    private CheckBox SolarFlaresButton;
-    @FXML
-    private CheckBox StormyWeatherButton;
-    @FXML
-    private CheckBox MachineInterferButton;
-    @FXML
-    private CheckBox disButton;
+    @FXML private Label FrequencyLabel;
+    @FXML private Slider FrequencySlider;
+    @FXML private Slider FilterSlider;
+    @FXML private Slider speedSlider;
+    @FXML private TextArea MessageBox;
+    @FXML private TextArea TranslateBox;
+    @FXML private TextArea MainMessageBox;
+    @FXML private CheckBox disButton;
 
-    @FXML
-    public void initialize() {
+    //initializes fxml sliders and page
+    @FXML public void initialize() {
 
         HamRadio user = new HamRadio();
 
@@ -89,9 +72,11 @@ public class PracticeModeController {
         }
     }
 
-    //button action methods
+    //method that handles bot messages getting sent to the text area
     @FXML
     private void sendAction() {
+        //message from user
+        //translates message
         String msgText = MessageBox.getText().trim(); // Trim whitespace
         if (!msgText.isBlank()) {
             String morseText = dictionaryController.translateToMorseCode(msgText);
@@ -124,11 +109,13 @@ public class PracticeModeController {
 
     }
 
+    //clears the boxes
     @FXML
     private void clear() {
         TranslateBox.setText("");
     }
 
+    //response by bots and threading for them
     public void botResponse(String userMessage, String existingText) {
         // make a thread for bot/s
         Thread botThread = new Thread(() -> {
@@ -150,10 +137,6 @@ public class PracticeModeController {
                 String updatedText = MainMessageBox.getText();
                 MainMessageBox.setText(updatedText + (updatedText.isEmpty() ? "" : "\n") + botMessage);
 
-                // Special behavior for QuizBot
-                if (chatBot instanceof QuizBot) {
-                    TranslateBox.setText(chatResponseMorse);
-                }
             });
         });
 
@@ -162,6 +145,7 @@ public class PracticeModeController {
     }
 
 
+    //method to play morse code that user types into translating box
     @FXML
     private void play() {
         //thread creation for audio
@@ -189,31 +173,7 @@ public class PracticeModeController {
         App.setRoot("homePage");
     }
 
-    @FXML
-    private void switchtoPracSettings() throws IOException {
-        App.setRoot("settings");
-    }
-
-    @FXML
-    private void switchToPracPage() throws IOException {
-        App.setRoot("practiceMode");
-    }
-
-    //save settings and launch practice mode
-//    @FXML private void pracLaunch() throws IOException {
-//    boolean SolarFlares = SolarFlaresButton.isSelected();
-//    boolean StormyWeather = StormyWeatherButton.isSelected();
-//    boolean MachineInterference = MachineInterferButton.isSelected();
-//    //test code
-//        System.out.println("Solar Flares: "+SolarFlares);
-//        System.out.println("Stormy Weather: "+StormyWeather);
-//        System.out.println("Machine Interference: "+MachineInterference);
-//
-//        AudioController.setDistortion(MachineInterference);
-//
-//        App.setRoot("PracLaunched");
-//}
-
+    //method to handle the paddles and audio for pressing < or > on keyboard
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         StringBuilder old = new StringBuilder();
@@ -230,11 +190,15 @@ public class PracticeModeController {
         TranslateBox.setText(old.toString());
     }
 
+    //distortion button settings and saving state
     @FXML
     public void disButton(){
         boolean isDistortion = disButton.isSelected();
         AudioController.setDistortion(isDistortion);
     }
 
-    @FXML private void goBack() throws IOException { App.setRoot("settings"); }
+
+    @FXML private void goBack() throws IOException {
+        App.setRoot("settings");
+    }
 }
