@@ -1,11 +1,9 @@
 package edu.augustana;
 
-import java.util.Arrays;
 import java.util.Random;
 
-public class QuizBot extends ChatBot {
+class QuizBot extends ChatBot {
     private static final Random randomGen = new Random();
-
 
     private String name;
     private final String[] answers = new String[]{"QRG", "QRI", "QRK", "QRL","QRM", "QRN", "QRO",
@@ -36,31 +34,24 @@ public class QuizBot extends ChatBot {
         int randIndex = rand.nextInt(questions.length);
         return questions[randIndex];
     }
-
-    public String generateResponseMessage(String userMessage){
+    public String generateResponseMessage(String userMessage) {
         userMessage = userMessage.toLowerCase();
-        if(userMessage.contains("hello")){
-            return "Hello ur name?";
-        } else if(userMessage.contains("qth")){
-            return "u tell me first";
-        } else if(userMessage.contains("name")){
-            return "OP is " + getName();
-        } else if(userMessage.contains("job")){
-            return "i am a " + getBotType();
-        } else if(randomGen.nextInt(10) < 3){
-            return "AGN";
+
+        if (userMessage.contains("hello")) {
+            return "Hello! What's your name?";
+        } else if (userMessage.contains("qth")) {
+            return "Where are you located?";
+        } else if (userMessage.contains("name")) {
+            return "My name is " + getName() + ". What's yours?";
+        } else if (userMessage.contains("job")) {
+            return "I am a " + getBotType() + ". What do you do?";
         } else {
-            return "?";
+            String[] randomResponses = {"AGN", "What?", "I didn't catch that.", "Please repeat.", "Hmm?"};
+            return randomResponses[randomGen.nextInt(randomResponses.length)];
         }
     }
 
-    public String generateResponse(String userMessage, String randQuestion){
-        userMessage = userMessage.toLowerCase();
-        if (userMessage.contains(answers[Arrays.asList(questions).indexOf(randQuestion)])){
-            return "Great";
-        } else {
-            return "Wrong";
-        }
-    }
+
 }
+
 

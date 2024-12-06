@@ -13,7 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 public class PracticeModeController {
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
-    QuizBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
+    ChatBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
     private int currentSpeed = 20;
 
     @FXML private Label FrequencyLabel;
@@ -79,7 +79,7 @@ public class PracticeModeController {
     //button action methods
     @FXML
     private void sendAction() {
-        String msgText = MessageBox.getText();
+        String msgText = MessageBox.getText().trim(); // Trim whitespace
         if (!msgText.isBlank()) {
             String morseText = dictionaryController.translateToMorseCode(msgText);
             TranslateBox.setText(morseText);
@@ -87,17 +87,15 @@ public class PracticeModeController {
             String englishTranslation = dictionaryController.morseToEnglish(morseText);
             MessageBox.setText(englishTranslation);
 
+
             String existingText = MainMessageBox.getText();
             String fullMessage = "User: " + morseText + " (" + msgText + ")";
             MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
 
             MessageBox.clear();
-            int BOT_SPEED_DELAY = randomGen.nextInt(5) + 4;
-            PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
-            //pause.setOnFinished( e -> botResponse(englishTranslation, existingText));
-            pause.play();
-
-        } else {
+            botResponse(englishTranslation, existingText);
+        }
+        else {
             String morseCode = TranslateBox.getText().trim();
             if (!morseCode.isEmpty()) {
                 String englishTranslation = dictionaryController.morseToEnglish(morseCode);
@@ -110,6 +108,7 @@ public class PracticeModeController {
                 TranslateBox.clear();
             }
         }
+
     }
 
     @FXML
@@ -117,18 +116,18 @@ public class PracticeModeController {
         TranslateBox.setText("");
     }
 
-    public void botResponse(String englishTranslation, String existingText) {
+    public void botResponse(String userMessage, String existingText) {
         // make a thread for bot/s
         Thread botThread = new Thread(() -> {
             try {
                 //delay for bot response
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
             //make response
-            String chatResponse = chatBot.generateResponseMessage(englishTranslation);
+            String chatResponse = chatBot.generateResponseMessage(userMessage);
             String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
             String botMessage = chatBot.getName() + ": " + chatResponseMorse + " (" + chatResponse + ")";
 
@@ -137,9 +136,14 @@ public class PracticeModeController {
             javafx.application.Platform.runLater(() -> {
                 String updatedText = MainMessageBox.getText();
                 MainMessageBox.setText(updatedText + (updatedText.isEmpty() ? "" : "\n") + botMessage);
-                TranslateBox.setText(chatResponseMorse);
+
+                // Special behavior for QuizBot
+                if (chatBot instanceof QuizBot) {
+                    TranslateBox.setText(chatResponseMorse);
+                }
             });
         });
+
         botThread.setDaemon(true); // stop the threads when app
         botThread.start();
     }
