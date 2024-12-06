@@ -1,10 +1,15 @@
 package edu.augustana;
 
 import javax.sound.sampled.*;
+import java.util.Random;
 
 
 public class AudioController{
 
+    private static boolean distortion = false;
+    static int distortionAmount = 0;
+
+    
     private static int SAMPLE_RATE = 1024*16;
     private static double DEFAULT_SIDE_TONE_FREQUENCY = 600;
 
@@ -14,6 +19,9 @@ public class AudioController{
     private static SourceDataLine sourceDataLine;
 
     public static void playMorseMessage(String preSplitMorseMessage, double sendersFrequency) throws LineUnavailableException, InterruptedException {
+        
+
+        
         String[] morseMessage = preSplitMorseMessage.replaceAll("\\s+","").trim().split("");
 
 
@@ -76,12 +84,31 @@ public class AudioController{
      * @param volume - between 0.0 (silent) and 1.0 (full volume)
      */
     private static void playBeep(SourceDataLine line, int durationInMillis, double frequency, double volume){
+
+        if(distortion){
+//            byte[] buffer = new byte[1024];
+//            while(line.isOpen()){
+//                for(int i =0;i< buffer.length;i++){
+//                    if(i%7==0) {
+//                        buffer[i] += (byte) (Math.random() * 10 - 5);
+//                    }
+//                }
+//                line.write(buffer,0, buffer.length);
+//            }
+
+            distortionAmount = (int)(Math.random()*10-5);
+
+        }
+
         byte[] data = new byte[((int) (SAMPLE_RATE*durationInMillis/1000))];
 
         for(int i=0;i< data.length;i++){
             double angle = (double) i /(SAMPLE_RATE/frequency)*2*Math.PI;
-
-            data[i] = (byte) (Math.sin(angle)*127*volume);
+            if(distortion){
+                data[i] = (byte) (Math.sin(angle)*(127*volume-Math.random()*100-50));
+            }else{
+                data[i] = (byte) (Math.sin(angle)*127*volume);
+            }
         }
         line.write(data,0, data.length);
     }
@@ -96,4 +123,9 @@ public class AudioController{
         currentRadioFrequency = (freq * 1000);
         System.out.println(currentRadioFrequency);
     }
+
+    public static void setDistortion(boolean distortion) {
+        AudioController.distortion = distortion;
+    }
+
 }

@@ -165,6 +165,9 @@ public class PracticeModeController {
         System.out.println("Solar Flares: " + SolarFlares);
         System.out.println("Stormy Weather: " + StormyWeather);
         System.out.println("Machine Interference: " + MachineInterference);
+
+        AudioController.setDistortion(MachineInterference);
+
         App.setRoot("PracLaunched");
     }
 
