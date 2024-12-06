@@ -78,6 +78,7 @@ public class ScenarioBuilder extends Application {
             data.put("goal", goal);
             data.put("obstacles", obstacles);
 
+            //TODO tamper with conversion to make it work. or maybe it already works.
             //Gson data_gson = new Gson();
             //String data_json = data_gson.toJson(data);
 
