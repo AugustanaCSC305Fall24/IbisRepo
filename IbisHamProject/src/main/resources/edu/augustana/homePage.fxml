@@ -18,7 +18,7 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="HomePageButton" onAction="#switchToPracticeMode" text="Practice Mode">
+      <Button fx:id="HomePageButton" onAction="#switchToPracPage" text="Practice Mode">
          <font>
             <Font size="14.0" />
          </font></Button>

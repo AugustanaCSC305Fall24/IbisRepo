@@ -16,18 +16,31 @@ public class PracticeModeController {
     ChatBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
     private int currentSpeed = 20;
 
-    @FXML private Label FrequencyLabel;
-    @FXML private Slider FrequencySlider;
-    @FXML private Slider FilterSlider;
-    @FXML private Slider speedSlider;
-    @FXML private TextArea MessageBox;
-    @FXML private TextArea TranslateBox;
-    @FXML private TextArea MainMessageBox;
-    @FXML private CheckBox SolarFlaresButton;
-    @FXML private CheckBox StormyWeatherButton;
-    @FXML private CheckBox MachineInterferButton;
+    @FXML
+    private Label FrequencyLabel;
+    @FXML
+    private Slider FrequencySlider;
+    @FXML
+    private Slider FilterSlider;
+    @FXML
+    private Slider speedSlider;
+    @FXML
+    private TextArea MessageBox;
+    @FXML
+    private TextArea TranslateBox;
+    @FXML
+    private TextArea MainMessageBox;
+    @FXML
+    private CheckBox SolarFlaresButton;
+    @FXML
+    private CheckBox StormyWeatherButton;
+    @FXML
+    private CheckBox MachineInterferButton;
+    @FXML
+    private CheckBox disButton;
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
 
         HamRadio user = new HamRadio();
 
@@ -52,7 +65,7 @@ public class PracticeModeController {
         }
 
         // speed slider
-        if (speedSlider != null){
+        if (speedSlider != null) {
             speedSlider.setValue(20.0);
             speedSlider.setMin(5);
             speedSlider.setMax(40);
@@ -69,7 +82,7 @@ public class PracticeModeController {
         double filterValue = FilterSlider.getValue();
         double minFrequency = Math.max(7.000, currentFrequency - filterValue / 2);
         double maxFrequency = Math.min(7.067, currentFrequency + filterValue / 2);
-        if (minFrequency == maxFrequency){ //this gets rid of "range: 0.055 - 0.055" when filter is 0
+        if (minFrequency == maxFrequency) { //this gets rid of "range: 0.055 - 0.055" when filter is 0
             FrequencyLabel.setText(String.format("Current Frequency Range: %.3f MHz", minFrequency));
         } else {
             FrequencyLabel.setText(String.format("Current Frequency Range: %.3f - %.3f MHz", minFrequency, maxFrequency));
@@ -112,7 +125,7 @@ public class PracticeModeController {
     }
 
     @FXML
-    private void clear(){
+    private void clear() {
         TranslateBox.setText("");
     }
 
@@ -166,25 +179,40 @@ public class PracticeModeController {
         audioThread.start();
     }
 
-    @FXML private void switchToDictionary() throws IOException { App.setRoot("dictionary"); }
-    @FXML private void switchtoHomePage() throws IOException { App.setRoot("homePage"); }
-    @FXML private void switchtoPracSettings() throws IOException { App.setRoot("settings"); }
-    @FXML private void switchToPracPage() throws IOException { App.setRoot("practiceMode"); }
+    @FXML
+    private void switchToDictionary() throws IOException {
+        App.setRoot("dictionary");
+    }
+
+    @FXML
+    private void switchtoHomePage() throws IOException {
+        App.setRoot("homePage");
+    }
+
+    @FXML
+    private void switchtoPracSettings() throws IOException {
+        App.setRoot("settings");
+    }
+
+    @FXML
+    private void switchToPracPage() throws IOException {
+        App.setRoot("practiceMode");
+    }
 
     //save settings and launch practice mode
-    @FXML private void pracLaunch() throws IOException {
-        boolean SolarFlares = SolarFlaresButton.isSelected();
-        boolean StormyWeather = StormyWeatherButton.isSelected();
-        boolean MachineInterference = MachineInterferButton.isSelected();
-        //test code
-        System.out.println("Solar Flares: " + SolarFlares);
-        System.out.println("Stormy Weather: " + StormyWeather);
-        System.out.println("Machine Interference: " + MachineInterference);
-
-        AudioController.setDistortion(MachineInterference);
-
-        App.setRoot("PracLaunched");
-    }
+//    @FXML private void pracLaunch() throws IOException {
+//    boolean SolarFlares = SolarFlaresButton.isSelected();
+//    boolean StormyWeather = StormyWeatherButton.isSelected();
+//    boolean MachineInterference = MachineInterferButton.isSelected();
+//    //test code
+//        System.out.println("Solar Flares: "+SolarFlares);
+//        System.out.println("Stormy Weather: "+StormyWeather);
+//        System.out.println("Machine Interference: "+MachineInterference);
+//
+//        AudioController.setDistortion(MachineInterference);
+//
+//        App.setRoot("PracLaunched");
+//}
 
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
@@ -200,6 +228,12 @@ public class PracticeModeController {
             old.append("-");
         }
         TranslateBox.setText(old.toString());
+    }
+
+    @FXML
+    public void disButton(){
+        boolean isDistortion = disButton.isSelected();
+        AudioController.setDistortion(isDistortion);
     }
 
     @FXML private void goBack() throws IOException { App.setRoot("settings"); }
