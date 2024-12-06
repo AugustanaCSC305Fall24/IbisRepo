@@ -58,13 +58,14 @@
                   </VBox>
                </children>
             </HBox>
-            <Pane layoutX="177.0" layoutY="6.0" prefHeight="328.0" prefWidth="200.0">
+            <Pane layoutX="177.0" layoutY="6.0" prefHeight="349.0" prefWidth="200.0">
                <children>
                   <TextArea fx:id="AbvTestBox" layoutX="18.0" layoutY="257.0" prefHeight="63.0" prefWidth="164.0" promptText="Type here: " />
-                  <Label layoutX="39.0" layoutY="6.0" text="Abbreviations practice " />
-                  <Label layoutX="18.0" layoutY="217.0" text="Type what you here" />
-                  <Button fx:id="AbvPlayBtn" layoutX="134.0" layoutY="213.0" mnemonicParsing="false" text="Play" />
+                  <Label layoutX="29.0" layoutY="6.0" text="Abbreviations Information " />
+                  <Label layoutX="18.0" layoutY="217.0" text="Practice with letters" />
+                  <Button fx:id="AbvPlayBtn" layoutX="134.0" layoutY="213.0" onAction="#playRandomLetter" mnemonicParsing="false" text="Play" />
                   <TextArea layoutY="23.0" prefHeight="164.0" prefWidth="200.0" text="ADR Address      &#10;AGN Again          &#10;AS Wait                           &#10;C Correct/Yes&#10;CFM Confirm&#10;CS Callsign&#10;EMRG Emergency&#10;FER For&#10;FM From&#10;FREQ Frequency&#10;N No&#10;OK ok&#10;RPT Repeat&#10;SN Soon&#10;TEMP Temperature&#10;" />
+                  <Button fx:id="check" layoutX="127.0" layoutY="323.0" onAction ="#checkButtonLetterTest" mnemonicParsing="false" text="Check" />
                </children>
             </Pane>
          </children>
