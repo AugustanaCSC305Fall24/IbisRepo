@@ -7,8 +7,8 @@ public class HomePageController {
 
     //button action method to switch to practice mode: one of 3 planned possible choices currently
     @FXML
-    private void switchToPracticeMode() throws IOException {
-        App.setRoot("practiceMode");
+    private void switchToPracPage() throws IOException {
+        App.setRoot("PracLaunched");
     }
 
     //eventually add the other two modes: Online and AI

@@ -17,7 +17,6 @@
             <children>
             <Pane prefHeight="92.0" prefWidth="166.0">
                <children>
-                      <Button fx:id="PracFromDict" layoutX="22.0" layoutY="14.0" onAction="#switchToPracPage" text="Practice Home" />
                       <Button fx:id="HomeFromPracMode" layoutX="30.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchtoHomePage" text="Home Page" />
                </children>
             </Pane>
