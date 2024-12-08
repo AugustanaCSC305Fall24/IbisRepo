@@ -39,7 +39,7 @@ class QuizBot extends ChatBot {
     public String generateResponseMessage(String userMessage) {
         userMessage = userMessage.toLowerCase();
 
-        if (userMessage.contains("hello")) {
+        if (userMessage.contains("hello") || userMessage == ("hello")) {
             return "Hello! What's your name?";
         } else if (userMessage.contains("qth")) {
             return "Where are you located?";

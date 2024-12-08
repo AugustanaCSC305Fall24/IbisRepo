@@ -14,7 +14,6 @@
 
 <HBox prefHeight="463.0" prefWidth="703.0" style="-fx-background-color: linear-gradient(to bottom, #2a2a72, #009ffd);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PracticeModeController">
     <children>
-        <!-- Left Panel -->
         <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: #1e1e2f; -fx-padding: 15;">
             <children>
                 <Pane prefHeight="92.0" prefWidth="166.0">
@@ -35,7 +34,6 @@
             </children>
         </VBox>
 
-        <!-- Center Panel -->
         <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="384.0" spacing="20.0" style="-fx-padding: 20;">
             <children>
                 <Pane prefHeight="62.0" prefWidth="361.0">
@@ -58,7 +56,6 @@
             </children>
         </VBox>
 
-        <!-- Right Panel -->
         <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="213.0" style="-fx-background-color: #1e1e2f; -fx-padding: 15;">
             <children>
             <Pane prefHeight="476.0" prefWidth="163.0">
