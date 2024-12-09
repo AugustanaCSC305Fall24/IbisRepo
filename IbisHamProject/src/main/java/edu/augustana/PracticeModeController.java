@@ -30,7 +30,7 @@ public class PracticeModeController {
 
     //initializes fxml sliders and page
     @FXML public void initialize() {
-
+        disButton.setSelected(false);
         HamRadio user = new HamRadio();
 
         // frequency slider
@@ -179,18 +179,18 @@ public class PracticeModeController {
     //method to handle the paddles and audio for pressing < or > on keyboard
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
-        StringBuilder old = new StringBuilder();
-        old.append(MessageBox.getText());
+        StringBuilder morse = new StringBuilder();
+        morse.append(MessageBox.getText());
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
             AudioController.playMorseMessage(".", FrequencySlider.getValue());
-            old.append(".");
+            morse.append(".");
 
         }
         if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
             AudioController.playMorseMessage("-", FrequencySlider.getValue());
-            old.append("-");
+            morse.append("-");
         }
-        MessageBox.setText(old.toString());
+        MessageBox.setText(morse.toString());
     }
 
     //distortion button settings and saving state
