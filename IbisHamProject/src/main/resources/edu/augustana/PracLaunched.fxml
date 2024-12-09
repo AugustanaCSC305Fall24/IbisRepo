@@ -52,7 +52,7 @@
                         <TextArea fx:id="MainMessageBox" layoutX="5.0" layoutY="14.0" prefHeight="171.0" prefWidth="485.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
                         <Slider fx:id="FilterSlider" layoutX="179.0" layoutY="361.0" prefHeight="14.0" prefWidth="138.0" />
                         <Label layoutX="235.0" layoutY="374.0" style="-fx-text-fill: white;" text="Filter" />
-                      <TextArea fx:id="MessageBox" layoutX="98.0" layoutY="217.0" prefHeight="43.0" prefWidth="281.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" onKeyPressed="#handleKeyPress"/>
+                      <TextArea fx:id="MessageBox" layoutX="98.0" layoutY="217.0" prefHeight="43.0" prefWidth="281.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;"/>
                         <Button fx:id="SendButton" layoutX="268.0" layoutY="265.0" onAction="#sendAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Send" />
                         <Button fx:id="playButton" layoutX="181.0" layoutY="265.0" onAction="#play" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play" />
                       <Label layoutX="202.0" layoutY="192.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
