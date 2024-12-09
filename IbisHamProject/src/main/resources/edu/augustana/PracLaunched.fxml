@@ -50,7 +50,7 @@
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="0.06" />
                      </effect></Slider>
                         <Label fx:id="FrequencyLabel" layoutX="19.0" layoutY="285.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Current Frequency: 7.000 MHz" />
-                        <TextArea fx:id="MainMessageBox" layoutX="3.0" layoutY="14.0" prefHeight="226.0" prefWidth="319.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
+                        <TextArea fx:id="MainMessageBox" layoutX="3.0" layoutY="14.0" prefHeight="226.0" onKeyPressed="#handleKeyPress" prefWidth="319.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
                         <Slider fx:id="FilterSlider" layoutX="100.0" layoutY="329.0" prefHeight="14.0" prefWidth="138.0" />
                         <Label layoutX="149.0" layoutY="343.0" style="-fx-text-fill: white;" text="Filter" />
                     </children>
@@ -64,7 +64,7 @@
             <Pane prefHeight="476.0" prefWidth="163.0">
                <children>
                       <Label layoutX="23.0" layoutY="2.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Morse Code box" />
-                      <TextArea fx:id="TranslateBox" layoutX="-9.0" layoutY="28.0" prefHeight="98.0" prefWidth="180.0" style="-fx-font-size: 14px; -fx-background-color: #e6e6e6;" />
+                      <TextArea fx:id="TranslateBox" layoutX="-9.0" layoutY="28.0" prefHeight="98.0" onKeyPressed="#handleKeyPress" prefWidth="180.0" style="-fx-font-size: 14px; -fx-background-color: #e6e6e6;" />
                       <Button fx:id="clearButton" layoutX="56.0" layoutY="132.0" onAction="#clear" style="-fx-font-size: 14px; -fx-background-color: #c0392b; -fx-text-fill: white;" text="Clear" />
                       <Label layoutX="35.0" layoutY="177.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
                       <TextArea fx:id="MessageBox" layoutX="-9.0" layoutY="210.0" prefHeight="92.0" prefWidth="180.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />

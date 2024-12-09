@@ -2,7 +2,8 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javax.sound.sampled.LineUnavailableException;
@@ -10,8 +11,13 @@ import javax.sound.sampled.LineUnavailableException;
 public class PracticeModeController {
 
     private final DictionaryController dictionaryController = new DictionaryController();
-    ChatBot chatBot = new QuizBot("Mr. Prof", "QuizBot");
+    QuizBot quizBot = new QuizBot("Mr. Prof", "QuizBot");
     private int currentSpeed = 20;
+    private int questionCount = 0;
+    private int currentLevel = 1;
+    private int numQuestions = 3;
+
+    private final List<String> playQueue = new ArrayList<>();
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -58,6 +64,59 @@ public class PracticeModeController {
                 System.out.println("The current speed is " + currentSpeed);
             });
         }
+
+        updateMainMessage(quizBot.getName(), quizBot.startMessage());
+        updateMainMessage(quizBot.getName(), quizBot.askLevelSelection());
+    }
+
+    private void updateMainMessage(String sender, String engText){
+        String morseText = dictionaryController.translateToMorseCode(engText);
+        TranslateBox.setText(morseText);
+        String message = sender + ": " + morseText +" (" + engText + ")";
+        String existingText = MainMessageBox.getText();
+        MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
+
+        playQueue.add(morseText);
+    }
+
+    @FXML
+    private void sendAction() {
+        String userInput = MessageBox.getText().trim();
+        if (userInput.isBlank()) return;
+        updateMainMessage("User", userInput);
+
+        if ((questionCount == 0 || questionCount == numQuestions) && userInput.matches("[123]")) {
+            currentLevel = Integer.parseInt(userInput);
+            String question = askNextQuestion(); // Get the next question
+            updateMainMessage(quizBot.getName(), question); // Display the question
+        } else {
+            processUserAnswer(userInput);
+        }
+        MessageBox.clear();
+    }
+
+    private String askNextQuestion() {
+        questionCount++;
+        switch (currentLevel) {
+            case 1: return quizBot.generateLevel1Question();
+            case 2: return quizBot.generateLevel2Question();
+            case 3: return quizBot.generateLevel3Question();
+            default: return "Invalid level.";
+        }
+    }
+
+    private void processUserAnswer(String userInput) {
+        boolean isCorrect = quizBot.checkAnswer(userInput);
+        String feedback = isCorrect ? "Correct!" : "Wrong! The correct answer is " + quizBot.getCurrentAnswer();
+        updateMainMessage(quizBot.getName(), feedback);
+
+        if (questionCount < numQuestions) {
+            String nextQuestion = askNextQuestion();
+            updateMainMessage(quizBot.getName(), nextQuestion);
+        } else {
+            updateMainMessage(quizBot.getName(), "QUIZ COMPLETE. CHOOSE LVL OR TYPE QUIT.");
+            questionCount = 0;
+        }
     }
 
     //change the displayed range based on current frequency and filter width
@@ -72,87 +131,33 @@ public class PracticeModeController {
         }
     }
 
-    //method that handles bot messages getting sent to the text area
-    @FXML
-    private void sendAction() {
-        //message from user
-        //translates message
-        String msgText = MessageBox.getText().trim(); // Trim whitespace
-        if (!msgText.isBlank()) {
-            String morseText = dictionaryController.translateToMorseCode(msgText);
-            TranslateBox.setText(morseText);
-
-            String englishTranslation = dictionaryController.morseToEnglish(morseText);
-            MessageBox.setText(englishTranslation);
-
-
-            String existingText = MainMessageBox.getText();
-            String fullMessage = "User: " + morseText + " (" + msgText + ")";
-            MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
-
-            MessageBox.clear();
-            botResponse(englishTranslation, existingText);
-        }
-        else {
-            String morseCode = TranslateBox.getText().trim();
-            if (!morseCode.isEmpty()) {
-                String englishTranslation = dictionaryController.morseToEnglish(morseCode);
-                MessageBox.setText(englishTranslation);
-
-                String existingText = MainMessageBox.getText();
-                String fullMessage = "User: " + morseCode + " (" + englishTranslation + ")";
-                MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + fullMessage);
-
-                TranslateBox.clear();
-            }
-        }
-
-    }
-
     //clears the boxes
     @FXML
     private void clear() {
         TranslateBox.setText("");
     }
 
-    //response by bots and threading for them
-    public void botResponse(String userMessage, String existingText) {
-        // make a thread for bot/s
-        Thread botThread = new Thread(() -> {
-            try {
-                //delay for bot response
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            //make response
-            String chatResponse = chatBot.generateResponseMessage(userMessage);
-            String chatResponseMorse = dictionaryController.translateToMorseCode(chatResponse);
-            String botMessage = chatBot.getName() + ": " + chatResponseMorse + " (" + chatResponse + ")";
-
-
-            // updates the ui to handle the thread
-            javafx.application.Platform.runLater(() -> {
-                String updatedText = MainMessageBox.getText();
-                MainMessageBox.setText(updatedText + (updatedText.isEmpty() ? "" : "\n") + botMessage);
-
-            });
-        });
-
-        botThread.setDaemon(true); // stop the threads when app
-        botThread.start();
-    }
-
-
     //method to play morse code that user types into translating box
     @FXML
     private void play() {
+        System.out.println("on play "+ playQueue.toString());
+        System.out.println("Size " + playQueue.size());
         //thread creation for audio
         Thread audioThread = new Thread(() -> {
             try {
-                // code from Zane that gets audio from the audio controller
-                AudioController.playMorseMessage(TranslateBox.getText().trim(), FrequencySlider.getValue());
+                // Play all messages in the queue
+                for (String morseMessage : playQueue) {
+                    AudioController.playMorseMessage(morseMessage.trim(), FrequencySlider.getValue());
+                }
+
+                // Clear all but the most recent message
+                if (!playQueue.isEmpty()) {
+                    String lastMessage = playQueue.get(playQueue.size() - 1);
+                    playQueue.clear();
+                    playQueue.add(lastMessage);
+                }
+                System.out.println("emptied but last message");
+
             } catch (LineUnavailableException | InterruptedException e) {
                 // exception for audio issues
                 e.printStackTrace();
