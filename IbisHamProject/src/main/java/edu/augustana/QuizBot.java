@@ -58,8 +58,7 @@ class QuizBot extends ChatBot {
         //for debugging
         System.out.println("current answer: " + currentAnswer + "\n currentAns Morse " +currentMorseAnswer);
 
-        return userResponse.equalsIgnoreCase(currentAnswer) ||
-                userResponse.equalsIgnoreCase(currentMorseAnswer);
+        return userResponse.equalsIgnoreCase(currentMorseAnswer);
     }
 
     public String getCurrentAnswer() {

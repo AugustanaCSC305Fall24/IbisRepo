@@ -18,6 +18,7 @@ public class PracticeModeController {
     private final int numQuestions = 3;
 
     private final List<String> playQueue = new ArrayList<>();
+    private boolean hidePlainText = false;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -70,7 +71,13 @@ public class PracticeModeController {
 
     private void updateMainMessage(String sender, String engText){
         String morseText = dictionaryController.translateToMorseCode(engText);
-        String message = sender + ": " + morseText +" (" + engText + ")";
+        String message;
+
+        if (hidePlainText && sender.equals(quizBot.getName())) {
+            message = sender + ": " + engText;
+        } else {
+            message = sender + ": " + morseText + " (" + engText + ")";
+        }
         String existingText = MainMessageBox.getText();
         MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
 
@@ -95,6 +102,7 @@ public class PracticeModeController {
 
     private String askNextQuestion() {
         questionCount++;
+        hidePlainText = true;
         switch (currentLevel) {
             case 1: return quizBot.generateLevel1Question();
             case 2: return quizBot.generateLevel2Question();
@@ -104,6 +112,7 @@ public class PracticeModeController {
     }
 
     private void processUserAnswer(String userInput) {
+        hidePlainText = false;
         boolean isCorrect = quizBot.checkAnswer(userInput);
         String feedback = isCorrect ? "Correct!" : "Wrong! The correct answer is " + quizBot.getCurrentAnswer();
         updateMainMessage(quizBot.getName(), feedback);
