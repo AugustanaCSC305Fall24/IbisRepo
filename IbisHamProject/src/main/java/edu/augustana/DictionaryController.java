@@ -127,7 +127,7 @@ public class DictionaryController {
         if (decodedInput.equalsIgnoreCase(String.valueOf(currentRandomLetter))) {
             AbvTestBox.setText("Correct! The random letter/number was: " + currentRandomLetter);
         } else {
-            AbvTestBox.setText("Incorrect. The random letter/number was: " + currentRandomLetter +", you entered: " + decodedInput);
+            AbvTestBox.setText("Incorrect. The random letter/number was: " + currentRandomLetter +"\nYou entered: " + decodedInput);
         }
 
     }
