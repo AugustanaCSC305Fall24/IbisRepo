@@ -98,6 +98,9 @@ public class DictionaryController {
 
     //translate from english text box input to morse code and put in text boxes - used in practiceModeController
     public String translateToMorseCode(String text) {
+        if (text == null) {
+            text = "";
+        }
         StringBuilder morseCodeBuilder = new StringBuilder(); //string for use with audio queues adding , and ~
         String finalTranslation = ""; // cleaned up version to display for users
 
