@@ -15,7 +15,7 @@ public class PracticeModeController {
     private int currentSpeed = 20;
     private int questionCount = 0;
     private int currentLevel = 1;
-    private int numQuestions = 3;
+    private final int numQuestions = 3;
 
     private final List<String> playQueue = new ArrayList<>();
 
@@ -24,7 +24,6 @@ public class PracticeModeController {
     @FXML private Slider FilterSlider;
     @FXML private Slider speedSlider;
     @FXML private TextArea MessageBox;
-    @FXML private TextArea TranslateBox;
     @FXML private TextArea MainMessageBox;
     @FXML private CheckBox disButton;
 
@@ -71,7 +70,6 @@ public class PracticeModeController {
 
     private void updateMainMessage(String sender, String engText){
         String morseText = dictionaryController.translateToMorseCode(engText);
-        TranslateBox.setText(morseText);
         String message = sender + ": " + morseText +" (" + engText + ")";
         String existingText = MainMessageBox.getText();
         MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
@@ -131,17 +129,9 @@ public class PracticeModeController {
         }
     }
 
-    //clears the boxes
-    @FXML
-    private void clear() {
-        TranslateBox.setText("");
-    }
-
     //method to play morse code that user types into translating box
     @FXML
     private void play() {
-        System.out.println("on play "+ playQueue.toString());
-        System.out.println("Size " + playQueue.size());
         //thread creation for audio
         Thread audioThread = new Thread(() -> {
             try {
@@ -156,7 +146,6 @@ public class PracticeModeController {
                     playQueue.clear();
                     playQueue.add(lastMessage);
                 }
-                System.out.println("emptied but last message");
 
             } catch (LineUnavailableException | InterruptedException e) {
                 // exception for audio issues
@@ -182,7 +171,7 @@ public class PracticeModeController {
     @FXML
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         StringBuilder old = new StringBuilder();
-        old.append(TranslateBox.getText());
+        old.append(MessageBox.getText());
         if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
             AudioController.playMorseMessage(".", FrequencySlider.getValue());
             old.append(".");
@@ -192,7 +181,7 @@ public class PracticeModeController {
             AudioController.playMorseMessage("-", FrequencySlider.getValue());
             old.append("-");
         }
-        TranslateBox.setText(old.toString());
+        MessageBox.setText(old.toString());
     }
 
     //distortion button settings and saving state
@@ -200,10 +189,5 @@ public class PracticeModeController {
     public void disButton(){
         boolean isDistortion = disButton.isSelected();
         AudioController.setDistortion(isDistortion);
-    }
-
-
-    @FXML private void goBack() throws IOException {
-        App.setRoot("settings");
     }
 }

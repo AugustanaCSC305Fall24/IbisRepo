@@ -31,45 +31,33 @@
                   <Line endX="51.999977111816406" endY="3.814697265625E-6" layoutX="59.0" layoutY="229.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
                     </children>
                 </Pane>
+                  <Button fx:id="secondaryButton" onAction="#switchToDictionary" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" />
             </children>
         </VBox>
 
-        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="384.0" spacing="20.0" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="538.0" spacing="20.0" style="-fx-padding: 20;">
             <children>
                 <Pane prefHeight="62.0" prefWidth="361.0">
                     <children>
-                        <Label layoutX="76.0" layoutY="5.0" style="-fx-font-size: 27px; -fx-font-weight: bold; -fx-text-fill: white;" text="CW Ham Radio" />
+                        <Label layoutX="172.0" layoutY="4.0" style="-fx-font-size: 27px; -fx-font-weight: bold; -fx-text-fill: white;" text="CW Ham Radio" />
                     </children>
                 </Pane>
                 <Pane prefHeight="425.0" prefWidth="344.0">
                     <children>
-                        <Slider fx:id="FrequencySlider" blockIncrement="0.001" layoutX="19.0" layoutY="248.0" majorTickUnit="0.004" max="7.067" min="7.000" minorTickCount="4" prefWidth="300.0" showTickLabels="true" showTickMarks="true" value="7.000">
+                        <Slider fx:id="FrequencySlider" blockIncrement="0.001" layoutX="97.0" layoutY="301.0" majorTickUnit="0.004" max="7.067" min="7.000" minorTickCount="4" prefWidth="300.0" showTickLabels="true" showTickMarks="true" value="7.000">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="0.06" />
                      </effect></Slider>
-                        <Label fx:id="FrequencyLabel" layoutX="19.0" layoutY="285.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Current Frequency: 7.000 MHz" />
-                        <TextArea fx:id="MainMessageBox" layoutX="3.0" layoutY="14.0" prefHeight="226.0" onKeyPressed="#handleKeyPress" prefWidth="319.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
-                        <Slider fx:id="FilterSlider" layoutX="100.0" layoutY="329.0" prefHeight="14.0" prefWidth="138.0" />
-                        <Label layoutX="149.0" layoutY="343.0" style="-fx-text-fill: white;" text="Filter" />
+                        <Label fx:id="FrequencyLabel" layoutX="143.0" layoutY="334.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Current Frequency: 7.000 MHz" />
+                        <TextArea fx:id="MainMessageBox" layoutX="5.0" layoutY="14.0" prefHeight="171.0" prefWidth="485.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
+                        <Slider fx:id="FilterSlider" layoutX="179.0" layoutY="361.0" prefHeight="14.0" prefWidth="138.0" />
+                        <Label layoutX="235.0" layoutY="374.0" style="-fx-text-fill: white;" text="Filter" />
+                      <TextArea fx:id="MessageBox" layoutX="98.0" layoutY="217.0" prefHeight="43.0" prefWidth="281.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" onKeyPressed="#handleKeyPress"/>
+                        <Button fx:id="SendButton" layoutX="268.0" layoutY="265.0" onAction="#sendAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Send" />
+                        <Button fx:id="playButton" layoutX="181.0" layoutY="265.0" onAction="#play" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play" />
+                      <Label layoutX="202.0" layoutY="192.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
                     </children>
                 </Pane>
-            </children>
-        </VBox>
-
-        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="213.0" style="-fx-background-color: #1e1e2f; -fx-padding: 15;">
-            <children>
-            <Pane prefHeight="476.0" prefWidth="163.0">
-               <children>
-                      <Label layoutX="23.0" layoutY="2.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Morse Code box" />
-                      <TextArea fx:id="TranslateBox" layoutX="-9.0" layoutY="28.0" prefHeight="98.0" onKeyPressed="#handleKeyPress" prefWidth="180.0" style="-fx-font-size: 14px; -fx-background-color: #e6e6e6;" />
-                      <Button fx:id="clearButton" layoutX="56.0" layoutY="132.0" onAction="#clear" style="-fx-font-size: 14px; -fx-background-color: #c0392b; -fx-text-fill: white;" text="Clear" />
-                      <Label layoutX="35.0" layoutY="177.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
-                      <TextArea fx:id="MessageBox" layoutX="-9.0" layoutY="210.0" prefHeight="92.0" prefWidth="180.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
-                        <Button fx:id="SendButton" layoutX="35.0" layoutY="311.0" onAction="#sendAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Send" />
-                        <Button fx:id="playButton" layoutX="94.0" layoutY="311.0" onAction="#play" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play" />
-                        <Button fx:id="secondaryButton" layoutY="366.0" onAction="#switchToDictionary" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" />
-               </children>
-            </Pane>
             </children>
         </VBox>
     </children>
