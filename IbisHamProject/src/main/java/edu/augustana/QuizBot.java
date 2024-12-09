@@ -36,22 +36,6 @@ class QuizBot extends ChatBot {
         currentQuestion = "Morse for letter " + currentAnswer;
         return currentQuestion;
     }
-    ///ADR Address
-    //AGN Again
-    //AS Wait
-    //C Correct/Yes
-    //CFM Confirm
-    //CS Callsign
-    //EMRG Emergency
-    //FER For
-    //FM From
-    //FREQ Frequency
-    //N No
-    //OK ok
-    //RPT Repeat
-    //SN Soon
-    //TEMP Temperature
-    ///
 
     public String generateLevel2Question() {
         String[] abbrQuestions = {"ADR", "AGN", "AS", "C", "CFM", "CS", "EMRG", "FER", "FM", "FREQ", "N", "OK", "RPT", "SN", "TEMP"};
@@ -62,7 +46,6 @@ class QuizBot extends ChatBot {
         currentAnswer = abbrAnswers[index];
         return "What is " + currentQuestion;
     }
-
     public String generateLevel3Question() {
         int index = randomGen.nextInt(qCodeQuestions.length);
         currentQuestion = qCodeQuestions[index];

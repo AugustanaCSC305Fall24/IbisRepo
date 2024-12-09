@@ -96,9 +96,11 @@ public class DictionaryController {
         return englishText.toString().trim(); //trim trailing spaces
     }
 
-    //translate from english to morse code - used in practiceModeController
+    //translate from english text box input to morse code and put in text boxes - used in practiceModeController
     public String translateToMorseCode(String text) {
-        StringBuilder morseCodeBuilder = new StringBuilder();
+        StringBuilder morseCodeBuilder = new StringBuilder(); //string for use with audio queues adding , and ~
+        String finalTranslation = ""; // cleaned up version to display for users
+
         for (char c : text.toUpperCase().toCharArray()) {
             String morseSymbol = getMorseCode(c);
             morseCodeBuilder.append(",");
@@ -108,8 +110,13 @@ public class DictionaryController {
                 morseCodeBuilder.append("~ ");
             }
         }
-        return morseCodeBuilder.toString().trim();
+
+        //gets rid of ~ and , in text displayed, idk what they do but i dont want to delete them
+        finalTranslation = morseCodeBuilder.toString().replace("~", "").replace(",", "").trim();
+
+        return finalTranslation;
     }
+
 
     //checks the user input when check is clicked agianst the random button played
     //tells the user the correct letter/number in the text box then clears the next time play is clicked
