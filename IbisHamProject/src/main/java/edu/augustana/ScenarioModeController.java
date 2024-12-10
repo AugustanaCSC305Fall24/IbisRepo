@@ -1,14 +1,18 @@
 package edu.augustana;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javax.sound.sampled.LineUnavailableException;
 
-public class MultiplayerModeController {
+public class ScenarioModeController {
 
     private final DictionaryController dictionaryController = new DictionaryController();
 

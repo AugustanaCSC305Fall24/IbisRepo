@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<HBox prefHeight="463.0" prefWidth="703.0" style="-fx-background-color: linear-gradient(to bottom,#6E6E6E, #989898);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.MultiplayerModeController">
+<HBox prefHeight="463.0" prefWidth="703.0" style="-fx-background-color: linear-gradient(to bottom,#5C3333, #651717);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ScenarioModeController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: #3A3A3A; -fx-padding: 15;">
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: #3D0101; -fx-padding: 15;">
             <children>
                 <Pane prefHeight="92.0" prefWidth="166.0">
                     <children>
-                        <Button fx:id="HomeFromMultiMode" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoHomePage" style="-fx-font-size: 14px; -fx-background-color: #777777; -fx-text-fill: white;" text="Home Page" />
+                        <Button fx:id="HomeFromScenarioMode" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoHomePage" style="-fx-font-size: 14px; -fx-background-color: #777777; -fx-text-fill: white;" text="Home Page" />
                     </children>
                 </Pane>
                 <Pane prefHeight="240.0" prefWidth="116.0">

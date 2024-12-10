@@ -9,8 +9,6 @@ import javafx.scene.control.ComboBox;
 public class ScenarioPageController {
 
     @FXML
-    private Button BackButton;
-    @FXML
     private Button ConfirmButton;
     @FXML
     private ComboBox<?> ScenarioBox;
@@ -18,6 +16,10 @@ public class ScenarioPageController {
     @FXML
     private void switchToHomePage() throws IOException {
         App.setRoot("homePage");
+    }
+    @FXML
+    private void switchToLaunchedPage() throws IOException{
+        App.setRoot("ScenarioLaunched");
     }
 
 }
