@@ -11,7 +11,14 @@ public class HomePageController {
         App.setRoot("PracLaunched");
     }
 
-    //eventually add the other two modes: Online and AI
+    @FXML
+    private void switchToScenarioPage() throws IOException {
+        App.setRoot("ScenarioPage");
+    }
 
+    @FXML
+    private void switchToMultiPage() throws IOException {
+        App.setRoot("MultiplayerLaunched");
+    }
 
 }
