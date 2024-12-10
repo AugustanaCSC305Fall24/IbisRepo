@@ -18,7 +18,7 @@ public class HomePageController {
 
     @FXML
     private void switchToMultiPage() throws IOException {
-        App.setRoot("MultiplayerLaunched");
+        App.setRoot("MultiLaunched");
     }
 
 }

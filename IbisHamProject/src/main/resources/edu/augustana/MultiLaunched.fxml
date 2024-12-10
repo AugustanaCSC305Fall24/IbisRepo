@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<HBox prefHeight="463.0" prefWidth="703.0" style="-fx-background-color: linear-gradient(to bottom, #2a2a72, #009ffd);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.MultiplayerModeController">
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: #1e1e2f; -fx-padding: 15;">
+            <children>
+                <Pane prefHeight="92.0" prefWidth="166.0">
+                    <children>
+                        <Button fx:id="HomeFromMultiMode" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoHomePage" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Home Page" />
+                    </children>
+                </Pane>
+                <Pane prefHeight="240.0" prefWidth="116.0">
+                    <children>
+                        <Slider fx:id="speedSlider" layoutX="1.0" layoutY="26.0" prefHeight="14.0" prefWidth="114.0" />
+                        <Label layoutX="17.0" layoutY="40.0" style="-fx-text-fill: white;" text="Playback speed" />
+                        <Line endX="51.999977111816406" endY="3.814697265625E-6" layoutX="60.0" layoutY="13.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
+                        <Line endX="51.999977111816406" endY="3.814697265625E-6" layoutX="59.0" layoutY="229.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
+                    </children>
+                </Pane>
+                <Button fx:id="secondaryButton" onAction="#switchToDictionary" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" />
+            </children>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="538.0" spacing="20.0" style="-fx-padding: 20;">
+            <children>
+                <Pane prefHeight="62.0" prefWidth="361.0">
+                    <children>
+                        <Label layoutX="172.0" layoutY="4.0" style="-fx-font-size: 27px; -fx-font-weight: bold; -fx-text-fill: white;" text="CW Ham Radio" />
+                    </children>
+                </Pane>
+                <Pane prefHeight="425.0" prefWidth="344.0">
+                    <children>
+                        <Slider fx:id="FrequencySlider" blockIncrement="0.001" layoutX="97.0" layoutY="301.0" majorTickUnit="0.004" max="7.067" min="7.000" minorTickCount="4" prefWidth="300.0" showTickLabels="true" showTickMarks="true" value="7.000">
+                            <effect>
+                                <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="0.06" />
+                            </effect></Slider>
+                        <Label fx:id="FrequencyLabel" layoutX="143.0" layoutY="334.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Current Frequency: 7.000 MHz" />
+                        <TextArea fx:id="MainMessageBox" layoutX="5.0" layoutY="14.0" onKeyPressed="#handleKeyPress" prefHeight="171.0" prefWidth="485.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
+                        <Slider fx:id="FilterSlider" layoutX="179.0" layoutY="361.0" prefHeight="14.0" prefWidth="138.0" />
+                        <Label layoutX="235.0" layoutY="374.0" style="-fx-text-fill: white;" text="Filter" />
+                        <TextArea fx:id="MessageBox" layoutX="98.0" layoutY="217.0" prefHeight="43.0" prefWidth="281.0" style="-fx-font-size: 14px; -fx-background-color: #f1f1f1;" />
+                        <Button fx:id="SendButton" layoutX="268.0" layoutY="265.0" onAction="#sendAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Send" />
+                        <Button fx:id="playButton" layoutX="181.0" layoutY="265.0" onAction="#play" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play" />
+                        <Label layoutX="202.0" layoutY="192.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </children>
+</HBox>
