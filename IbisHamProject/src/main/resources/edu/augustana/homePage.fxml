@@ -18,10 +18,20 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="HomePageButton" onAction="#switchToPracPage" text="Practice Mode">
+      <Button fx:id="PracticePageButton" onAction="#switchToPracPage" text="Practice Mode">
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Button fx:id="ScenarioPageButton" onAction="#switchToScenarioPage" prefHeight="29.0" prefWidth="107.0" text="Scenarios">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="MultiplayerPageButton" mnemonicParsing="false" onAction="#switchToMultiPage" prefHeight="25.0" prefWidth="105.0" text="Multiplayer">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

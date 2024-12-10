@@ -30,7 +30,7 @@ class QuizBot extends ChatBot {
     }
 
     public String generateLevel1Question() {
-        char randomLetter = (char) ('A' + randomGen.nextInt(26));
+        char randomLetter = (char) ('A' + randomGen.nextInt(25));
         currentAnswer = String.valueOf(randomLetter);
 
         currentQuestion =dictionaryController.translateToMorseCode("Morse for letter ") +  "(Morse for letter) " + currentAnswer;
