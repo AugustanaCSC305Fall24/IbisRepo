@@ -56,6 +56,7 @@
                         <Button fx:id="SendButton" layoutX="268.0" layoutY="265.0" onAction="#sendAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Send" />
                         <Button fx:id="playButton" layoutX="181.0" layoutY="265.0" onAction="#play" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play" />
                         <Label layoutX="202.0" layoutY="192.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Message box" />
+                  <Button fx:id="playAll" layoutX="412.0" layoutY="201.0" onAction="#playAll" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Play All" />
                     </children>
                 </Pane>
             </children>

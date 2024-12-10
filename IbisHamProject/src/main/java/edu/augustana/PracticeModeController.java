@@ -17,7 +17,10 @@ public class PracticeModeController {
     private int currentLevel = 1;
     private final int numQuestions = 3;
 
+
     private final List<String> playQueue = new ArrayList<>();
+    private final List<String> playQueueAll = new ArrayList<>();
+
     private boolean hidePlainText = false;
 
     @FXML private Label FrequencyLabel;
@@ -27,6 +30,7 @@ public class PracticeModeController {
     @FXML private TextArea MessageBox;
     @FXML private TextArea MainMessageBox;
     @FXML private CheckBox disButton;
+    @FXML private Button playAll;
 
     //initializes fxml sliders and page
     @FXML public void initialize() {
@@ -82,6 +86,7 @@ public class PracticeModeController {
         MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
 
         playQueue.add(morseText);
+        playQueueAll.add(morseText);
     }
 
     @FXML
@@ -114,7 +119,7 @@ public class PracticeModeController {
     private void processUserAnswer(String userInput) {
         hidePlainText = false;
         boolean isCorrect = quizBot.checkAnswer(userInput);
-        String feedback = isCorrect ? "Correct!" : "Wrong! The correct answer is " + quizBot.getCurrentAnswer();
+        String feedback = isCorrect ? "Correct!" : "Wrong! The correct answer is " +  dictionaryController.translateToMorseCode(quizBot.getCurrentAnswer());
         updateMainMessage(quizBot.getName(), feedback);
 
         if (questionCount < numQuestions) {
@@ -139,21 +144,52 @@ public class PracticeModeController {
     }
 
     //method to play morse code that user types into translating box
+    //reverse of play all sort of, uses different queues
     @FXML
     private void play() {
-        //thread creation for audio
+
         Thread audioThread = new Thread(() -> {
+            //get most recent message to play
+            if (!playQueue.isEmpty()) {
+                String lastMessage = playQueue.get(playQueue.size() - 1);
+                playQueue.clear();
+                playQueue.add(lastMessage);
+            }
+            for (String morseMessage : playQueue) {
+
+                //intellij had me throw the try catch like this
+                try {
+                    AudioController.playMorseMessage(morseMessage.trim(), FrequencySlider.getValue());
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        // Set the thread as a daemon so it doesn't block app closing
+        audioThread.setDaemon(true);
+        audioThread.start();
+    }
+
+
+
+    @FXML
+    private void playAll() {
+        Thread audioThreadAll = new Thread(() -> {
             try {
-                // Play all messages in the queue
-                for (String morseMessage : playQueue) {
+                //play all the messages in the queue
+                for (String morseMessage : playQueueAll) {
+
                     AudioController.playMorseMessage(morseMessage.trim(), FrequencySlider.getValue());
                 }
 
-                // Clear all but the most recent message
-                if (!playQueue.isEmpty()) {
-                    String lastMessage = playQueue.get(playQueue.size() - 1);
-                    playQueue.clear();
-                    playQueue.add(lastMessage);
+                //clear messages and add last one
+                if (!playQueueAll.isEmpty()) {
+                    String lastMessage = playQueueAll.get(playQueueAll.size() - 1);
+                    playQueueAll.clear();
+                    playQueueAll.add(lastMessage);
                 }
 
             } catch (LineUnavailableException | InterruptedException e) {
@@ -161,9 +197,11 @@ public class PracticeModeController {
                 e.printStackTrace();
             }
         });
+
+
         //set thread as daemon so closing app/app functionality isnt frozen during audio playing
-        audioThread.setDaemon(true);
-        audioThread.start();
+        audioThreadAll.setDaemon(true);
+        audioThreadAll.start();
     }
 
     @FXML
