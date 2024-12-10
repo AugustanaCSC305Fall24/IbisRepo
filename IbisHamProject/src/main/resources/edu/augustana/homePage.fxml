@@ -22,6 +22,16 @@
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" text="Scenarios">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Multiplayer">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
