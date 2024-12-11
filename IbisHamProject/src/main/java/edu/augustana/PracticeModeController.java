@@ -11,13 +11,16 @@ import javax.sound.sampled.LineUnavailableException;
 public class PracticeModeController {
 
     private final DictionaryController dictionaryController = new DictionaryController();
+
+    //bots
     QuizBot quizBot = new QuizBot("Mr. Prof", "QuizBot");
-    private int currentSpeed = 20;
     private int questionCount = 0;
     private int currentLevel = 1;
     private final int numQuestions = 3;
 
+    private int currentSpeed = 20;
 
+    //queues for audio buttons
     private final List<String> playQueue = new ArrayList<>();
     private final List<String> playQueueAll = new ArrayList<>();
 
@@ -33,7 +36,9 @@ public class PracticeModeController {
     @FXML private Button playAll;
 
     //initializes fxml sliders and page
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
+        //to use the static noise for filtering
         disButton.setSelected(false);
         HamRadio user = new HamRadio();
 
@@ -41,10 +46,13 @@ public class PracticeModeController {
         if (FrequencySlider != null) {
             FrequencySlider.setValue(0.0);
             FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", FrequencySlider.getValue()));
+
+            //to get current slider values
             FrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 FrequencyLabel.setText(String.format("Current Frequency: %.3f MHz", newValue.doubleValue()));
                 updateFilterRange(newValue.doubleValue());
                 user.setTuningFrequency(newValue.doubleValue());
+                checkStatic(); //check if static noise is needed to be played
             });
         }
 
@@ -54,6 +62,7 @@ public class PracticeModeController {
             FilterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 double currentFrequency = FrequencySlider.getValue();
                 updateFilterRange(currentFrequency);
+                checkStatic(); // check if static should be played
             });
         }
 
@@ -72,6 +81,33 @@ public class PracticeModeController {
         updateMainMessage(quizBot.getName(), quizBot.startMessage());
         updateMainMessage(quizBot.getName(), quizBot.askLevelSelection());
     }
+
+    //method to check if static morse code should be playing
+    //static is off if either:
+    //          the frequency slider is on the right frequency
+    //          the users filter has the bots frequency in its range
+    private void checkStatic() {
+        double userFrequency = FrequencySlider.getValue();
+        double quizBotFrequency = quizBot.botFrequency();
+        double filterValue = FilterSlider.getValue();
+        double minFrequency = Math.max(7.000, userFrequency - filterValue / 2);
+        double maxFrequency = Math.min(7.067, userFrequency + filterValue / 2);
+
+        //math for checking frequencies with a .001 margin of error
+        boolean isFrequencyTheSame = Math.abs(userFrequency - quizBotFrequency) < 0.001;
+
+        //math to check the filter and bot freq
+        boolean isFrequencyInFilterRange = quizBotFrequency >= minFrequency && quizBotFrequency <= maxFrequency;
+
+        //check if freq OR filter is matching to disable static
+        boolean shouldDisableStatic = isFrequencyTheSame || isFrequencyInFilterRange;
+        boolean staticOn = !shouldDisableStatic;
+
+        //sets static audio on after checking filters and freq
+        disButton.setSelected(staticOn);
+        AudioController.setDistortion(staticOn);
+    }
+
 
     private void updateMainMessage(String sender, String engText){
         String morseText = dictionaryController.translateToMorseCode(engText);
@@ -173,8 +209,7 @@ public class PracticeModeController {
         audioThread.start();
     }
 
-
-
+//play all text method
     @FXML
     private void playAll() {
         Thread audioThreadAll = new Thread(() -> {
@@ -197,7 +232,6 @@ public class PracticeModeController {
                 e.printStackTrace();
             }
         });
-
 
         //set thread as daemon so closing app/app functionality isnt frozen during audio playing
         audioThreadAll.setDaemon(true);

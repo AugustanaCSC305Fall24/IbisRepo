@@ -1,19 +1,21 @@
 package edu.augustana;
 
-import java.sql.SQLOutput;
 import java.util.Random;
 
 class QuizBot extends ChatBot {
+
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
-
+    private static final double quizBotFrequency = 7.034;
     private String name;
     private final String[] qCodeAnswers = new String[]{"QRG", "QRI", "QRK", "QRL", "QRM", "QRN", "QRO",
             "QRP", "QRQ", "QRR", "QRRR", "QRS", "QRT", "QRU", "QRV", "QRX", "QRZ"};
+
     private final String[] qCodeQuestions = new String[]{"Exact frequency", "Tone", "Intelligibility",
             "This frequency is busy.", "Man-made interference", "Natural interference", "Increase power",
             "Decrease power", "Send more quickly", "Temporarily unavailable/away", "Land distress", "Send more slowly",
             "Stop sending", "Have you anything for me?", "I am ready", "Will call you again", "You are being called by..."};
+
     private String currentQuestion;
     private String currentAnswer;
 
@@ -22,11 +24,16 @@ class QuizBot extends ChatBot {
     }
 
     public String startMessage() {
-        return "I QUIZ ON CW";
+        return "CW QUIZ BOT(FRQ: "+ botFrequency() + ")";
     }
 
     public String askLevelSelection() {
         return "LVL 1 2 3 ";
+    }
+
+    @Override
+    public double botFrequency(){
+        return quizBotFrequency;
     }
 
     public String generateLevel1Question() {
@@ -50,7 +57,7 @@ class QuizBot extends ChatBot {
         int index = randomGen.nextInt(qCodeQuestions.length);
         currentQuestion = qCodeQuestions[index];
         currentAnswer = qCodeAnswers[index];
-        return "What is the Qcode for " + currentQuestion;
+        return "Enter Qcode for " + currentQuestion;
     }
 
     public boolean checkAnswer(String userResponse) {

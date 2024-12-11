@@ -8,51 +8,125 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="660.0" prefWidth="690.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.DictionaryController">
+<VBox alignment="CENTER" prefHeight="660.0" prefWidth="690.0" spacing="20.0" style="-fx-background-color: linear-gradient(to bottom, #2a2a72, #009ffd);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.DictionaryController">
     <children>
-        <Label text="Dictionary">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
+       <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;" text="Dictionary" />
+
       <AnchorPane prefHeight="433.0" prefWidth="650.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="389.0" prefWidth="200.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonA" mnemonicParsing="false" onAction="#fetchButtonID" text="A &quot; .-&quot;" />
-                        <Button fx:id="buttonB" mnemonicParsing="false" onAction="#fetchButtonID" text="B &quot;-...&quot;" />
-                        <Button fx:id="buttonC" mnemonicParsing="false" onAction="#fetchButtonID" text="C &quot;-.-.&quot;" />
-                        <Button fx:id="buttonD" mnemonicParsing="false" onAction="#fetchButtonID" text="D &quot;-..&quot;" />
-                        <Button fx:id="buttonE" mnemonicParsing="false" onAction="#fetchButtonID" text="E &quot;.&quot;" />
-                        <Button fx:id="buttonF" mnemonicParsing="false" onAction="#fetchButtonID" text="F &quot;..-.&quot;" />
-                        <Button fx:id="buttonG" mnemonicParsing="false" onAction="#fetchButtonID" text="G &quot;--.&quot;" />
-                        <Button fx:id="buttonH" mnemonicParsing="false" onAction="#fetchButtonID" text="H &quot;....&quot;" />
-                        <Button fx:id="buttonI" mnemonicParsing="false" onAction="#fetchButtonID" text="I &quot;..&quot;" />
-                        <Button fx:id="buttonJ" mnemonicParsing="false" onAction="#fetchButtonID" text="J &quot;.---&quot;" />
-                        <Button fx:id="buttonK" mnemonicParsing="false" onAction="#fetchButtonID" text="K &quot;-.-&quot;" />
-                        <Button fx:id="buttonL" mnemonicParsing="false" onAction="#fetchButtonID" text="L &quot;.-..&quot;" />
-                        <Button fx:id="buttonM" mnemonicParsing="false" onAction="#fetchButtonID" text="M &quot;--&quot;" />
+                        <Button fx:id="buttonA" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;  " text="A &quot; .-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonB" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="B &quot;-...&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonC" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="C &quot;-.-.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonD" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="D &quot;-..&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonE" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="E &quot;.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonF" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="F &quot;..-.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonG" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="G &quot;--.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonH" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="H &quot;....&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonI" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="I &quot;..&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonJ" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="J &quot;.---&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonK" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="K &quot;-.-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonL" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="L &quot;.-..&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonM" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="M &quot;--&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="buttonN" mnemonicParsing="false" onAction="#fetchButtonID" text="N &quot;-.&quot;" />
-                        <Button fx:id="buttonO" mnemonicParsing="false" onAction="#fetchButtonID" text="O &quot;---&quot;" />
-                        <Button fx:id="buttonP" mnemonicParsing="false" onAction="#fetchButtonID" text="P &quot;.--.&quot;" />
-                        <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#fetchButtonID" text="Q &quot;--.-&quot;" />
-                        <Button fx:id="buttonR" mnemonicParsing="false" onAction="#fetchButtonID" text="R &quot;.-.&quot;" />
-                        <Button fx:id="buttonS" mnemonicParsing="false" onAction="#fetchButtonID" text="S &quot;...&quot;" />
-                        <Button fx:id="buttonT" mnemonicParsing="false" onAction="#fetchButtonID" text="T &quot;-&quot;" />
-                        <Button fx:id="buttonU" mnemonicParsing="false" onAction="#fetchButtonID" text="U &quot;..-&quot;" />
-                        <Button fx:id="buttonV" mnemonicParsing="false" onAction="#fetchButtonID" text="V &quot;...-&quot;" />
-                        <Button fx:id="buttonW" mnemonicParsing="false" onAction="#fetchButtonID" text="W &quot;.--&quot;" />
-                        <Button fx:id="buttonX" mnemonicParsing="false" onAction="#fetchButtonID" text="X &quot;-..-&quot;" />
-                        <Button fx:id="buttonY" mnemonicParsing="false" onAction="#fetchButtonID" text="Y &quot;-.--&quot;" />
-                        <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#fetchButtonID" text="Z &quot;--..&quot;" />
+                        <Button fx:id="buttonN" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="N &quot;-.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonO" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="O &quot;---&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonP" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="P &quot;.--.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="Q &quot;--.-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonR" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="R &quot;.-.&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonS" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="S &quot;...&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonT" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="T &quot;-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonU" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="U &quot;..-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonV" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="V &quot;...-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonW" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="W &quot;.--&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonX" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="X &quot;-..-&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonY" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="Y &quot;-.--&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="Z &quot;--..&quot;">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin></Button>
                         <VBox prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </VBox>
@@ -60,34 +134,67 @@
             </HBox>
             <Pane layoutX="325.0" layoutY="3.0" prefHeight="385.0" prefWidth="278.0">
                <children>
-                  <TextArea fx:id="AbvTestBox" layoutX="18.0" layoutY="257.0" prefHeight="85.0" prefWidth="253.0" promptText="Type here: " />
-                  <Label layoutX="44.0" layoutY="6.0" text="Abbreviations Information " />
-                  <Label layoutX="18.0" layoutY="217.0" text="Practice with letters" />
-                  <Button fx:id="AbvPlayBtn" layoutX="134.0" layoutY="213.0" mnemonicParsing="false" onAction="#playRandomLetter" text="Play" />
-                  <TextArea layoutX="15.0" layoutY="23.0" prefHeight="164.0" prefWidth="200.0" text="ADR Address      &#10;AGN Again          &#10;AS Wait                           &#10;C Correct/Yes&#10;CFM Confirm&#10;CS Callsign&#10;EMRG Emergency&#10;FER For&#10;FM From&#10;FREQ Frequency&#10;N No&#10;OK ok&#10;RPT Repeat&#10;SN Soon&#10;TEMP Temperature&#10;" />
-                  <Button fx:id="check" layoutX="20.0" layoutY="346.0" mnemonicParsing="false" onAction="#checkButtonLetterTest" text="Check" />
+                  <TextArea fx:id="AbvTestBox" layoutX="18.0" layoutY="257.0" prefHeight="85.0" prefWidth="253.0" promptText="Type here: " style="-fx-background-color: #8fc2eb;" />
+                  <Label layoutX="44.0" layoutY="6.0" style="-fx-font-weight: bold; -fx-text-fill: white;" text="Abbreviations Information " />
+                  <Label layoutX="18.0" layoutY="217.0" style="-fx-font-weight: bold; -fx-text-fill: white;" text="Practice with letters" />
+                  <Button fx:id="AbvPlayBtn" layoutX="134.0" layoutY="213.0" mnemonicParsing="false" onAction="#playRandomLetter" style="-fx-background-color: #42a5f5;" text="Play" />
+                  <TextArea layoutX="15.0" layoutY="23.0" prefHeight="164.0" prefWidth="200.0" style="-fx-background-insets: #c2ddf2;" text="ADR Address      &#10;AGN Again          &#10;AS Wait                           &#10;C Correct/Yes&#10;CFM Confirm&#10;CS Callsign&#10;EMRG Emergency&#10;FER For&#10;FM From&#10;FREQ Frequency&#10;N No&#10;OK ok&#10;RPT Repeat&#10;SN Soon&#10;TEMP Temperature&#10;" />
+                  <Button fx:id="check" layoutX="20.0" layoutY="346.0" mnemonicParsing="false" onAction="#checkButtonLetterTest" style="-fx-background-color: #42a5f5;" text="Check" />
                </children>
             </Pane>
-            <VBox layoutX="225.0" layoutY="21.0" prefHeight="286.0" prefWidth="100.0">
+            <VBox layoutX="225.0" layoutY="-2.0" prefHeight="385.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="buttonZero" mnemonicParsing="false" onAction="#fetchButtonID" text="0 &quot;-----&quot;" />
-                  <Button fx:id="buttonOne" mnemonicParsing="false" onAction="#fetchButtonID" text="1 &quot;.----&quot;" />
-                  <Button fx:id="buttonTwo" mnemonicParsing="false" onAction="#fetchButtonID" text="2 &quot;..---&quot;" />
-                  <Button fx:id="buttonThree" mnemonicParsing="false" onAction="#fetchButtonID" text="3 &quot;...--&quot;" />
-                  <Button fx:id="buttonFour" mnemonicParsing="false" onAction="#fetchButtonID" text="4 &quot;....-&quot;" />
-                  <Button fx:id="buttonFive" mnemonicParsing="false" onAction="#fetchButtonID" text="5 &quot;.....&quot;" />
-                  <Button fx:id="buttonSix" mnemonicParsing="false" onAction="#fetchButtonID" text="6 &quot;-....&quot;" />
-                  <Button fx:id="buttonSeven" mnemonicParsing="false" onAction="#fetchButtonID" text="7 &quot;--...&quot;" />
-                  <Button fx:id="buttonEight" mnemonicParsing="false" onAction="#fetchButtonID" text="8 &quot;---..&quot;" />
-                  <Button fx:id="buttonNine" mnemonicParsing="false" onAction="#fetchButtonID" text="9 &quot;----.&quot;" />
+                  <Button fx:id="buttonZero" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5; " text="0 &quot;-----&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonOne" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="1 &quot;.----&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonTwo" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="2 &quot;..---&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonThree" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="3 &quot;...--&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonFour" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="4 &quot;....-&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonFive" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="5 &quot;.....&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonSix" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="6 &quot;-....&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonSeven" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="7 &quot;--...&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonEight" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="8 &quot;---..&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="buttonNine" mnemonicParsing="false" onAction="#fetchButtonID" style="-fx-background-color: #42a5f5;" text="9 &quot;----.&quot;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="106.0" prefWidth="650.0">
+      <AnchorPane prefHeight="186.0" prefWidth="650.0">
          <children>
-            <Button fx:id="PracFromDict" layoutX="220.0" layoutY="89.0" onAction="#pracLaunch" text="Go Back" translateX="75.0" />
-              <Button fx:id="switchToHomeButton" layoutX="61.0" layoutY="153.0" onAction="#switchToHomePage" text="Home Page" translateX="225.0" />
+            <Button fx:id="PracFromDict" layoutX="220.0" layoutY="89.0" onAction="#pracLaunch" style="-fx-background-color: #197dcf;" text="Go Back" translateX="75.0" />
+              <Button fx:id="switchToHomeButton" layoutX="61.0" layoutY="138.0" onAction="#switchToHomePage" style="-fx-background-color: #197dcf;" text="Home Page" translateX="225.0">
+               <opaqueInsets>
+                  <Insets bottom="3.0" />
+               </opaqueInsets></Button>
          </children>
       </AnchorPane>
     </children>

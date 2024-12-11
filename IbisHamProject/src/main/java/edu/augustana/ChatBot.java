@@ -21,6 +21,10 @@ public abstract class ChatBot {
         return name;
     }
 
+    public double botFrequency(){
+        return 0.0;
+    }
+
     //getter method for bot type
     public String getBotType() {
         return botType;
