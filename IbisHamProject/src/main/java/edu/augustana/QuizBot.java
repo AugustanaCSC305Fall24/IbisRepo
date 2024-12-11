@@ -7,7 +7,6 @@ class QuizBot extends ChatBot {
     private static final Random randomGen = new Random();
     private final DictionaryController dictionaryController = new DictionaryController();
     private static final double quizBotFrequency = 7.034;
-    private String name;
     private final String[] qCodeAnswers = new String[]{"QRG", "QRI", "QRK", "QRL", "QRM", "QRN", "QRO",
             "QRP", "QRQ", "QRR", "QRRR", "QRS", "QRT", "QRU", "QRV", "QRX", "QRZ"};
 
@@ -24,7 +23,7 @@ class QuizBot extends ChatBot {
     }
 
     public String startMessage() {
-        return "CW QUIZ BOT(FRQ: "+ botFrequency() + ")";
+        return "CW QUIZ BOT(FRQ: " + botFrequency() + ")";
     }
 
     public String askLevelSelection() {
@@ -32,7 +31,7 @@ class QuizBot extends ChatBot {
     }
 
     @Override
-    public double botFrequency(){
+    public double botFrequency() {
         return quizBotFrequency;
     }
 
@@ -49,21 +48,26 @@ class QuizBot extends ChatBot {
         String[] abbrAnswers = {"Address", "Again", "Wait", "Correct/Yes", "Confirm", "Callsign", "Emergency", "For", "From",
                 "Frequency", "No", "Ok", "Repeat", "Soon", "Temperature"};
         int index = randomGen.nextInt(abbrQuestions.length);
-        currentQuestion = abbrQuestions[index];
+
+        currentQuestion = dictionaryController.translateToMorseCode("What is " + abbrQuestions[index]) + (" (What is " + abbrQuestions[index]+")");
         currentAnswer = abbrAnswers[index];
-        return "What is " + currentQuestion;
+        return currentQuestion;
     }
+
     public String generateLevel3Question() {
         int index = randomGen.nextInt(qCodeQuestions.length);
-        currentQuestion = qCodeQuestions[index];
+
         currentAnswer = qCodeAnswers[index];
-        return "Enter Qcode for " + currentQuestion;
+        currentQuestion = dictionaryController.translateToMorseCode("Enter Qcode for " + qCodeQuestions[index])
+                + " (Enter Qcode for " + (qCodeQuestions[index]) + ")";
+        return currentQuestion;
     }
+
 
     public boolean checkAnswer(String userResponse) {
         String currentMorseAnswer = retainMorseCharacters(dictionaryController.translateToMorseCode(currentAnswer));
-        //for debugging
-        System.out.println("current answer: " + currentAnswer + "\n currentAns Morse " +currentMorseAnswer);
+        // For debugging
+        System.out.println("Current answer: " + currentAnswer + "\nCurrent answer in Morse: " + currentMorseAnswer);
 
         return userResponse.equalsIgnoreCase(currentMorseAnswer);
     }
@@ -76,6 +80,3 @@ class QuizBot extends ChatBot {
         return input.replaceAll("[^.-]", ""); // Replace everything except '-' or '.' with an empty string
     }
 }
-
-
-

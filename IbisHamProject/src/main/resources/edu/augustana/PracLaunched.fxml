@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
@@ -17,16 +18,17 @@
             <children>
                 <Pane prefHeight="92.0" prefWidth="166.0">
                     <children>
-                        <Button fx:id="HomeFromPracMode" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoHomePage" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Home Page" />
+                        <Button fx:id="HomeFromPracMode" layoutX="22.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchtoHomePage" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Home Page" />
                     </children>
                 </Pane>
                 <Pane prefHeight="240.0" prefWidth="116.0">
                     <children>
-                        <Slider fx:id="speedSlider" layoutX="1.0" layoutY="26.0" prefHeight="14.0" prefWidth="114.0" />
-                        <Label layoutX="17.0" layoutY="40.0" style="-fx-text-fill: white;" text="Playback speed" />
-                        <CheckBox fx:id="disButton" layoutX="1.0" layoutY="73.0" mnemonicParsing="false" onAction="#disButton" style="-fx-text-fill: white;" text="Distortion" />
-                        <Line endX="51.999977111816406" endY="3.814697265625E-6" layoutX="60.0" layoutY="13.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
-                        <Line endX="51.999977111816406" endY="3.814697265625E-6" layoutX="59.0" layoutY="229.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
+                        <Slider fx:id="speedSlider" layoutX="11.0" layoutY="26.0" prefHeight="14.0" prefWidth="114.0" />
+                        <Label layoutX="26.0" layoutY="40.0" style="-fx-text-fill: white;" text="Playback speed" />
+                        <CheckBox fx:id="disButton" layoutX="30.0" layoutY="82.0" mnemonicParsing="false" onAction="#disButton" style="-fx-text-fill: white;" text="Distortion" />
+                        <Line endX="75.20002746582031" endY="3.814697265625E-6" layoutX="58.0" layoutY="225.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
+                        <Line endX="76.20002746582031" endY="-1.52587890625E-5" layoutX="58.0" layoutY="13.0" startX="-56.99999237060547" startY="3.814697265625E-6" stroke="white" />
+                        <ComboBox fx:id="ScenBotChoice" layoutX="11.0" layoutY="120.0" prefHeight="25.0" prefWidth="114.0" promptText="Scenario Bots" />
                     </children>
                 </Pane>
                 <Button fx:id="secondaryButton" onAction="#switchToDictionary" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" />
