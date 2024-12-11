@@ -31,7 +31,7 @@
                         <ComboBox fx:id="ScenBotChoice" layoutX="11.0" layoutY="120.0" prefHeight="25.0" prefWidth="114.0" promptText="Scenario Bots" />
                     </children>
                 </Pane>
-                <Button fx:id="secondaryButton" onAction="#switchToDictionary" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" />
+                <Button fx:id="secondaryButton" onAction="#switchToDictionary" prefHeight="45.0" prefWidth="136.0" style="-fx-font-size: 14px; -fx-background-color: #006494; -fx-text-fill: white;" text="Morse Code Dictionary" textAlignment="CENTER" wrapText="true" />
             </children>
         </VBox>
 
