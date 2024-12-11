@@ -49,7 +49,7 @@ class QuizBot extends ChatBot {
                 "Frequency", "No", "Ok", "Repeat", "Soon", "Temperature"};
         int index = randomGen.nextInt(abbrQuestions.length);
 
-        currentQuestion = dictionaryController.translateToMorseCode("What is " + abbrQuestions[index]) + (" (What is " + abbrQuestions[index]+")");
+        currentQuestion = dictionaryController.translateToMorseCode("What is: " + abbrQuestions[index]) + (" (What is: " + abbrQuestions[index]+")");
         currentAnswer = abbrAnswers[index];
         return currentQuestion;
     }
@@ -58,8 +58,8 @@ class QuizBot extends ChatBot {
         int index = randomGen.nextInt(qCodeQuestions.length);
 
         currentAnswer = qCodeAnswers[index];
-        currentQuestion = dictionaryController.translateToMorseCode("Enter Qcode for " + qCodeQuestions[index])
-                + " (Enter Qcode for " + (qCodeQuestions[index]) + ")";
+        currentQuestion = dictionaryController.translateToMorseCode("Enter Qcode for: " + qCodeQuestions[index])
+                + " (Enter Qcode for: " + (qCodeQuestions[index]) + ")";
         return currentQuestion;
     }
 
