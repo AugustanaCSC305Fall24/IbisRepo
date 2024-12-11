@@ -17,13 +17,13 @@ public class PracticeModeController {
     private int questionCount = 0;
     private int currentLevel = 1;
     private final int numQuestions = 3;
-
     private int currentSpeed = 20;
 
     //queues for audio buttons
     private final List<String> playQueue = new ArrayList<>();
     private final List<String> playQueueAll = new ArrayList<>();
 
+    private ChatBot currentBot;
     private boolean hidePlainText = false;
 
     @FXML private Label FrequencyLabel;
@@ -33,7 +33,9 @@ public class PracticeModeController {
     @FXML private TextArea MessageBox;
     @FXML private TextArea MainMessageBox;
     @FXML private CheckBox disButton;
-    @FXML private Button playAll;
+    @FXML
+    private ComboBox<String> ScenBotChoice; // The ComboBox from the FXML
+
 
     //initializes fxml sliders and page
     @FXML
@@ -81,6 +83,7 @@ public class PracticeModeController {
         updateMainMessage(quizBot.getName(), quizBot.startMessage());
         updateMainMessage(quizBot.getName(), quizBot.askLevelSelection());
     }
+
 
     //method to check if static morse code should be playing
     //static is off if either:
@@ -155,7 +158,7 @@ public class PracticeModeController {
     private void processUserAnswer(String userInput) {
         hidePlainText = false;
         boolean isCorrect = quizBot.checkAnswer(userInput);
-        String feedback = isCorrect ? "Correct!" : "Wrong! The correct answer is " +  dictionaryController.translateToMorseCode(quizBot.getCurrentAnswer());
+        String feedback = isCorrect ? "Correct" : "Wrong. correct answer is " +  dictionaryController.translateToMorseCode(quizBot.getCurrentAnswer());
         updateMainMessage(quizBot.getName(), feedback);
 
         if (questionCount < numQuestions) {
