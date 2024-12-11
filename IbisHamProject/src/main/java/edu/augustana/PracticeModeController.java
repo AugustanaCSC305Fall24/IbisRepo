@@ -25,6 +25,7 @@ public class PracticeModeController {
 
     private ChatBot currentBot;
     private boolean hidePlainText = false;
+    private boolean isLvlSelection = true;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -123,6 +124,7 @@ public class PracticeModeController {
         }
         String existingText = MainMessageBox.getText();
         MainMessageBox.setText(existingText + (existingText.isEmpty() ? "" : "\n") + message);
+        MainMessageBox.setScrollTop(Double.MAX_VALUE);
 
         playQueue.add(morseText);
         playQueueAll.add(morseText);
@@ -134,14 +136,38 @@ public class PracticeModeController {
         if (userInput.isBlank()) return;
         updateMainMessage("User", userInput);
 
-        if ((questionCount == 0 || questionCount == numQuestions) && userInput.matches("[123]")) {
-            currentLevel = Integer.parseInt(userInput);
-            String question = askNextQuestion(); // Get the next question
-            updateMainMessage(quizBot.getName(), question); // Display the question
-        } else {
-            processUserAnswer(userInput);
-        }
+        processUserInput(userInput);
         MessageBox.clear();
+    }
+
+    private void processUserInput(String userInput){
+        if(!isLvlSelection){
+            processUserAnswer(userInput);
+            return;
+        }
+
+        if(!(userInput.matches("[123]") || dictionaryController.translateToMorseCode(userInput).matches("[123]"))){
+            if(userInput.equalsIgnoreCase("quit")){
+                updateMainMessage(quizBot.getName(), "Good luck on CW");
+            } else {
+                updateMainMessage(quizBot.getName(), "Invalid input");
+                updateMainMessage(quizBot.getName(), quizBot.askLevelSelection());
+            }
+        } else {
+            processLevelSelection(userInput);
+        }
+    }
+
+    private void processLevelSelection(String userInput) {
+        if (userInput.matches("[.-]+")) {
+            userInput = dictionaryController.morseToEnglish(userInput);
+        }
+        currentLevel = Integer.parseInt(userInput);
+        String question = askNextQuestion();
+        questionCount = 1;
+        isLvlSelection = false;
+        updateMainMessage(quizBot.getName(), "Level " + currentLevel + " selected.");
+        updateMainMessage(quizBot.getName(), question);
     }
 
     private String askNextQuestion() {
@@ -166,6 +192,7 @@ public class PracticeModeController {
             updateMainMessage(quizBot.getName(), nextQuestion);
         } else {
             updateMainMessage(quizBot.getName(), "QUIZ COMPLETE. CHOOSE LVL OR TYPE QUIT.");
+            isLvlSelection = true;
             questionCount = 0;
         }
     }
@@ -256,16 +283,23 @@ public class PracticeModeController {
     private void handleKeyPress(KeyEvent event) throws LineUnavailableException, InterruptedException {
         StringBuilder morse = new StringBuilder();
         morse.append(MessageBox.getText());
-        if (event.getCode() == KeyCode.LEFT || event.getText().equals(".")) {
+        if (event.getText().equals(".")) {
+            AudioController.playMorseMessage(".", FrequencySlider.getValue());
+        }
+        if(event.getCode() == KeyCode.LEFT){
             AudioController.playMorseMessage(".", FrequencySlider.getValue());
             morse.append(".");
-
         }
-        if (event.getCode() == KeyCode.RIGHT || event.getText().equals("-")) {
+        if (event.getCode() == KeyCode.RIGHT) {
             AudioController.playMorseMessage("-", FrequencySlider.getValue());
             morse.append("-");
         }
+        if(event.getText().equals("-")){
+            AudioController.playMorseMessage("-", FrequencySlider.getValue());
+        }
+
         MessageBox.setText(morse.toString());
+        MessageBox.positionCaret(morse.length());
     }
 
     //distortion button settings and saving state

@@ -66,9 +66,6 @@ class QuizBot extends ChatBot {
 
     public boolean checkAnswer(String userResponse) {
         String currentMorseAnswer = retainMorseCharacters(dictionaryController.translateToMorseCode(currentAnswer));
-        // For debugging
-        System.out.println("Current answer: " + currentAnswer + "\nCurrent answer in Morse: " + currentMorseAnswer);
-
         return userResponse.equalsIgnoreCase(currentMorseAnswer);
     }
 
