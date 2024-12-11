@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Example</title>
+</head>
+<body>
+    <h1>WebSocket Example</h1>
+    <div>
+        <input type="text" id="messageInput" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+        document.userID = prompt("Enter your user ID (e.g., user1, user2):"); // Prompt the user for their user ID
+
+        const ws = new WebSocket(`ws://localhost:8000/ws/${document.userID}`);
+
+        ws.onmessage = function (event) {
+            const outputDiv = document.getElementById("output");
+            console.log(event);
+            console.log(event.data);
+            const message = JSON.parse(event.data);
+            outputDiv.innerHTML += `<p>Received JSON: ${event.data}</p>`;
+            outputDiv.innerHTML += `<p>   ${message.sender}: ${message.text}</p>`;
+        };
+
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const message = {sender: document.userID, text: messageInput.value};
+            ws.send(JSON.stringify(message));
+            messageInput.value = "";
+        }
+    </script>
+</body>
+</html>

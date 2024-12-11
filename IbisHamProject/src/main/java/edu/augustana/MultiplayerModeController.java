@@ -7,6 +7,9 @@ import java.util.List;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javax.sound.sampled.LineUnavailableException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.WebSocket;
 
 public class MultiplayerModeController {
 
@@ -15,6 +18,8 @@ public class MultiplayerModeController {
     private int currentSpeed = 20;
 
     private final List<String> playQueue = new ArrayList<>();
+
+    private WebSocket webSocket;
 
     @FXML private Label FrequencyLabel;
     @FXML private Slider FrequencySlider;
@@ -26,6 +31,8 @@ public class MultiplayerModeController {
     //initializes fxml sliders and page
     @FXML public void initialize() {
         HamRadio user = new HamRadio();
+
+        connectToServer("User");
 
         // frequency slider
         if (FrequencySlider != null) {
@@ -60,7 +67,7 @@ public class MultiplayerModeController {
         }
     }
 
-    private void updateMainMessage(String sender, String engText){
+    public void updateMainMessage(String sender, String engText){
         String morseText = dictionaryController.translateToMorseCode(engText);
         String message;
 
@@ -84,10 +91,18 @@ public class MultiplayerModeController {
         }
     }
 
+    public void sendMessage(String sender, String message) {
+        if (webSocket != null) {
+            String jsonMessage = String.format("{\"sender\": \"%s\", \"text\": \"%s\"}", sender, message);
+            webSocket.sendText(jsonMessage, true);
+        }
+    }
+
     @FXML
     private void sendAction() {
         String userInput = MessageBox.getText().trim();
         if (userInput.isBlank()) return;
+        sendMessage("User", userInput);
         updateMainMessage("User", userInput);
 
         MessageBox.clear();
@@ -119,6 +134,18 @@ public class MultiplayerModeController {
         //set thread as daemon so closing app/app functionality isnt frozen during audio playing
         audioThread.setDaemon(true);
         audioThread.start();
+    }
+
+    public void connectToServer(String userID) {
+        HttpClient client = HttpClient.newHttpClient();
+        String serverUri = "ws://localhost:8000/ws/" + userID;
+
+        // Pass the controller instance to the WebSocketListener
+        webSocket = client.newWebSocketBuilder()
+                .buildAsync(URI.create(serverUri), new WebSocketListener(this)) // <-- Change here
+                .join();
+
+        System.out.println("Connected to server as user: " + userID);
     }
 
     @FXML
