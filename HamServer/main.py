@@ -1,11 +1,11 @@
 # An adaption of Dr. Stonedahl's code (with some debugging from ChatGPT)
-# All of the print statements came from ChatGPT to help debug.
+# All of the print statements came from ChatGPT to help debug (weird that data doesnt appear in console though)
 import nest_asyncio
 import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
-# Apply nest_asyncio to patch the current running event loop
+# Apply nest_asyncio to patch the current running event loop (ChatGPT was a lifesaver here)
 nest_asyncio.apply()
 
 app = FastAPI()

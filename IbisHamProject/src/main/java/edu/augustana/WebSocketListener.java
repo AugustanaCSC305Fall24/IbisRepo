@@ -20,6 +20,8 @@ public class WebSocketListener implements WebSocket.Listener{
         webSocket.request(1);
     }
 
+    //ChatGPT was helpful in writing this function--mainly in regards to interpreting sender/text
+
     @Override
     public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
         System.out.println("Received message: " + data);

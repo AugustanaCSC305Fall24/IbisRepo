@@ -1,4 +1,5 @@
 package edu.augustana;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
@@ -135,6 +136,9 @@ public class MultiplayerModeController {
         audioThread.setDaemon(true);
         audioThread.start();
     }
+
+    //chatgpt was a bit helpful in connecting this to WebSocketListener--also modified from
+    //Dr. Stondahl's modification of WebsocketClientTestMain in ChatterBox
 
     public void connectToServer(String userID) {
         HttpClient client = HttpClient.newHttpClient();
